@@ -2,9 +2,9 @@
 
 ## Overview
 
-This is a static website built using (hakyll)[https://jaspervdj.be/hakyll].
+This is a static website built using [hakyll](https://jaspervdj.be/hakyll).
 Deployment to Github is done using
-(this)[https://jaspervdj.be/hakyll/tutorials/github-pages-tutorial.html] guide.
+[this](https://jaspervdj.be/hakyll/tutorials/github-pages-tutorial.html) guide.
 
 ## Branches
 
