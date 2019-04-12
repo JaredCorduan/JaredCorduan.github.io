@@ -39,6 +39,7 @@ main = hakyll $ do
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    (postCtxWithTags tags)
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
             >>= relativizeUrls
 
@@ -56,6 +57,13 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
+    create ["rss.xml"] $ do
+      route idRoute
+      compile $ do
+          let feedCtx = postCtx `mappend` bodyField "description"
+          posts <- fmap (take 10) . recentFirst =<<
+              loadAllSnapshots "posts/*" "content"
+          renderRss feedConfiguration feedCtx posts
 
     create ["tags.html"] $ do
         route idRoute
@@ -91,3 +99,12 @@ postCtx =
 
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
+
+feedConfiguration :: FeedConfiguration
+feedConfiguration = FeedConfiguration
+    { feedTitle       = "Jared Corduan"
+    , feedDescription = "Personal blog of Jared Corduan"
+    , feedAuthorName  = "Jared Corduan"
+    , feedAuthorEmail = "jared.corduan@gmail.com"
+    , feedRoot        = "https://jaredcorduan.github.io"
+    }
