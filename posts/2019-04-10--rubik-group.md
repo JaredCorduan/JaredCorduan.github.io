@@ -449,7 +449,7 @@ newtype Rubik = Rubik { illegal :: IRubik }
 
 ```haskell
 mkRubik :: [Move] -> Rubik
-mkRubik = Rubik . foldr (\m a -> moveToIR m <> a) mempty
+mkRubik = Rubik . foldMap moveToIR
   where
     moveToIR F  = f
     moveToIR F'  = invert f
