@@ -161,7 +161,7 @@
 <p>Constraining the creation of elements of the illegal cube group to those given by sequences of basic moves gives an implementation of the legal cube group:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">newtype</span> <span class="dt">Rubik</span> <span class="fu">=</span> <span class="dt">Rubik</span> {<span class="ot"> illegal ::</span> <span class="dt">IRubik</span> }</a></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb15-1" title="1"><span class="ot">mkRubik ::</span> [<span class="dt">Move</span>] <span class="ot">-&gt;</span> <span class="dt">Rubik</span></a>
-<a class="sourceLine" id="cb15-2" title="2">mkRubik <span class="fu">=</span> <span class="dt">Rubik</span> <span class="fu">.</span> <span class="fu">foldr</span> (\m a <span class="ot">-&gt;</span> moveToIR m <span class="fu">&lt;&gt;</span> a) <span class="fu">mempty</span></a>
+<a class="sourceLine" id="cb15-2" title="2">mkRubik <span class="fu">=</span> <span class="dt">Rubik</span> <span class="fu">.</span> <span class="fu">foldMap</span> moveToIR</a>
 <a class="sourceLine" id="cb15-3" title="3">  <span class="kw">where</span></a>
 <a class="sourceLine" id="cb15-4" title="4">    moveToIR <span class="dt">F</span>  <span class="fu">=</span> f</a>
 <a class="sourceLine" id="cb15-5" title="5">    moveToIR <span class="dt">F&#39;</span>  <span class="fu">=</span> invert f</a>
