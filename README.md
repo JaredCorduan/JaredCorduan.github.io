@@ -34,9 +34,15 @@ stack exec site watch
 
 ## Make a new entry
 
-Create a markdown page named
+To make a regular post, create a markdown page named
 `posts/20YY-MM-DD-my-title.md`.
 and generate the blog pages as above.
+These will be added to the rss feed.
+
+To make a slush post, create a markdown page named
+`slush/20YY-MM-DD-my-title.md`
+and generate the blog pages as above.
+These will not be added to the rss feed.
 
 ## Deploying
 
