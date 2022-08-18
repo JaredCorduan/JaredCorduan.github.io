@@ -7,8 +7,181 @@
         <description><![CDATA[Personal blog of Jared Corduan]]></description>
         <atom:link href="https://jaredcorduan.github.io/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Wed, 10 Apr 2019 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Tue, 16 Aug 2022 00:00:00 UT</lastBuildDate>
         <item>
+    <title>The Amazing Pigeonhole Principle</title>
+    <link>https://jaredcorduan.github.io/posts/2022-08-16--pigeon.html</link>
+    <description><![CDATA[<article>
+    <section class="header">
+        August 16, 2022
+	<br>
+        
+        <i class="fas fa-tags"></i> <a title="All pages tagged &#39;math&#39;." href="/tags/math.html">math</a>, <a title="All pages tagged &#39;logic&#39;." href="/tags/logic.html">logic</a>, <a title="All pages tagged &#39;pigeonhole&#39;." href="/tags/pigeonhole.html">pigeonhole</a>
+        
+    </section>
+    <section>
+        <h1 id="the-amazing-pigeonhole-principle">The Amazing Pigeonhole Principle</h1>
+<p>The (finite) pigeonhole principle states that if you have more labels than
+objects (with everything finite) and you want to assign all the labels
+to the objects, at least one of the objects will have multiple labels.
+Or, using the imagery of pigeons, if you have more pigeons than holes, you
+cannot place all the pigeons into the holes without at least one hole having
+multiple pigeons.
+It is an obvious statement which turns out to be surprisingly usefully.
+Shockingly useful!
+The statement is attributed to Dirichlet, who actually
+used a metaphor involving letters (the kind you mail).</p>
+<p>There are many great
+<a href="https://math.stackexchange.com/questions/62565/what-is-your-favorite-application-of-the-pigeonhole-principle">examples</a>
+of proofs that involve applying the pigeonhole principle. The
+<a href="https://en.wikipedia.org/wiki/Mutilated_chessboard_problem">Mutilated chessboard problem</a>
+is one of my favorites
+(hint: each domino covers exactly one black and one white square), but
+perhaps my favorite is Fermat’s theorem on sums of two squares.</p>
+<h2 id="proof-of-fermats-theorem-on-sums-of-two-squares">Proof of Fermat’s theorem on sums of two squares</h2>
+<p>The theorem states:
+for any odd prime number \(p\), \(p\) can be written as the sum of two
+squares exactly when it is congruent to one modulo four.
+In symbols:</p>
+<p>\[ p=x^{2}+y^{2} \quad\text{if and only if}\quad p \equiv 1 \pmod 4 \]</p>
+<p>Before we get to the fun part of the proof, we must narrow things down.
+The “only if” direction of the proof is straightforward: since \(p\) is an
+odd prime, it cannot be congruent to 0 or 2 modulo 4, and 3 can be ruled out
+by a case analysis on all the sums of squares modulo 4.</p>
+<p>The “if” direction is where the fun begins. We make one simplification,
+using Euler’s criterion, before bringing out the pigeons.
+Assuming that \(p \equiv 1 \pmod 4 \), Euler’s criterion tells us that
+there is an \(x\) such that \(x^{2}+1 \equiv 0 \pmod 4 \).
+The curious reader can look up the
+<a href="https://en.wikipedia.org/wiki/Euler%27s_criterion#Proof">proof</a>
+of Euler’s criterion, it is fairly short,
+but we’ll skip it so that we can jump straight to naming pigeons.</p>
+<p>We declare one pigeon for each pair of natural numbers \(u, v\) such
+that \(0 \leq u,v &lt; \sqrt p\).
+How many pigeons do we have?
+We have \((\lfloor \sqrt p \rfloor + 1)^{2}\) pigeons, which is
+definitely greater than \(p\). Foreshadowing!</p>
+<p>The holes will be the numbers modulo \(p\), and we will place pigeon
+\(u, v\) into the hole \(ux - v \pmod p\).
+The pigeonhole principle tells us that there are numbers
+\(u_1, u_2, v_1, v_2\) such that
+\[u_1 x - v_1 \equiv u_2 x - v_2 \pmod p\]
+A little bit of algebra yields:
+\[(u_1 - u_2)x \equiv (v_1 - v_2) \pmod p\]
+\[(u_1 - u_2)^{2}x^{2} \equiv (v_1 - v_2)^2 \pmod p\]
+\[(u_1 - u_2)^{2}(-1) \equiv (v_1 - v_2)^2 \pmod p\]
+\[0 \equiv (u_1 - u_2)^{2} + (v_1 - v_2)^2 \pmod p\]</p>
+<p>Note that either \((u_1 - u_2)\) or \((v_1 - v_2)\) must be positive
+since the numbers came from two distinct pigeons.</p>
+<p>Therefore
+\[0 &lt; (u_1 - u_2)^2 + (v_1 - v_2)^2 &lt; (\sqrt p)^2 + (\sqrt p)^2 = 2p\]
+We have then that
+\((u_1 - u_2)^2 + (v_1 - v_2)^2\)
+is a multiple of \(p\) strictly between \(0\) and \(2p\),
+leaving only \(p\).
+This completes the proof.</p>
+<h2 id="a-clue-for-the-usefulness-of-the-pigeonhole-principle">A clue for the usefulness of the pigeonhole principle</h2>
+<p>There is a strong connection between the pigeonhole principle and
+mathematical induction.
+People have studied weak proof systems and have found that adding
+principles of induction to these weak systems has the same effect as adding
+the pigeonhole principle as a new axiom. The connection goes quite deep, but
+requires building up some terminology around the syntax of formulas. The book
+<a href="https://projecteuclid.org/eBooks/perspectives-in-logic/Metamathematics-of-First-Order-Arithmetic/toc/pl/1235421926">Metamathematics of First-Order Arthimetic</a>
+by Hájek and Pudlák explains this in detail (see Chapter 1, Section 2, part b).</p>
+<p>The most intuitive explanation that I have found of this connection comes
+from the Hájek and Pudlák book.
+A failure of induction translates very easily into a failure of the pigeonhole
+principle.</p>
+<p>A failure of induction, for a formula \(\phi (x)\), would look like this:</p>
+<ul>
+<li>\(\phi (0)\) is true</li>
+<li>for every \(x\), if \(\phi (x)\) is true,
+then so is \(\phi (x+1)\)</li>
+<li>\(\phi (a)\) is false for some \(a\)</li>
+</ul>
+<p>We can translate this into a failure of the pigeonhole principle as follows:</p>
+<p>Our pigeons are the numbers \(\leq a\).
+The holes are the numbers \(&lt; a\).
+We place pigeons in holes as follows:</p>
+<ul>
+<li>if \(\phi (x)\) holds, put pigeon \(x\)
+into hole \(x\)</li>
+<li>if \(\phi (x)\) does not hold, put pigeon \(x\)
+into hole \(x - 1\)</li>
+</ul>
+<p>This is not
+<a href="https://en.wikipedia.org/wiki/Intuitionism">constructive</a>
+intuition, and I would love a more constructive view of the connection
+between induction and the pigeonhole principle.</p>
+<p>It also turns out that induction is comparable to some bounding principles.
+If we view a formula \(\phi (x, y)\) as a partial, multi-valued function,
+thinking of \(f (x) = y\) exactly when \(\phi (x, y)\),
+then a bounding principle is a way of stating that if the domain of a function
+is bounded, then so it its range.</p>
+<h2 id="the-infinite-pigeonhole-principle">The infinite pigeonhole principle</h2>
+<p>There is also an infinite version of the pigeon hole principle, which
+states that you cannot assign an infinite number labels to a finite
+collection of objects without labeling at least one object with an infinite
+number of labels.
+The contrapositive states that a finite union of finite sets is finite.</p>
+<p>According to Akihiro Kanamori, the pigeon hole principle may have had a role
+in making the definition of “infinite” rigorous:</p>
+<p>“In 1872 Dedekind was putting together Was sind und was sollen
+die Zahlen?, and he would be the first to define infinite set, with
+the definition being a set for which there is a one-to-one
+correspondence with a proper subset. This is just the negation of
+the Pigeonhole Principle. Dedekind in effect had inverted a
+negative aspect of finite cardinality into a positive existence
+definition of the infinite”
+– <a href="http://math.bu.edu/people/aki/22.pdf">The Mathematical Infinite as a Matter of Method</a></p>
+<p>The connection between the pigeonhole principle, induction, and bounding
+principles holds in the infinite case as well. See
+<a href="https://www.appstate.edu/~hirstjl/bib/pdf/jhthesis.pdf">Jeff Hirst’s thesis</a>,
+theorem 6.4 on page 104.</p>
+<h2 id="the-gateway-to-ramsey-theory">The gateway to Ramsey theory</h2>
+<p>Ramsey’s theorem is a generalization of the pigeonhole principle.
+It has both a finite and an infinite version,
+which itself has a host of generalizations and leads to a whole field of study.</p>
+<p>One special case of Ramsey’s theorem state that any group of six people must
+contain three people such than one of the following holds:</p>
+<ul>
+<li>all three people know each other</li>
+<li>none of them know each other</li>
+</ul>
+<p>We can re-phrase this in terms of graph theory:
+if you color the edges of the complete graph on six vertices with two colors,
+say red and blue,
+there is a sub-graph of size three such that either all the edges are
+red or all the edges are blue.
+The size three sub-graph is called homogeneous or monochromatic.</p>
+<p>The finite version of Ramsey’s theorem generalizes the above statement to any
+number of colors, any size homogeneous set, and multi-dimensional graphs.
+The size graph that you need to guarantee a homogeneous set of the given
+size grows extremely fast.</p>
+<p>I’ll end this post with a fun quote from Paul Erdős:</p>
+<p>“Suppose aliens invade the earth and threaten to obliterate it in a
+year’s time unless human beings can find the Ramsey number for
+red five and blue five. We could marshal the world’s best minds
+and fastest computers, and within a year we could probably
+calculate the value. If the aliens demanded the Ramsey number for
+red six and blue six, however, we would have no choice but to
+launch a preemptive attack.”</p>
+    </section>
+</article>
+<script src="https://utteranc.es/client.js"
+        repo="JaredCorduan/JaredCorduan.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+]]></description>
+    <pubDate>Tue, 16 Aug 2022 00:00:00 UT</pubDate>
+    <guid>https://jaredcorduan.github.io/posts/2022-08-16--pigeon.html</guid>
+    <dc:creator>Jared Corduan</dc:creator>
+</item>
+<item>
     <title>The Rubik's Cube Group</title>
     <link>https://jaredcorduan.github.io/posts/2019-04-10--rubik-group.html</link>
     <description><![CDATA[<article>
@@ -16,14 +189,27 @@
         April 10, 2019
 	<br>
         
-        <i class="fas fa-tags"></i> <a href="/tags/rubik%27s%20cube.html">rubik&#39;s cube</a>, <a href="/tags/group%20theory.html">group theory</a>, <a href="/tags/haskell.html">haskell</a>
+        <i class="fas fa-tags"></i> <a title="All pages tagged &#39;rubik&#39;s cube&#39;." href="/tags/rubik%27s%20cube.html">rubik&#39;s cube</a>, <a title="All pages tagged &#39;group theory&#39;." href="/tags/group%20theory.html">group theory</a>, <a title="All pages tagged &#39;haskell&#39;." href="/tags/haskell.html">haskell</a>
         
     </section>
     <section>
         <h1 id="rubiks-cube-algebra">Rubik’s Cube Algebra</h1>
-<p>Permutations and symmetry are central themes of group theory, so it is perhaps not surprising that the Rubik’s Cube has a nice algebraic description. The first such description was given by David Singmaster in his 1979 book <em>Notes on Rubik’s Magic Cube</em>. David Joyner used the algebra in Singmaster’s book to write an entire introductory book on group theory, called <em>Adventures in Group Theory</em>. The book is fantastic!</p>
-<p>Implementing the Rubik’s Cube Group in Haskell is quite simple, especially given all the algebra readily available in the language. What is more, it is really fun to play with the implementation and translate known Rubik’s Cube algorithms into group elements. Concepts like conjugation and commutators, which are important in the study of non commutative groups, are helpful tools for solving the Rubik’s Cube.</p>
-<p>I am going to describe the Rubik’s Cube group and how I implemented it in Haskell (available <a href="https://github.com/JaredCorduan/rubik-group">here</a>). For more details, to dive deeper, or to read about other similar puzzles, check out <a href="https://www.maa.org/press/maa-reviews/adventures-in-group-theory">Adventures in Group Theory</a>.</p>
+<p>Permutations and symmetry are central themes of group theory,
+so it is perhaps not surprising that the Rubik’s Cube has a nice algebraic description.
+The first such description was given by David Singmaster in his 1979 book
+<em>Notes on Rubik’s Magic Cube</em>.
+David Joyner used the algebra in Singmaster’s book to write an entire introductory
+book on group theory, called <em>Adventures in Group Theory</em>. The book is fantastic!</p>
+<p>Implementing the Rubik’s Cube Group in Haskell is quite simple,
+especially given all the algebra readily available in the language.
+What is more, it is really fun to play with the implementation
+and translate known Rubik’s Cube algorithms into group elements.
+Concepts like conjugation and commutators, which are important in the study of
+non commutative groups, are helpful tools for solving the Rubik’s Cube.</p>
+<p>I am going to describe the Rubik’s Cube group and how I implemented it in Haskell
+(available <a href="https://github.com/JaredCorduan/rubik-group">here</a>).
+For more details, to dive deeper, or to read about other similar puzzles, check out
+<a href="https://www.maa.org/press/maa-reviews/adventures-in-group-theory">Adventures in Group Theory</a>.</p>
 <p>Here is an outline:</p>
 <ul>
 <li>The illegal Rubik’s Cube group</li>
@@ -37,9 +223,18 @@
 <h1 id="the-illegal-rubiks-cube-group">The Illegal Rubik’s Cube Group</h1>
 <p>If you take the Rubik’s Cube apart (without peeling off any stickers)</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Disassembled-rubix-1.jpg/320px-Disassembled-rubix-1.jpg" /></p>
-<p>and put it back together anyway that the pieces will fit, you get a permutation of the fifty-four stickers which may or may not be a solvable Rubik’s Cube anymore. The collection of all such permutations is what Joyner calls the <strong>illegal Rubik’s Cube group</strong>. Investigating this group provides insight into the actual Rubik’s Cube group. Later I will give a description of the <em>legal</em> Rubik’s Cube group as a subgroup of the illegal one.</p>
+<p>and put it back together anyway that the pieces will fit, you get a permutation of the
+fifty-four stickers which may or may not be a solvable Rubik’s Cube anymore.
+The collection of all such permutations is what Joyner calls the
+<strong>illegal Rubik’s Cube group</strong>.
+Investigating this group provides insight into the actual Rubik’s Cube group.
+Later I will give a description of the <em>legal</em> Rubik’s Cube group as a subgroup of the illegal one.</p>
 <h1 id="permutations-and-orientations">Permutations and Orientations</h1>
-<p>Notice that the Rubik’s Cube is made out of eight corner pieces and twelve edge pieces. The key observation for the cube algebra is what <a href="https://www.maa.org/press/maa-reviews/adventures-in-group-theory">Joyner</a> calls the first fundamental theorem of cube theory (theorem 9.6.1):</p>
+<p>Notice that the Rubik’s Cube is made out of eight corner pieces and twelve edge pieces.
+The key observation for the cube algebra is what
+<a href="https://www.maa.org/press/maa-reviews/adventures-in-group-theory">Joyner</a>
+calls the first fundamental theorem of cube theory
+(theorem 9.6.1):</p>
 <p>A position of the Rubik’s Cube is completely determined by:</p>
 <ul>
 <li>how the corners are permuted</li>
@@ -49,159 +244,350 @@
 </ul>
 <p>For example, consider the standard Singmaster move <code>R</code>:</p>
 <p><img src="/images/rubik-group/singmasterR.svg" /></p>
-<p>In the spirit of Stefan Pochmann’s blindsolving mnemonics, let us give some corners memorable names:</p>
+<p>In the spirit of Stefan Pochmann’s blindsolving mnemonics, let us give some corners
+memorable names:</p>
 <ul>
 <li>red-yellow-green - Robin</li>
 <li>white-blue-red - Papa Smurf</li>
 <li>white-red-green - the Grinch</li>
 <li>blue-yellow-red - Superman</li>
 </ul>
-<p>I am using the standard “minus yellow” coloring scheme here, where green is opposite blue and white is opposite yellow. The corners are permuted by R according to the following cycle</p>
+<p>I am using the standard “minus yellow” coloring scheme here,
+where green is opposite blue and white is opposite yellow.
+The corners are permuted by R according to the following cycle</p>
 <p>Superman ⮕ Robin ⮕ the Grinch ⮕ Papa Smurf ⮕ Superman</p>
-<p>Just saying that Papa Smurf moves to Superman’s position is only half of the story. He lands in this position with the white sticker on the “blue face”. In some sequences of moves, he could land with the white sticker facing the “blue face”, the “yellow face”, or the “red face”. The point of the orientations is to specified these positions. Each corner will have three possible orientations and each edge will have two possible orientations.</p>
-<p>The orientations are given relative to an arbitrary, but fixed, standard reference. For the corners, mark each white and yellow sticker with a plus sign. The standard reference for the corners is the position of the plus sign on the solved cube. Given an element of the illegal cube group, the orientation of a corner is the number of clockwise rotations needed to move the plus sign to match the standard reference. For example, consider again Papa Smurf after the move R. One clockwise turn is required to point the white sticker to the “yellow face”, Therefore this corner has orientation 1 in move R. And Superman needs two clockwise turns to point the yellow sticker to the “yellow face” after move R, so it has orientation 2. Similarly, the Grinch has orientation 2 after R and Robin has orientation 1.</p>
+<p>Just saying that Papa Smurf moves to Superman’s position is only half of the story.
+He lands in this position with the white sticker on the “blue face”.
+In some sequences of moves, he could land with the white sticker facing
+the “blue face”, the “yellow face”, or the “red face”.
+The point of the orientations is to specified these positions.
+Each corner will have three possible orientations and each edge will have two possible orientations.</p>
+<p>The orientations are given relative to an arbitrary, but fixed, standard reference.
+For the corners, mark each white and yellow sticker with a plus sign.
+The standard reference for the corners is the position of the plus sign on the solved cube.
+Given an element of the illegal cube group,
+the orientation of a corner is the number of clockwise rotations needed to move
+the plus sign to match the standard reference.
+For example, consider again Papa Smurf after the move R.
+One clockwise turn is required to point the white sticker to the “yellow face”,
+Therefore this corner has orientation 1 in move R.
+And Superman needs two clockwise turns
+to point the yellow sticker to the “yellow face” after move R, so it has orientation 2.
+Similarly, the Grinch has orientation 2 after R and Robin has orientation 1.</p>
 <p>The orientations for the edges are defined in the same way, relative to some standard reference.</p>
-<p>Let \( \mathbb{Z}_m \) be the integers modulo \(m\), \( \mathbb{Z}_m^{n} \) the group of vectors over \( \mathbb{Z}_m \) of length \(n\), and \( \mathsf{S}_n \) be the group of permutations of \(n\)-element sets.</p>
-<p>Then the <strong>elements</strong> of the <strong>illegal Rubiks’s Cube group</strong> are described by \[ (\mathbb{Z}_3^{8}\times\mathsf{S}_{8}) \times (\mathbb{Z}_2^{12}\times\mathsf{S}_{12}), \]</p>
-<p>where \( \mathbb{Z}_3^8 \) gives the eight corner orientations, \( \mathsf{S}_8 \) gives the corner permutation, \( \mathbb{Z}_2^{12} \) gives the twelve edge orientations, and \( \mathsf{S}_{12} \) gives the edge permutation.</p>
+<p>Let \( \mathbb{Z}_m \) be the integers modulo \(m\),
+\( \mathbb{Z}_m^{n} \) the group of vectors over \( \mathbb{Z}_m \) of length
+\(n\), and \( \mathsf{S}_n \) be the group of permutations of \(n\)-element sets.</p>
+<p>Then the <strong>elements</strong> of the <strong>illegal Rubiks’s Cube group</strong> are described by
+\[
+(\mathbb{Z}_3^{8}\times\mathsf{S}_{8})
+\times
+(\mathbb{Z}_2^{12}\times\mathsf{S}_{12}),
+\]</p>
+<p>where \( \mathbb{Z}_3^8 \) gives the eight corner orientations,
+\( \mathsf{S}_8 \) gives the corner permutation,
+\( \mathbb{Z}_2^{12} \) gives the twelve edge orientations,
+and \( \mathsf{S}_{12} \) gives the edge permutation.</p>
 <h1 id="semidirect-products">Semidirect Products</h1>
-<p>Since \( \mathbb{Z}_n^m \) and \( \mathsf{S}_n \) are both groups, a group operation can be defined coordinate-wise on \( (\mathbb{Z}_3^{8}\times\mathsf{S}_{8}) \times (\mathbb{Z}_2^{12}\times\mathsf{S}_{12}) \), but this operation does not match the Rubik’s Cube. Consider the moves U, R, and UR:</p>
-<p><img src="/images/rubik-group/solved.svg" /> U⮕ <img src="/images/rubik-group/singmasterU.svg" /></p>
-<p><img src="/images/rubik-group/solved.svg" /> R⮕ <img src="/images/rubik-group/singmasterR.svg" /></p>
-<p><img src="/images/rubik-group/solved.svg" /> U⮕ <img src="/images/rubik-group/singmasterU.svg" /> R⮕ <img src="/images/rubik-group/singmasterUR.svg" /></p>
-<p>Focusing only on the corners, consider the group operation on \( \mathbb{Z}_3^{8}\times\mathsf{S}_{8} \). Write U in terms of its corner orientations and permutation as \( (U_o, U_p) \). Similarly, write R as \( (R_o, R_p) \). What pair of orientations and permutation does \( UR=(U_o, U_p) \bullet (R_o, R_p) \) result in?</p>
-<p>The Coordinate-wise operation in the second coordinate matches the Rubik’s Cube. Notice that UR permutes the corners according to \( R_p\circ U_p\).</p>
-<p>This situation is different, however, for the orientations. Notice that U does not change the orientation of any of the corners, and that from the solved state R adds 1 to Robin’s orientation. <em>But</em>, from the solved state UR adds 2 to Robin’s orientation.</p>
-<p>If you are holding the cube and watching UR in action, it is clear what is happening: \( U_p \) moves the Robin to Superman’s spot, and then \( R_o \) adds 2 to the orientation of the corner now occupying Superman’s spot, namely Robin. In other words, from the solved state, R adds 2 to Superman’s orientation, but if some other corner is occupying that position, then R adds 2 to <em>that</em> cube instead.</p>
-<p>The corner orientations of UR are therefore: \[ U_o \bullet R_0 = U_o + R_o’ \] where \( + \) is the usual operation on \(\mathbb{Z}_3^8 \), and \( R_o’ \) is the result of permuting the indices of \( R_o \) according to \( U_p \).</p>
-<p>In general, let \( \phi_p(v) \) denote the vector obtained by permuting the indices of \(v\) according to \(p\). The operation on \( \mathbb{Z}_3^{8}\times\mathsf{S}_{8} \) is defined by</p>
-<p>\[ (v, p) \bullet (w, q) = (v+\phi_{p}(w),~q\circ p) \]</p>
-<p>This group is written as \[ \mathbb{Z}_3^{8}\rtimes_\phi\mathsf{S}_{8} \] or sometimes just \( \mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8} \), and is called the (external) <strong>semidirect product</strong> of \( \mathbb{Z}_3^{8} \) and \( \mathsf{S}_{8} \) with respect to \( \phi \).</p>
-<p>The corners of the illegal Rubik’s Cube group are given by \( \mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8} \) and similarly the edges are given by \( \mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12} \). Moreover, the illegal Rubik’s Cube group is given by \[ (\mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8}) \times (\mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12}) \]</p>
-<p>This is proposition 11.1.1 of <a href="https://www.maa.org/press/maa-reviews/adventures-in-group-theory">Joyner</a>.</p>
+<p>Since \( \mathbb{Z}_n^m \) and \( \mathsf{S}_n \) are both groups,
+a group operation can be defined coordinate-wise on
+\(
+(\mathbb{Z}_3^{8}\times\mathsf{S}_{8})
+\times
+(\mathbb{Z}_2^{12}\times\mathsf{S}_{12})
+\),
+but this operation does not match the Rubik’s Cube.
+Consider the moves U, R, and UR:</p>
+<p><img src="/images/rubik-group/solved.svg" /> U⮕
+<img src="/images/rubik-group/singmasterU.svg" /></p>
+<p><img src="/images/rubik-group/solved.svg" /> R⮕
+<img src="/images/rubik-group/singmasterR.svg" /></p>
+<p><img src="/images/rubik-group/solved.svg" /> U⮕
+<img src="/images/rubik-group/singmasterU.svg" /> R⮕
+<img src="/images/rubik-group/singmasterUR.svg" /></p>
+<p>Focusing only on the corners, consider the group operation on
+\( \mathbb{Z}_3^{8}\times\mathsf{S}_{8} \).
+Write U in terms of its corner orientations and permutation as \( (U_o, U_p) \).
+Similarly, write R as \( (R_o, R_p) \).
+What pair of orientations and permutation does \( UR=(U_o, U_p) \bullet (R_o, R_p) \)
+result in?</p>
+<p>The Coordinate-wise operation in the second coordinate matches the Rubik’s Cube.
+Notice that UR permutes the corners according to \( R_p\circ U_p\).</p>
+<p>This situation is different, however, for the orientations.
+Notice that U does not change the orientation of any of the corners,
+and that from the solved state R adds 1 to Robin’s orientation.
+<em>But</em>, from the solved state UR adds 2 to Robin’s orientation.</p>
+<p>If you are holding the cube and watching UR in action, it is clear what is happening:
+\( U_p \) moves the Robin to Superman’s spot, and then \( R_o \)
+adds 2 to the orientation of the corner now occupying Superman’s spot, namely Robin.
+In other words, from the solved state, R adds 2 to Superman’s orientation,
+but if some other corner is occupying that position, then R adds 2 to <em>that</em> cube instead.</p>
+<p>The corner orientations of UR are therefore:
+\[ U_o \bullet R_0 = U_o + R_o’ \]
+where \( + \) is the usual operation on \(\mathbb{Z}_3^8 \),
+and \( R_o’ \) is the result of permuting the indices of \( R_o \)
+according to \( U_p \).</p>
+<p>In general, let \( \phi_p(v) \) denote the vector obtained by permuting the indices of
+\(v\) according to \(p\). The operation on
+\( \mathbb{Z}_3^{8}\times\mathsf{S}_{8} \)
+is defined by</p>
+<p>\[
+(v, p) \bullet (w, q) = (v+\phi_{p}(w),~q\circ p)
+\]</p>
+<p>This group is written as
+\[ \mathbb{Z}_3^{8}\rtimes_\phi\mathsf{S}_{8} \]
+or sometimes just \( \mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8} \),
+and is called the (external) <strong>semidirect product</strong> of
+\( \mathbb{Z}_3^{8} \) and \( \mathsf{S}_{8} \) with respect to \( \phi \).</p>
+<p>The corners of the illegal Rubik’s Cube group are given by
+\( \mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8} \)
+and similarly the edges are given by
+\( \mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12} \).
+Moreover, the illegal Rubik’s Cube group is given by
+\[
+(\mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8})
+\times
+(\mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12})
+\]</p>
+<p>This is proposition 11.1.1 of
+<a href="https://www.maa.org/press/maa-reviews/adventures-in-group-theory">Joyner</a>.</p>
 <h2 id="semidirect-products-in-general">Semidirect Products in General</h2>
 <p>The semidirect products is more general than the construction in the last section.</p>
-<p>Let \(\mathsf{Aut}(G)\) denote the group of automorphisms of a group \(G\) (i.e. the isomorphisms of \(G\) with itself under composition).</p>
-<p>Let \(\phi:H\to\mathsf{Aut}(G)\) be a group homomorphism. Then \[ G\rtimes_\phi H\] is the group whose elements are \( G\times H\) and whose operation is given by \[ (a, x) \bullet (b, y) = (a\bullet\phi_x(b),~x\bullet y) \]</p>
-<p>The illegal Rubik’s Cube group was described using \( \mathbb{Z}_m^{n}\rtimes_\phi\mathsf{S}_{n} \), where \( \phi_p(v) \) is the vector obtained by permuting the indices of \(v\) according to \(p\). It is easy to check that this \(\phi\) is a homomorphism from \( \mathsf{S}_{n} \) to \( \mathsf{Aut}(\mathbb{Z}_m^{n}) \).</p>
-<p>Sometimes semidirect products are described as direct products with a “twist”. The twist is the replacement of \(b\) by \(\phi_x(b)\).</p>
+<p>Let \(\mathsf{Aut}(G)\) denote the group of automorphisms of a group \(G\)
+(i.e. the isomorphisms of \(G\) with itself under composition).</p>
+<p>Let \(\phi:H\to\mathsf{Aut}(G)\) be a group homomorphism.
+Then \[ G\rtimes_\phi H\]
+is the group whose elements are \( G\times H\) and whose operation is given by
+\[
+(a, x) \bullet (b, y) = (a\bullet\phi_x(b),~x\bullet y)
+\]</p>
+<p>The illegal Rubik’s Cube group was described using
+\( \mathbb{Z}_m^{n}\rtimes_\phi\mathsf{S}_{n} \),
+where \( \phi_p(v) \) is the vector obtained by permuting the indices of \(v\)
+according to \(p\).
+It is easy to check that this \(\phi\) is a homomorphism from
+\( \mathsf{S}_{n} \)
+to
+\( \mathsf{Aut}(\mathbb{Z}_m^{n}) \).</p>
+<p>Sometimes semidirect products are described as direct products with a “twist”.
+The twist is the replacement of \(b\) by \(\phi_x(b)\).</p>
 <h2 id="wreath-products">Wreath Products</h2>
-<p>This subsection can be <a href="#haskell-implementation">skipped</a>. The semidirect product used in the illegal Rubik’s Cube group is actually an example of a specific kind of semidirect product called a wreath product.</p>
-<p>A (left) group action is a function \[\phi: H\to (X\to X)\] from a group \(H\) to functions on a set \(X\), such that the identity in \(H\) is mapped to the identity function on \(X\), and which respect the group operation: \[\phi_{gh}=\phi_g\circ\phi_h\]</p>
-<p>If \(\phi\) is a group action on \(X\), and \(G\) is a group, then there is a homomorphism \[ \Phi : H\to\mathsf{Aut}\left(\prod_XG\right) \] where \(\prod_XG\) is the direct product of \(G\) with itself using \(X\) as a index set. The definition of \( \Phi_h(v) \) is exactly like the construction used in the Rubik’s Cube, it is the vector obtained by permuting the indices of \(v\) according to \(\phi_h\).</p>
-<p>Therefore an action \(\phi\) of \(H\) on \(X\) can be used to form a semidirect product \[\prod_XG \rtimes_\Phi H\]</p>
-<p>This construction is called a <strong>wreath product</strong> and can be written as: \[G \wr_X H\] or just \(G \wr H\).</p>
-<p>Bringing it back to the illegal Rubik’s Cube, notice that there is a group action of \(\mathsf{S}_n\) on \(\{1, 2, , n\}\) given by applying the permutations to the set of \(n\) numbers. Therefore the illegal Rubik’s Cube group is described by a wreath product: \[ (\mathbb{Z}_3\wr\mathsf{S}_{8}) \times (\mathbb{Z}_2\wr\mathsf{S}_{12}) \]</p>
+<p>This subsection can be <a href="#haskell-implementation">skipped</a>.
+The semidirect product used in the illegal Rubik’s Cube group is actually an example
+of a specific kind of semidirect product called a wreath product.</p>
+<p>A (left) group action is a function
+\[\phi: H\to (X\to X)\]
+from a group \(H\) to functions on a set \(X\), such that
+the identity in \(H\) is mapped to the identity function on \(X\),
+and which respect the group operation:
+\[\phi_{gh}=\phi_g\circ\phi_h\]</p>
+<p>If \(\phi\) is a group action on \(X\), and \(G\) is a group, then
+there is a homomorphism
+\[ \Phi : H\to\mathsf{Aut}\left(\prod_XG\right) \]
+where \(\prod_XG\) is the direct product of \(G\) with itself using \(X\) as a index set.
+The definition of \( \Phi_h(v) \) is exactly like the construction used in the Rubik’s Cube,
+it is the vector obtained by permuting the indices of \(v\) according to \(\phi_h\).</p>
+<p>Therefore an action \(\phi\) of \(H\) on \(X\) can be used to form a semidirect product
+\[\prod_XG \rtimes_\Phi H\]</p>
+<p>This construction is called a <strong>wreath product</strong> and can be written as:
+\[G \wr_X H\]
+or just \(G \wr H\).</p>
+<p>Bringing it back to the illegal Rubik’s Cube, notice that there is a group action of
+\(\mathsf{S}_n\) on \(\{1, 2, , n\}\) given by applying the permutations
+to the set of \(n\) numbers.
+Therefore the illegal Rubik’s Cube group is described by a wreath product:
+\[
+(\mathbb{Z}_3\wr\mathsf{S}_{8})
+\times
+(\mathbb{Z}_2\wr\mathsf{S}_{12})
+\]</p>
 <h1 id="haskell-implementation">Haskell implementation</h1>
-<p>The implementation mostly entailed gluing together existing libraries and providing an explicit translation of the Singmaster moves to \( (\mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8}) \times (\mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12}) \).</p>
+<p>The implementation mostly entailed gluing together existing libraries and providing
+an explicit translation of the Singmaster moves to
+\(
+(\mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8})
+\times
+(\mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12})
+\).</p>
 <h2 id="representing-mathbbz_m">Representing \(\mathbb{Z}_m\)</h2>
-<p>For \(\mathbb{Z}_m\), I used the <a href="http://hackage.haskell.org/package/modular-arithmetic">modular arithmetic</a> package. I wrapped it in a newtype in order to specify it as a group under addition.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">newtype</span> <span class="dt">Cyclic</span> n <span class="fu">=</span> <span class="dt">Cyclic</span> (<span class="dt">Mod</span> <span class="dt">Int</span> n)</a></code></pre></div>
+<p>For \(\mathbb{Z}_m\), I used the
+<a href="http://hackage.haskell.org/package/modular-arithmetic">modular arithmetic</a> package.
+I wrapped it in a newtype in order to specify it as a group under addition.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">Cyclic</span> n <span class="ot">=</span> <span class="dt">Cyclic</span> (<span class="dt">Mod</span> <span class="dt">Int</span> n)</span></code></pre></div>
 <h2 id="representing-mathbbz_mn">Representing \(\mathbb{Z}_m^n\)</h2>
-<p>For \(\mathbb{Z}_m^n\), I used <a href="http://hackage.haskell.org/package/fixed-vector">fixed size vectors</a> over \(\mathbb{Z}_m\).</p>
+<p>For \(\mathbb{Z}_m^n\), I used
+<a href="http://hackage.haskell.org/package/fixed-vector">fixed size vectors</a> over \(\mathbb{Z}_m\).</p>
 <h2 id="representing-mathsfs_n">Representing \(\mathsf{S}_n\)</h2>
-<p>For \(\mathsf{S}_n\) I used fixed size vectors of length \(n\) over \(\mathbb{Z}_n\). For example, the vector \([2, 1, 0]\) corresponds to the permutation \[ \sigma=\left( \begin{array}{cc} 0 &amp; 1 &amp; 2\\ 2 &amp; 1 &amp; 0\end{array} \right) \]</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">newtype</span> <span class="dt">Perm</span> n <span class="fu">=</span> <span class="dt">Perm</span> (<span class="dt">VecList</span> n (<span class="dt">Mod</span> <span class="dt">Int</span> n))</a></code></pre></div>
-<p>This type, unfortunately, admits instances that are not permutations, since nothing prevents values from being repeated. For example, the vector <code>[0, 0]</code> is not a permutation even though it type checks.</p>
-<p>For this reason, I made a function <code>mkPerm</code> that only creates proper permutations. The guarantee is achieved by only creating permutations from sequences of transpositions. A transposition is defined as two modular integers:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">data</span> <span class="dt">Trnsp</span> n <span class="fu">=</span> <span class="dt">Trnsp</span> (<span class="dt">Mod</span> <span class="dt">Int</span> n) (<span class="dt">Mod</span> <span class="dt">Int</span> n)</a></code></pre></div>
-<p>which is technically not correct, but does not do much harm. The biggest issue is that you must be careful when computing the sign of a permutation not to count the fake transpositions. Here is a way to construct all proper permutations:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb4-1" title="1"><span class="ot">mkPerm ::</span> <span class="kw">forall</span> n<span class="fu">.</span> <span class="dt">Arity</span> n <span class="ot">=&gt;</span> [<span class="dt">Trnsp</span> n] <span class="ot">-&gt;</span> <span class="dt">Perm</span> n</a>
-<a class="sourceLine" id="cb4-2" title="2">mkPerm sws <span class="fu">=</span> <span class="dt">Perm</span> <span class="fu">$</span> DVF.map (\z <span class="ot">-&gt;</span> <span class="fu">foldl</span> evalTrnsp z sws) (generate toMod)</a>
-<a class="sourceLine" id="cb4-3" title="3">  <span class="kw">where</span></a>
-<a class="sourceLine" id="cb4-4" title="4">    evalTrnsp z (<span class="dt">Trnsp</span> x y)</a>
-<a class="sourceLine" id="cb4-5" title="5">      <span class="fu">|</span> z <span class="fu">==</span> x <span class="fu">=</span> y</a>
-<a class="sourceLine" id="cb4-6" title="6">      <span class="fu">|</span> z <span class="fu">==</span> y <span class="fu">=</span> x</a>
-<a class="sourceLine" id="cb4-7" title="7">      <span class="fu">|</span> <span class="fu">otherwise</span> <span class="fu">=</span> z</a></code></pre></div>
+<p>For \(\mathsf{S}_n\) I used fixed size vectors of length \(n\) over \(\mathbb{Z}_n\).
+For example, the vector \([2, 1, 0]\) corresponds to the permutation
+\[ \sigma=\left( \begin{array}{cc} 0 &amp; 1 &amp; 2\\ 2 &amp; 1 &amp; 0\end{array} \right) \]</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">Perm</span> n <span class="ot">=</span> <span class="dt">Perm</span> (<span class="dt">VecList</span> n (<span class="dt">Mod</span> <span class="dt">Int</span> n))</span></code></pre></div>
+<p>This type, unfortunately, admits instances that are not permutations,
+since nothing prevents values from being repeated.
+For example, the vector <code>[0, 0]</code> is not a permutation even though it type checks.</p>
+<p>For this reason, I made a function <code>mkPerm</code> that only creates proper permutations.
+The guarantee is achieved by only creating permutations from sequences of transpositions.
+A transposition is defined as two modular integers:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Trnsp</span> n <span class="ot">=</span> <span class="dt">Trnsp</span> (<span class="dt">Mod</span> <span class="dt">Int</span> n) (<span class="dt">Mod</span> <span class="dt">Int</span> n)</span></code></pre></div>
+<p>which is technically not correct, but does not do much harm.
+The biggest issue is that you must be careful when computing the sign
+of a permutation not to count the fake transpositions.
+Here is a way to construct all proper permutations:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">mkPerm ::</span> <span class="kw">forall</span> n<span class="op">.</span> <span class="dt">Arity</span> n <span class="ot">=&gt;</span> [<span class="dt">Trnsp</span> n] <span class="ot">-&gt;</span> <span class="dt">Perm</span> n</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mkPerm sws <span class="ot">=</span> <span class="dt">Perm</span> <span class="op">$</span> DVF.map (\z <span class="ot">-&gt;</span> <span class="fu">foldl</span> evalTrnsp z sws) (generate toMod)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    evalTrnsp z (<span class="dt">Trnsp</span> x y)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="op">|</span> z <span class="op">==</span> x <span class="ot">=</span> y</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">|</span> z <span class="op">==</span> y <span class="ot">=</span> x</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> z</span></code></pre></div>
 <h3 id="transposition-operators">Transposition operators</h3>
-<p>To make working with transpositions easier, I created two operators which mimic the usual cycle notation. The cycle \( (3~2~1~0) = (3~2)(3~1)(3~0) \) can be written as:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" title="1">(<span class="dv">3</span> <span class="fu">~~&gt;</span> <span class="dv">2</span> <span class="fu">~&gt;</span> <span class="dv">1</span> <span class="fu">~&gt;</span> <span class="dv">0</span>)</a></code></pre></div>
+<p>To make working with transpositions easier, I created two operators
+which mimic the usual cycle notation.
+The cycle \( (3~2~1~0) = (3~2)(3~1)(3~0) \) can be written as:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="op">~~&gt;</span> <span class="dv">2</span> <span class="op">~&gt;</span> <span class="dv">1</span> <span class="op">~&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
 <p>which is turned into:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb6-1" title="1">[<span class="dt">Trnsp</span> <span class="dv">3</span> <span class="dv">2</span>, <span class="dt">Trnsp</span> <span class="dv">3</span> <span class="dv">1</span>, <span class="dt">Trnsp</span> <span class="dv">3</span> <span class="dv">0</span>]</a></code></pre></div>
-<p>This is intended for creating cycles, though this is not enforced. For example,</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb7-1" title="1">(<span class="dv">0</span> <span class="fu">~~&gt;</span> <span class="dv">1</span> <span class="fu">~&gt;</span> <span class="dv">2</span> <span class="fu">~&gt;</span> <span class="dv">1</span> <span class="fu">~&gt;</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[<span class="dt">Trnsp</span> <span class="dv">3</span> <span class="dv">2</span>, <span class="dt">Trnsp</span> <span class="dv">3</span> <span class="dv">1</span>, <span class="dt">Trnsp</span> <span class="dv">3</span> <span class="dv">0</span>]</span></code></pre></div>
+<p>This is intended for creating cycles, though this is not enforced.
+For example,</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="op">~~&gt;</span> <span class="dv">1</span> <span class="op">~&gt;</span> <span class="dv">2</span> <span class="op">~&gt;</span> <span class="dv">1</span> <span class="op">~&gt;</span> <span class="dv">3</span>)</span></code></pre></div>
 <p>creates \( (0~1)(0~2)(0~1)(0~3) = (0~3)(1~2) \), etc.</p>
 <h2 id="representing-mathbbz_mnrtimesmathsfs_n">Representing \(\mathbb{Z}_m^n\rtimes\mathsf{S}_n\)</h2>
-<p>Semidirect products are defined in <a href="http://hackage.haskell.org/package/monoid-extras-0.5">monoid extras</a>. The package provides the constructors <code>Semi</code> and <code>Action</code>, each which take two type parameters, corresponding to the two components of the product. Thinking of a semidirect product as a direct product with a twist, <code>Action</code> is used to define the twist \(\phi\) in the first coordinate. For the Rubik’s Cube, we saw the twist when adding two orientation vectors together, since the second vector had to have its indices permuted according the the permutation associated with the first vector. (Recall Robin having his orientation changed while in Superman’s original position.)</p>
-<p>Once an instance of <code>Action</code> is given, and provided the two types are monoids, the corresponding instance of <code>Semi</code> will have the semidirect product operation.</p>
-<p>Therefore \( \mathbb{Z}_m^{n}\rtimes\mathsf{S}_{n} \) can be implemented with:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">instance</span> <span class="dt">Arity</span> n <span class="ot">=&gt;</span> <span class="dt">Action</span> (<span class="dt">Perm</span> n) (<span class="dt">VecList</span> n (<span class="dt">Cyclic</span> m)) <span class="kw">where</span></a>
-<a class="sourceLine" id="cb8-2" title="2">  act (<span class="dt">Perm</span> p) v <span class="fu">=</span> <span class="fu">map</span> (v <span class="fu">!</span>) p</a></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">instance</span> (<span class="dt">Arity</span> n, <span class="dt">KnownNat</span> m) <span class="ot">=&gt;</span> <span class="dt">Group</span> (<span class="dt">Semi</span> (<span class="dt">VecList</span> n (<span class="dt">Cyclic</span> m)) (<span class="dt">Perm</span> n)) <span class="kw">where</span></a>
-<a class="sourceLine" id="cb9-2" title="2">  invert g <span class="fu">=</span> tag (act p&#39; (invert v)) p&#39;</a>
-<a class="sourceLine" id="cb9-3" title="3">    <span class="kw">where</span></a>
-<a class="sourceLine" id="cb9-4" title="4">      (v, p) <span class="fu">=</span> unSemi g</a>
-<a class="sourceLine" id="cb9-5" title="5">      p&#39; <span class="fu">=</span> invert p</a></code></pre></div>
-<p>Note that the action <code>act</code> <em>is not safe</em> for an arbitrary <code>Perm</code>, but it is safe for permutations made with <code>mkPerm</code>.</p>
-<p>Note also that inverses in the semidirect product are given by \[ (v, p)^{-1} = \left(\phi_{p^{-1}}(v^{-1}),~p^{-1}\right)\] and <strong>not</strong> by \( (v^{-1},~p^{-1}) \). The “twist” must be unwound.</p>
+<p>Semidirect products are defined in
+<a href="http://hackage.haskell.org/package/monoid-extras-0.5">monoid extras</a>.
+The package provides the constructors <code>Semi</code> and <code>Action</code>, each which take two type parameters,
+corresponding to the two components of the product.
+Thinking of a semidirect product as a direct product with a twist,
+<code>Action</code> is used to define the twist \(\phi\) in the first coordinate.
+For the Rubik’s Cube, we saw the twist when adding two orientation vectors together,
+since the second vector had to have its indices permuted according the the permutation
+associated with the first vector.
+(Recall Robin having his orientation changed while in Superman’s original position.)</p>
+<p>Once an instance of <code>Action</code> is given, and provided the two types are monoids,
+the corresponding instance of <code>Semi</code> will have the semidirect product operation.</p>
+<p>Therefore
+\( \mathbb{Z}_m^{n}\rtimes\mathsf{S}_{n} \)
+can be implemented with:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Arity</span> n <span class="ot">=&gt;</span> <span class="dt">Action</span> (<span class="dt">Perm</span> n) (<span class="dt">VecList</span> n (<span class="dt">Cyclic</span> m)) <span class="kw">where</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  act (<span class="dt">Perm</span> p) v <span class="ot">=</span> <span class="fu">map</span> (v <span class="op">!</span>) p</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> (<span class="dt">Arity</span> n, <span class="dt">KnownNat</span> m) <span class="ot">=&gt;</span> <span class="dt">Group</span> (<span class="dt">Semi</span> (<span class="dt">VecList</span> n (<span class="dt">Cyclic</span> m)) (<span class="dt">Perm</span> n)) <span class="kw">where</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  invert g <span class="ot">=</span> tag (act p&#39; (invert v)) p&#39;</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">where</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      (v, p) <span class="ot">=</span> unSemi g</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      p&#39; <span class="ot">=</span> invert p</span></code></pre></div>
+<p>Note that the action <code>act</code> <em>is not safe</em> for an arbitrary <code>Perm</code>,
+but it is safe for permutations made with <code>mkPerm</code>.</p>
+<p>Note also that inverses in the semidirect product are given by
+\[ (v, p)^{-1} = \left(\phi_{p^{-1}}(v^{-1}),~p^{-1}\right)\]
+and <strong>not</strong> by \( (v^{-1},~p^{-1}) \). The “twist” must be unwound.</p>
 <h2 id="representing-the-illegal-rubiks-cube-group">Representing the illegal Rubik’s Cube group</h2>
 <p>The illegal Rubik’s Cube group is implemented as:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">type</span> <span class="dt">Corners</span> <span class="fu">=</span> <span class="dt">Semi</span> (<span class="dt">VecList</span> <span class="dv">8</span> (<span class="dt">Cyclic</span> <span class="dv">3</span>)) (<span class="dt">Perm</span> <span class="dv">8</span>)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">type</span> <span class="dt">Edges</span> <span class="fu">=</span> <span class="dt">Semi</span> (<span class="dt">VecList</span> <span class="dv">12</span> (<span class="dt">Cyclic</span> <span class="dv">2</span>)) (<span class="dt">Perm</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb10-3" title="3"></a>
-<a class="sourceLine" id="cb10-4" title="4"><span class="kw">data</span> <span class="dt">IRubik</span> <span class="fu">=</span> <span class="dt">IRubik</span> <span class="dt">Corners</span> <span class="dt">Edges</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Corners</span> <span class="ot">=</span> <span class="dt">Semi</span> (<span class="dt">VecList</span> <span class="dv">8</span> (<span class="dt">Cyclic</span> <span class="dv">3</span>)) (<span class="dt">Perm</span> <span class="dv">8</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">Edges</span> <span class="ot">=</span> <span class="dt">Semi</span> (<span class="dt">VecList</span> <span class="dv">12</span> (<span class="dt">Cyclic</span> <span class="dv">2</span>)) (<span class="dt">Perm</span> <span class="dv">12</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">IRubik</span> <span class="ot">=</span> <span class="dt">IRubik</span> <span class="dt">Corners</span> <span class="dt">Edges</span></span></code></pre></div>
 <p>The following function provides a convenient way to construct instances of <code>IRubik</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb11-1" title="1"><span class="ot">mkIRubik ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Trnsp</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Trnsp</span>] <span class="ot">-&gt;</span> <span class="dt">IRubik</span></a>
-<a class="sourceLine" id="cb11-2" title="2">mkIRubik co cp eo ep <span class="fu">=</span></a>
-<a class="sourceLine" id="cb11-3" title="3">  <span class="dt">IRubik</span></a>
-<a class="sourceLine" id="cb11-4" title="4">    (tag (fromList (<span class="fu">map</span> (<span class="dt">Cyclic</span> <span class="fu">.</span> toMod) co)) (mkPerm cp))</a>
-<a class="sourceLine" id="cb11-5" title="5">    (tag (fromList (<span class="fu">map</span> (<span class="dt">Cyclic</span> <span class="fu">.</span> toMod) eo)) (mkPerm ep))</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">mkIRubik ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Trnsp</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Trnsp</span>] <span class="ot">-&gt;</span> <span class="dt">IRubik</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mkIRubik co cp eo ep <span class="ot">=</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">IRubik</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    (tag (fromList (<span class="fu">map</span> (<span class="dt">Cyclic</span> <span class="op">.</span> toMod) co)) (mkPerm cp))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    (tag (fromList (<span class="fu">map</span> (<span class="dt">Cyclic</span> <span class="op">.</span> toMod) eo)) (mkPerm ep))</span></code></pre></div>
 <h1 id="the-legal-cube-group-in-haskell">The legal cube group in Haskell</h1>
-<p>The elements of the illegal Rubik’s Cube group which are also <em>legal</em> moves are exactly those moves which can be described as a sequence of the basic Singmaster moves: F, U, R, B, D, and L. Therefore the legal moves can be easily expressed in \( (\mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8}) \times (\mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12}) \) by translating the basic moves and making use of the group operation.</p>
+<p>The elements of the illegal Rubik’s Cube group which are also <em>legal</em> moves
+are exactly those moves which can be described as a sequence of the basic Singmaster moves:
+F, U, R, B, D, and L.
+Therefore the legal moves can be easily expressed in
+\(
+(\mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8})
+\times
+(\mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12})
+\)
+by translating the basic moves and making use of the group operation.</p>
 <p>The inverses are also translated for convenience.</p>
 <p>An abstract basic move is defined as:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">data</span> <span class="dt">Move</span> <span class="fu">=</span> <span class="dt">F</span> <span class="fu">|</span> <span class="dt">U</span> <span class="fu">|</span> <span class="dt">R</span> <span class="fu">|</span> <span class="dt">B</span> <span class="fu">|</span> <span class="dt">D</span> <span class="fu">|</span> <span class="dt">L</span> <span class="fu">|</span> <span class="dt">F&#39;</span> <span class="fu">|</span> <span class="dt">U&#39;</span> <span class="fu">|</span> <span class="dt">R&#39;</span> <span class="fu">|</span> <span class="dt">B&#39;</span> <span class="fu">|</span> <span class="dt">D&#39;</span> <span class="fu">|</span> <span class="dt">L&#39;</span></a></code></pre></div>
-<p>Translating the moves involves the nitty-gritty details of labeling the corners and edges with numbers and specifying the standard references for the orientations. The Haddocks/comments of the <a href="https://github.com/JaredCorduan/rubik-group">implementation</a> contain these details, but this is not necessary for a high-level understanding.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Move</span> <span class="ot">=</span> <span class="dt">F</span> <span class="op">|</span> <span class="dt">U</span> <span class="op">|</span> <span class="dt">R</span> <span class="op">|</span> <span class="dt">B</span> <span class="op">|</span> <span class="dt">D</span> <span class="op">|</span> <span class="dt">L</span> <span class="op">|</span> <span class="dt">F&#39;</span> <span class="op">|</span> <span class="dt">U&#39;</span> <span class="op">|</span> <span class="dt">R&#39;</span> <span class="op">|</span> <span class="dt">B&#39;</span> <span class="op">|</span> <span class="dt">D&#39;</span> <span class="op">|</span> <span class="dt">L&#39;</span></span></code></pre></div>
+<p>Translating the moves involves the nitty-gritty details of labeling the corners and edges with
+numbers and specifying the standard references for the orientations.
+The Haddocks/comments of the
+<a href="https://github.com/JaredCorduan/rubik-group">implementation</a> contain these details,
+but this is not necessary for a high-level understanding.</p>
 <p>The forward move F is given by:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb13-1" title="1"><span class="ot">f ::</span> <span class="dt">IRubik</span></a>
-<a class="sourceLine" id="cb13-2" title="2">f <span class="fu">=</span> mkIRubik</a>
-<a class="sourceLine" id="cb13-3" title="3">  [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">0</span> <span class="fu">~~&gt;</span> <span class="dv">4</span> <span class="fu">~&gt;</span> <span class="dv">5</span> <span class="fu">~&gt;</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb13-4" title="4">  [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">0</span> <span class="fu">~~&gt;</span> <span class="dv">4</span> <span class="fu">~&gt;</span> <span class="dv">8</span> <span class="fu">~&gt;</span> <span class="dv">5</span>)</a></code></pre></div>
-<p>From this you can see that F performs a four-cycle on both the corners and the edges, and you can see how the corner and edge orientations change.</p>
-<p>Constraining the creation of elements of the illegal cube group to those given by sequences of basic moves gives an implementation of the legal cube group:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">newtype</span> <span class="dt">Rubik</span> <span class="fu">=</span> <span class="dt">Rubik</span> {<span class="ot"> illegal ::</span> <span class="dt">IRubik</span> }</a></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb15-1" title="1"><span class="ot">mkRubik ::</span> [<span class="dt">Move</span>] <span class="ot">-&gt;</span> <span class="dt">Rubik</span></a>
-<a class="sourceLine" id="cb15-2" title="2">mkRubik <span class="fu">=</span> <span class="dt">Rubik</span> <span class="fu">.</span> <span class="fu">foldMap</span> moveToIR</a>
-<a class="sourceLine" id="cb15-3" title="3">  <span class="kw">where</span></a>
-<a class="sourceLine" id="cb15-4" title="4">    moveToIR <span class="dt">F</span>  <span class="fu">=</span> f</a>
-<a class="sourceLine" id="cb15-5" title="5">    moveToIR <span class="dt">F&#39;</span>  <span class="fu">=</span> invert f</a>
-<a class="sourceLine" id="cb15-6" title="6">    <span class="fu">.</span></a>
-<a class="sourceLine" id="cb15-7" title="7">    <span class="fu">.</span></a>
-<a class="sourceLine" id="cb15-8" title="8">    <span class="fu">.</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ot">f ::</span> <span class="dt">IRubik</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> mkIRubik</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">0</span> <span class="op">~~&gt;</span> <span class="dv">4</span> <span class="op">~&gt;</span> <span class="dv">5</span> <span class="op">~&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">0</span> <span class="op">~~&gt;</span> <span class="dv">4</span> <span class="op">~&gt;</span> <span class="dv">8</span> <span class="op">~&gt;</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>From this you can see that F performs a four-cycle on both the corners and the edges,
+and you can see how the corner and edge orientations change.</p>
+<p>Constraining the creation of elements of the illegal cube group to those given by
+sequences of basic moves gives an implementation of the legal cube group:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">Rubik</span> <span class="ot">=</span> <span class="dt">Rubik</span> {<span class="ot"> illegal ::</span> <span class="dt">IRubik</span> }</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ot">mkRubik ::</span> [<span class="dt">Move</span>] <span class="ot">-&gt;</span> <span class="dt">Rubik</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mkRubik <span class="ot">=</span> <span class="dt">Rubik</span> <span class="op">.</span> <span class="fu">foldMap</span> moveToIR</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    moveToIR <span class="dt">F</span>  <span class="ot">=</span> f</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    moveToIR <span class="dt">F&#39;</span>  <span class="ot">=</span> invert f</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span></span></code></pre></div>
 <h1 id="the-legal-cube-group-properties">The legal cube group properties</h1>
-<p>Much more can be said about the legal cube group. We now embark on the journey for a nice algebraic description.</p>
-<p>The (legal) Rubik’s Cube group is the subgroup of the illegal Rubik’s Cube group consisting of all elements \[ (v,~r,~w,~s)\in (\mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8}) \times (\mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12}) \] satisfying:</p>
+<p>Much more can be said about the legal cube group.
+We now embark on the journey for a nice algebraic description.</p>
+<p>The (legal) Rubik’s Cube group is the subgroup of the illegal Rubik’s Cube group
+consisting of all elements
+\[ (v,~r,~w,~s)\in
+(\mathbb{Z}_3^{8}\rtimes\mathsf{S}_{8})
+\times
+(\mathbb{Z}_2^{12}\rtimes\mathsf{S}_{12})
+\]
+satisfying:</p>
 <ol type="1">
 <li>“equal parity as permutations”: \[ \mathsf{sign}~r=\mathsf{sign}~s\]</li>
 <li>“conservation of total twists”: \[ v_1+\ldots+v_8\equiv 0~(\mathsf{mod}~3)\]</li>
 <li>“conservation of total flips”: \[ w_1+\ldots+w_{12}\equiv 0~(\mathsf{mod}~2)\]</li>
 </ol>
-<p>This is theorem 11.2.1 of <a href="https://www.maa.org/press/maa-reviews/adventures-in-group-theory">Joyner</a>, also called the second fundamental theorem of cube theory, attributed to Ann Scott, which we now prove.</p>
+<p>This is theorem 11.2.1 of
+<a href="https://www.maa.org/press/maa-reviews/adventures-in-group-theory">Joyner</a>,
+also called the second fundamental theorem of cube theory, attributed to Ann Scott,
+which we now prove.</p>
 <h2 id="one-direction-of-the-proof">One direction of the proof</h2>
-<p>Proving that the moves of the legal cube group satisfy the properties above is fairly straightforward. First check that each of the the basic moves satisfies the properties. Then show that an arbitrary sequence of basic moves \(X_0 X_1 \ldots X_k\) also satisfies them. Proving “equal parity as permutations” amounts to noticing that everything in sight is a homomorphism. The conservation properties are proved by induction on the length \(k\).</p>
+<p>Proving that the moves of the legal cube group satisfy the properties above is fairly
+straightforward. First check that each of the the basic moves satisfies the properties.
+Then show that an arbitrary sequence of basic moves
+\(X_0 X_1 \ldots X_k\) also satisfies them.
+Proving “equal parity as permutations” amounts to noticing that everything in sight is a
+homomorphism. The conservation properties are proved by induction on the length \(k\).</p>
 <h2 id="the-other-direction-of-the-proof">The other direction of the proof</h2>
-<p>The other direction is more interesting. We must be show that any element of the illegal Rubik’s Cube group which satisfies the three properties can be written as a sequence of the standard moves. This amounts to providing a sequence of basic moves which returns the cube to the solved state. This will be done in two steps. First we show how to return the corners and edges to their original position in the solved cube, while preserving the three properties. Then we show how to reorient the corners and edges without permuting anything.</p>
+<p>The other direction is more interesting.
+We must be show that any element of the illegal Rubik’s Cube group which satisfies
+the three properties can be written as a sequence of the standard moves.
+This amounts to providing a sequence of basic moves which returns the cube to the solved state.
+This will be done in two steps.
+First we show how to return the corners and edges to their original position in the solved cube,
+while preserving the three properties.
+Then we show how to reorient the corners and edges without permuting anything.</p>
 <h3 id="step-1-solve-the-permutations-and-preserve-the-properties">Step 1, solve the permutations (and preserve the properties)</h3>
-<p>Given an arbitrary element of the illegal group satisfying the properties, we must show how to place every corner and edge in the correct position using only basic moves, while preserving the properties.</p>
-<p>The following three sequences will be instrumental (written as unit tests to make it clear what they do):</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb16-1" title="1"><span class="ot">corner3cycle ::</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb16-2" title="2">corner3cycle <span class="fu">=</span></a>
-<a class="sourceLine" id="cb16-3" title="3">  illegal (mkRubik [<span class="dt">U</span>, <span class="dt">R</span>, <span class="dt">U&#39;</span>, <span class="dt">L&#39;</span>, <span class="dt">U</span>, <span class="dt">R&#39;</span>, <span class="dt">U&#39;</span>, <span class="dt">L</span>]) <span class="fu">==</span></a>
-<a class="sourceLine" id="cb16-4" title="4">  mkIRubik</a>
-<a class="sourceLine" id="cb16-5" title="5">    [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">1</span> <span class="fu">~~&gt;</span> <span class="dv">3</span> <span class="fu">~&gt;</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb16-6" title="6">    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb17-1" title="1"><span class="ot">edge3cycle ::</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb17-2" title="2">edge3cycle <span class="fu">=</span></a>
-<a class="sourceLine" id="cb17-3" title="3">  illegal (mkRubik [<span class="dt">R</span>, <span class="dt">R</span>, <span class="dt">U</span>, <span class="dt">R</span>, <span class="dt">U</span>, <span class="dt">R&#39;</span>, <span class="dt">U&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">U&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">U</span>, <span class="dt">R&#39;</span>]) <span class="fu">==</span></a>
-<a class="sourceLine" id="cb17-4" title="4">  mkIRubik</a>
-<a class="sourceLine" id="cb17-5" title="5">    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</a>
-<a class="sourceLine" id="cb17-6" title="6">    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">0</span> <span class="fu">~~&gt;</span> <span class="dv">1</span> <span class="fu">~&gt;</span> <span class="dv">3</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb18-1" title="1"><span class="ot">edgeSwapCornerSwap ::</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb18-2" title="2">edgeSwapCornerSwap <span class="fu">=</span></a>
-<a class="sourceLine" id="cb18-3" title="3">  illegal (mkRubik [<span class="dt">R&#39;</span>,<span class="dt">U</span>, <span class="dt">L&#39;</span>, <span class="dt">U</span>, <span class="dt">U</span>, <span class="dt">R</span>, <span class="dt">U&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">U</span>, <span class="dt">U</span>, <span class="dt">R</span>, <span class="dt">L</span>, <span class="dt">U&#39;</span>]) <span class="fu">==</span></a>
-<a class="sourceLine" id="cb18-4" title="4">  mkIRubik</a>
-<a class="sourceLine" id="cb18-5" title="5">    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">2</span> <span class="fu">~~&gt;</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb18-6" title="6">    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">1</span> <span class="fu">~~&gt;</span> <span class="dv">2</span>)</a></code></pre></div>
+<p>Given an arbitrary element of the illegal group satisfying the properties,
+we must show how to place every corner and edge in the correct position using only basic moves,
+while preserving the properties.</p>
+<p>The following three sequences will be instrumental
+(written as unit tests to make it clear what they do):</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ot">corner3cycle ::</span> <span class="dt">Bool</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>corner3cycle <span class="ot">=</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  illegal (mkRubik [<span class="dt">U</span>, <span class="dt">R</span>, <span class="dt">U&#39;</span>, <span class="dt">L&#39;</span>, <span class="dt">U</span>, <span class="dt">R&#39;</span>, <span class="dt">U&#39;</span>, <span class="dt">L</span>]) <span class="op">==</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  mkIRubik</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">1</span> <span class="op">~~&gt;</span> <span class="dv">3</span> <span class="op">~&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ot">edge3cycle ::</span> <span class="dt">Bool</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>edge3cycle <span class="ot">=</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  illegal (mkRubik [<span class="dt">R</span>, <span class="dt">R</span>, <span class="dt">U</span>, <span class="dt">R</span>, <span class="dt">U</span>, <span class="dt">R&#39;</span>, <span class="dt">U&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">U&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">U</span>, <span class="dt">R&#39;</span>]) <span class="op">==</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  mkIRubik</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">0</span> <span class="op">~~&gt;</span> <span class="dv">1</span> <span class="op">~&gt;</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ot">edgeSwapCornerSwap ::</span> <span class="dt">Bool</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>edgeSwapCornerSwap <span class="ot">=</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  illegal (mkRubik [<span class="dt">R&#39;</span>,<span class="dt">U</span>, <span class="dt">L&#39;</span>, <span class="dt">U</span>, <span class="dt">U</span>, <span class="dt">R</span>, <span class="dt">U&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">U</span>, <span class="dt">U</span>, <span class="dt">R</span>, <span class="dt">L</span>, <span class="dt">U&#39;</span>]) <span class="op">==</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  mkIRubik</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">2</span> <span class="op">~~&gt;</span> <span class="dv">3</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] (<span class="dv">1</span> <span class="op">~~&gt;</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>These threes moves, together with something called conjugation, lets us do the following:</p>
 <ul>
 <li>perform a three-cycle on any three corners without permuting anything else</li>
@@ -209,48 +595,145 @@
 <li>swap two corners and swap two edges without permuting anything else</li>
 </ul>
 <p>Moreover, each of these maneuvers preserves the properties.</p>
-<p>In an arbitrary group \(G\), two elements \(a,~b\in G\) are conjugate if \[ a = cbc^{-1} \] for some \(c\in G\). In the Rubik’s Cube, conjugation turns the specific 3-cycle in <code>corner3cycle</code> into an arbitrary 3-cycle. If \(X\) is an arbitrary sequence of basic moves, and \(Y\) is the move in <code>corner3cycle</code>, then \(XYX^{-1}\) permutes and reorients only the corners that \(X\) moves to positions 1, 2 and 3, in exactly the same way that \(Y\) affects the positions 1, 2 and 3 from the solved state. Similarly, <code>edge3cycle</code> together with conjugation allows us to perform arbitrary 3-cycles on the edges, and <code>edgeSwapCornerSwap</code> allows us to swap any two corners and two edges.</p>
-<p>Step 1 is almost complete and relies on the fact that the alternating group \(A_n\) (the even permutations of \(S_n\)) is generated by the 3-cycles. Let \((v,~r,~w,~s)\) be an arbitrary element of the illegal cube group satisfying the three properties. We can assume that the permutations \(r\) and \(s\) are both even, since otherwise they are both odd and we can apply <code>edgeSwapCornerSwap</code> to get two even permutations. Since we can generate arbitrary 3-cycles with basic moves, we can generate any even permutation, including \(r\) and \(s\).</p>
+<p>In an arbitrary group \(G\), two elements \(a,~b\in G\) are conjugate if
+\[ a = cbc^{-1} \] for some \(c\in G\).
+In the Rubik’s Cube, conjugation turns the specific 3-cycle in <code>corner3cycle</code>
+into an arbitrary 3-cycle.
+If \(X\) is an arbitrary sequence of basic moves, and \(Y\) is the
+move in <code>corner3cycle</code>, then \(XYX^{-1}\) permutes and reorients only
+the corners that \(X\) moves to positions 1, 2 and 3, in exactly the same way
+that \(Y\) affects the positions 1, 2 and 3 from the solved state.
+Similarly, <code>edge3cycle</code> together with conjugation allows us to perform arbitrary 3-cycles on the
+edges, and <code>edgeSwapCornerSwap</code> allows us to swap any two corners and two edges.</p>
+<p>Step 1 is almost complete and relies on the fact that the alternating group
+\(A_n\) (the even permutations of \(S_n\)) is generated by the 3-cycles.
+Let \((v,~r,~w,~s)\) be an arbitrary element of the illegal cube group satisfying the three
+properties.
+We can assume that the permutations \(r\) and \(s\) are both even, since otherwise they are
+both odd and we can apply <code>edgeSwapCornerSwap</code> to get two even permutations.
+Since we can generate arbitrary 3-cycles with basic moves, we can generate any even permutation,
+including \(r\) and \(s\).</p>
 <h3 id="step-2-solve-the-orientations-without-permuting-anything">Step 2, solve the orientations (without permuting anything)</h3>
-<p>First we show that the “conservation of total twists” property guarantees that the corners can be reoriented to the solved positions without permuting anything.</p>
-<p>There is a sequence of basic moves that twists one corner clockwise and another corner counter-clockwise, and does nothing else:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb19-1" title="1"><span class="ot">reorientCorners ::</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb19-2" title="2">reorientCorners <span class="fu">=</span></a>
-<a class="sourceLine" id="cb19-3" title="3">  illegal (mkRubik [<span class="dt">R&#39;</span>, <span class="dt">D&#39;</span>, <span class="dt">R</span>, <span class="dt">D</span>, <span class="dt">R&#39;</span>, <span class="dt">D&#39;</span>, <span class="dt">R</span>, <span class="dt">D</span>, <span class="dt">U</span>, <span class="dt">D&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">D</span>, <span class="dt">R</span>, <span class="dt">D&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">D</span>, <span class="dt">R</span>, <span class="dt">U&#39;</span>]) <span class="fu">==</span></a>
-<a class="sourceLine" id="cb19-4" title="4">  mkIRubik</a>
-<a class="sourceLine" id="cb19-5" title="5">    [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</a>
-<a class="sourceLine" id="cb19-6" title="6">    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</a></code></pre></div>
-<p>This sequence, together with conjugation, lets us solve the orientation of any move satisfying the conservation of twists property.</p>
-<p>Similarly the “conservation of total flips” property guarantees that the edges can be reoriented to the solved positions without permuting anything. The following sequence, together with its conjugates, demonstrates this fact:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb20-1" title="1"><span class="ot">reorientEdges ::</span> <span class="dt">Bool</span></a>
-<a class="sourceLine" id="cb20-2" title="2">reorientEdges <span class="fu">=</span></a>
-<a class="sourceLine" id="cb20-3" title="3">  illegal (mkRubik [<span class="dt">F</span>, <span class="dt">R&#39;</span>, <span class="dt">F&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">F</span>, <span class="dt">F</span>, <span class="dt">L</span>, <span class="dt">D</span>, <span class="dt">R</span>, <span class="dt">D&#39;</span>, <span class="dt">L&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">F</span>, <span class="dt">F</span>, <span class="dt">R</span>, <span class="dt">R</span>]) <span class="fu">==</span></a>
-<a class="sourceLine" id="cb20-4" title="4">  mkIRubik</a>
-<a class="sourceLine" id="cb20-5" title="5">    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</a>
-<a class="sourceLine" id="cb20-6" title="6">    [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</a></code></pre></div>
+<p>First we show that the “conservation of total twists” property guarantees that the corners can be
+reoriented to the solved positions without permuting anything.</p>
+<p>There is a sequence of basic moves that twists one corner clockwise and another
+corner counter-clockwise, and does nothing else:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ot">reorientCorners ::</span> <span class="dt">Bool</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>reorientCorners <span class="ot">=</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  illegal (mkRubik [<span class="dt">R&#39;</span>, <span class="dt">D&#39;</span>, <span class="dt">R</span>, <span class="dt">D</span>, <span class="dt">R&#39;</span>, <span class="dt">D&#39;</span>, <span class="dt">R</span>, <span class="dt">D</span>, <span class="dt">U</span>, <span class="dt">D&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">D</span>, <span class="dt">R</span>, <span class="dt">D&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">D</span>, <span class="dt">R</span>, <span class="dt">U&#39;</span>]) <span class="op">==</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  mkIRubik</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</span></code></pre></div>
+<p>This sequence, together with conjugation, lets us solve the orientation of any move
+satisfying the conservation of twists property.</p>
+<p>Similarly the “conservation of total flips” property guarantees that the edges can be
+reoriented to the solved positions without permuting anything.
+The following sequence, together with its conjugates, demonstrates this fact:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ot">reorientEdges ::</span> <span class="dt">Bool</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>reorientEdges <span class="ot">=</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  illegal (mkRubik [<span class="dt">F</span>, <span class="dt">R&#39;</span>, <span class="dt">F&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">F</span>, <span class="dt">F</span>, <span class="dt">L</span>, <span class="dt">D</span>, <span class="dt">R</span>, <span class="dt">D&#39;</span>, <span class="dt">L&#39;</span>, <span class="dt">R&#39;</span>, <span class="dt">F</span>, <span class="dt">F</span>, <span class="dt">R</span>, <span class="dt">R</span>]) <span class="op">==</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  mkIRubik</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>] []</span></code></pre></div>
 <p>This completes the proof.</p>
-<p><strong>Fun tangent</strong>: the <code>reorientCorners</code> move is interesting algebraically. For a given group \(G\), the commutator of two elements \(g, h\in G\) is defined as \[ [gh]=g^{-1}h^{-1}gh \] For Abelian groups the commutators are always just the identity element, but for non-Abelian groups they are very useful. For the Rubik’s Cube, commutators are useful since \([XY]\) will only affect the corners and edges which are affected by both \(X\) and \(Y\). The sequence in <code>reorientCorners</code> is the commutator\([XU’]\), where \(X\) is the commutator \([RD]\). Note that \(X\) has order 3, and so \(X X=X^{-1}\).</p>
+<p><strong>Fun tangent</strong>: the <code>reorientCorners</code> move is interesting algebraically.
+For a given group \(G\), the commutator of two elements \(g, h\in G\) is defined as
+\[ [gh]=g^{-1}h^{-1}gh \]
+For Abelian groups the commutators are always just the
+identity element, but for non-Abelian groups they are very useful.
+For the Rubik’s Cube, commutators are useful since \([XY]\) will only
+affect the corners and edges which are affected by both \(X\) and \(Y\).
+The sequence in <code>reorientCorners</code> is the commutator\([XU’]\),
+where \(X\) is the commutator \([RD]\). Note that \(X\) has order 3,
+and so \(X X=X^{-1}\).</p>
 <h1 id="the-legal-cube-group-algebraic-description">The legal cube group algebraic description</h1>
 <p>We can write the legal Rubik’s Cube group in a more compact way that absorbs the properties.</p>
-<p>First note that we can rewrite the group \[ \left\{ (v,~p)\in\mathbb{Z}_m^{n+1}\rtimes_\phi\mathsf{S}_{n+1} ~\mid~v_1+\ldots+v_{n+1}\equiv0~(\mathsf{mod}~m) \right\}\] as \[ \mathbb{Z}_m^{n}\rtimes_\phi\mathsf{S}_{n+1} \] since \(v_1+\ldots+v_{n+1}\equiv0~(\mathsf{mod}~m) \) means that \(v_{n+1}\) is always equal to \( -(v_1+\ldots+v_{n}) \) and can be left implicit.</p>
-<p>Therefore, after a bit of rearranging, we can write the legal Rubik’s Cube group as \[ \left\{ (v,~r,~w,~s)\in (\mathbb{Z}_3^{7}\times\mathbb{Z}_2^{11}) \rtimes (\mathsf{S}_{8}\times\mathsf{S}_{12}) ~\mid~ \mathsf{sign}~r=\mathsf{sign}~s \right\} \]</p>
-<p>Let \[ R_p = \left\{ (r,~s)\in\mathsf{S}_{8}\times\mathsf{S}_{12} ~\mid~ \mathsf{sign}~r=\mathsf{sign}~s \right\} \] Notice that \[ \mathsf{A}_{8} \times\mathsf{A}_{12} &lt; R &lt; \mathsf{S}_{8}\times\mathsf{S}_{12} \] Since \(\mathsf{A}_{8} \times\mathsf{A}_{12}\) has index 4 in \(\mathsf{S}_{8}\times\mathsf{S}_{12} \), then \(\mathsf{A}_{8} \times\mathsf{A}_{12}\) has index 2 in \(R_p\) and is therefore normal. Any pair of transpositions \((r,~s)\in\mathsf{S}_{8}\times\mathsf{S}_{12} \) has order 2, and so generates subgroup of \(R_p\) that is isomorphic to \(\mathbb{Z}_2\) and only intersects \(\mathsf{A}_{8} \times\mathsf{A}_{12}\) at the identity. Moreover these two subgroups generate all of \(R_p\).</p>
-<p>The properties that have just been stated for \( \mathsf{A}_{8} \times\mathsf{A}_{12} \) and \( \mathbb{Z}_2 \) inside \(R_p\), namely that there are two subgroups such that:</p>
+<p>First note that we can rewrite the group
+\[ \left\{
+(v,~p)\in\mathbb{Z}_m^{n+1}\rtimes_\phi\mathsf{S}_{n+1}
+~\mid~v_1+\ldots+v_{n+1}\equiv0~(\mathsf{mod}~m)
+\right\}\]
+as
+\[ \mathbb{Z}_m^{n}\rtimes_\phi\mathsf{S}_{n+1} \]
+since \(v_1+\ldots+v_{n+1}\equiv0~(\mathsf{mod}~m) \)
+means that \(v_{n+1}\) is always equal to
+\( -(v_1+\ldots+v_{n}) \) and can be left implicit.</p>
+<p>Therefore, after a bit of rearranging, we can write the legal Rubik’s Cube group as
+\[ \left\{
+(v,~r,~w,~s)\in
+(\mathbb{Z}_3^{7}\times\mathbb{Z}_2^{11})
+\rtimes
+(\mathsf{S}_{8}\times\mathsf{S}_{12})
+~\mid~
+\mathsf{sign}~r=\mathsf{sign}~s
+\right\} \]</p>
+<p>Let
+\[ R_p = \left\{
+(r,~s)\in\mathsf{S}_{8}\times\mathsf{S}_{12}
+~\mid~
+\mathsf{sign}~r=\mathsf{sign}~s
+\right\} \]
+Notice that
+\[ \mathsf{A}_{8} \times\mathsf{A}_{12} &lt; R
+&lt; \mathsf{S}_{8}\times\mathsf{S}_{12} \]
+Since \(\mathsf{A}_{8} \times\mathsf{A}_{12}\) has index 4 in
+\(\mathsf{S}_{8}\times\mathsf{S}_{12} \), then
+\(\mathsf{A}_{8} \times\mathsf{A}_{12}\) has index 2 in \(R_p\) and is therefore normal.
+Any pair of transpositions \((r,~s)\in\mathsf{S}_{8}\times\mathsf{S}_{12} \)
+has order 2, and so generates subgroup of \(R_p\) that is isomorphic to
+\(\mathbb{Z}_2\) and only intersects \(\mathsf{A}_{8} \times\mathsf{A}_{12}\)
+at the identity. Moreover these two subgroups generate all of \(R_p\).</p>
+<p>The properties that have just been stated for
+\( \mathsf{A}_{8} \times\mathsf{A}_{12} \) and \( \mathbb{Z}_2 \)
+inside \(R_p\), namely that there are two subgroups such that:</p>
 <ul>
 <li>one of them is normal</li>
 <li>they have trivial intersection</li>
 <li>they generate the entire group</li>
 </ul>
-<p>give an “internal” version of the earlier definition of an “external” semidirect product. It is not obvious, but it can be proved that these two constructions are the same.</p>
-<p>Interestingly, the “twist” \(\phi\) in the external construction always ends up being conjugation inside the group. If \(H\rtimes K\) is an external semidirect product, we can identify \(H\) with \(\tilde{H}=\{(h,~e)~\mid~h\in H\}\) inside the product, and similarly for \(K\) in the second coordinate. Then \[ (1,~k)(h,~1)(1,~k)^{-1} =(\phi_k h,~k)(1,~k^{-1}) =(\phi_k h\cdot\phi_k 1,~k)(1,~kk^{-1}) =(\phi_k h,~1) \] On the other hand, if \(H,~K\) are subgroups of a group \(G\) such that \(H\) is normal, then conjugation is a homomorphism \(\phi:K\to\mathsf{Aut}(H)\).</p>
-<p>Back to the Rubik’s Cube, \(R_p\) is an (internal) semidirect product: \[R_p=(\mathsf{A}_{8} \times\mathsf{A}_{12})\rtimes\mathbb{Z}_2\]</p>
-<p>Putting it all together, the legal Rubik’s Cube group is \[ (\mathbb{Z}_3^{7}\times\mathbb{Z}_2^{11}) \rtimes \big((\mathsf{A}_{8} \times\mathsf{A}_{12})\rtimes\mathbb{Z}_2\big) \] How many states does the Rubik’s cube have? It is now easy to answer: \((3^7\cdot 2^{11}\cdot 8!\cdot 12!)~/~2\)</p>
+<p>give an “internal” version of the earlier definition of an “external” semidirect product.
+It is not obvious, but it can be proved that these two constructions are the same.</p>
+<p>Interestingly, the “twist” \(\phi\) in the external construction always ends up being
+conjugation inside the group.
+If \(H\rtimes K\) is an external semidirect product, we can identify \(H\)
+with \(\tilde{H}=\{(h,~e)~\mid~h\in H\}\) inside the product, and similarly
+for \(K\) in the second coordinate. Then
+\[
+(1,~k)(h,~1)(1,~k)^{-1}
+=(\phi_k h,~k)(1,~k^{-1})
+=(\phi_k h\cdot\phi_k 1,~k)(1,~kk^{-1})
+=(\phi_k h,~1)
+\]
+On the other hand, if \(H,~K\) are subgroups of a group \(G\)
+such that \(H\) is normal, then conjugation is a homomorphism
+\(\phi:K\to\mathsf{Aut}(H)\).</p>
+<p>Back to the Rubik’s Cube, \(R_p\) is an (internal) semidirect product:
+\[R_p=(\mathsf{A}_{8} \times\mathsf{A}_{12})\rtimes\mathbb{Z}_2\]</p>
+<p>Putting it all together, the legal Rubik’s Cube group is
+\[
+(\mathbb{Z}_3^{7}\times\mathbb{Z}_2^{11})
+\rtimes
+\big((\mathsf{A}_{8} \times\mathsf{A}_{12})\rtimes\mathbb{Z}_2\big)
+\]
+How many states does the Rubik’s cube have? It is now easy to answer:
+\((3^7\cdot 2^{11}\cdot 8!\cdot 12!)~/~2\)</p>
 <h1 id="happy-cubing">Happy cubing!</h1>
-<p>I do not yet have comments enabled on this blog, so feel free to chat by way of an issue on my <a href="https://github.com/JaredCorduan/JaredCorduan.github.io/issues">blog</a> or on the <a href="https://github.com/JaredCorduan/rubik-group/issues">implementation</a>. Happy cubing!</p>
+<p>I do not yet have comments enabled on this blog, so feel free to chat by way of an issue on my
+<a href="https://github.com/JaredCorduan/JaredCorduan.github.io/issues">blog</a>
+or on the
+<a href="https://github.com/JaredCorduan/rubik-group/issues">implementation</a>.
+Happy cubing!</p>
 <h1 id="acknowledgments">Acknowledgments</h1>
 <p>I used <a href="http://cube.crider.co.uk/visualcube.php?">VisualCube</a> to create the Rubik’s Cube images.</p>
     </section>
 </article>
+<script src="https://utteranc.es/client.js"
+        repo="JaredCorduan/JaredCorduan.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
 ]]></description>
     <pubDate>Wed, 10 Apr 2019 00:00:00 UT</pubDate>
     <guid>https://jaredcorduan.github.io/posts/2019-04-10--rubik-group.html</guid>

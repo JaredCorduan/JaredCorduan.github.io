@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Jared Corduan</title>
+        <link rel="stylesheet" href="../css/default.css" />
+        <link rel="stylesheet" href="../css/fontawesome-all.css" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="../">Jared Corduan</a>
+            </div>
+            <nav>
+                <a href="../">home</a>
+                <a href="../slush.html">slush</a>
+                <a href="../posts.html">posts</a>
+                <a href="../tags.html">tags</a>
+            </nav>
+        </header>
+
+        <main role="main">
+            <h1>The Amazing Pigeonhole Principle</h1>
+            <article>
+    <section class="header">
+        August 16, 2022
+	<br>
+        
+        <i class="fas fa-tags"></i> <a title="All pages tagged 'math'." href="../tags/math.html">math</a>, <a title="All pages tagged 'logic'." href="../tags/logic.html">logic</a>, <a title="All pages tagged 'pigeonhole'." href="../tags/pigeonhole.html">pigeonhole</a>
+        
+    </section>
+    <section>
+        <h1 id="the-amazing-pigeonhole-principle">The Amazing Pigeonhole Principle</h1>
+<p>The (finite) pigeonhole principle states that if you have more labels than
+objects (with everything finite) and you want to assign all the labels
+to the objects, at least one of the objects will have multiple labels.
+Or, using the imagery of pigeons, if you have more pigeons than holes, you
+cannot place all the pigeons into the holes without at least one hole having
+multiple pigeons.
+It is an obvious statement which turns out to be surprisingly usefully.
+Shockingly useful!
+The statement is attributed to Dirichlet, who actually
+used a metaphor involving letters (the kind you mail).</p>
+<p>There are many great
+<a href="https://math.stackexchange.com/questions/62565/what-is-your-favorite-application-of-the-pigeonhole-principle">examples</a>
+of proofs that involve applying the pigeonhole principle. The
+<a href="https://en.wikipedia.org/wiki/Mutilated_chessboard_problem">Mutilated chessboard problem</a>
+is one of my favorites
+(hint: each domino covers exactly one black and one white square), but
+perhaps my favorite is Fermat’s theorem on sums of two squares.</p>
+<h2 id="proof-of-fermats-theorem-on-sums-of-two-squares">Proof of Fermat’s theorem on sums of two squares</h2>
+<p>The theorem states:
+for any odd prime number \(p\), \(p\) can be written as the sum of two
+squares exactly when it is congruent to one modulo four.
+In symbols:</p>
+<p>\[ p=x^{2}+y^{2} \quad\text{if and only if}\quad p \equiv 1 \pmod 4 \]</p>
+<p>Before we get to the fun part of the proof, we must narrow things down.
+The “only if” direction of the proof is straightforward: since \(p\) is an
+odd prime, it cannot be congruent to 0 or 2 modulo 4, and 3 can be ruled out
+by a case analysis on all the sums of squares modulo 4.</p>
+<p>The “if” direction is where the fun begins. We make one simplification,
+using Euler’s criterion, before bringing out the pigeons.
+Assuming that \(p \equiv 1 \pmod 4 \), Euler’s criterion tells us that
+there is an \(x\) such that \(x^{2}+1 \equiv 0 \pmod 4 \).
+The curious reader can look up the
+<a href="https://en.wikipedia.org/wiki/Euler%27s_criterion#Proof">proof</a>
+of Euler’s criterion, it is fairly short,
+but we’ll skip it so that we can jump straight to naming pigeons.</p>
+<p>We declare one pigeon for each pair of natural numbers \(u, v\) such
+that \(0 \leq u,v &lt; \sqrt p\).
+How many pigeons do we have?
+We have \((\lfloor \sqrt p \rfloor + 1)^{2}\) pigeons, which is
+definitely greater than \(p\). Foreshadowing!</p>
+<p>The holes will be the numbers modulo \(p\), and we will place pigeon
+\(u, v\) into the hole \(ux - v \pmod p\).
+The pigeonhole principle tells us that there are numbers
+\(u_1, u_2, v_1, v_2\) such that
+\[u_1 x - v_1 \equiv u_2 x - v_2 \pmod p\]
+A little bit of algebra yields:
+\[(u_1 - u_2)x \equiv (v_1 - v_2) \pmod p\]
+\[(u_1 - u_2)^{2}x^{2} \equiv (v_1 - v_2)^2 \pmod p\]
+\[(u_1 - u_2)^{2}(-1) \equiv (v_1 - v_2)^2 \pmod p\]
+\[0 \equiv (u_1 - u_2)^{2} + (v_1 - v_2)^2 \pmod p\]</p>
+<p>Note that either \((u_1 - u_2)\) or \((v_1 - v_2)\) must be positive
+since the numbers came from two distinct pigeons.</p>
+<p>Therefore
+\[0 &lt; (u_1 - u_2)^2 + (v_1 - v_2)^2 &lt; (\sqrt p)^2 + (\sqrt p)^2 = 2p\]
+We have then that
+\((u_1 - u_2)^2 + (v_1 - v_2)^2\)
+is a multiple of \(p\) strictly between \(0\) and \(2p\),
+leaving only \(p\).
+This completes the proof.</p>
+<h2 id="a-clue-for-the-usefulness-of-the-pigeonhole-principle">A clue for the usefulness of the pigeonhole principle</h2>
+<p>There is a strong connection between the pigeonhole principle and
+mathematical induction.
+People have studied weak proof systems and have found that adding
+principles of induction to these weak systems has the same effect as adding
+the pigeonhole principle as a new axiom. The connection goes quite deep, but
+requires building up some terminology around the syntax of formulas. The book
+<a href="https://projecteuclid.org/eBooks/perspectives-in-logic/Metamathematics-of-First-Order-Arithmetic/toc/pl/1235421926">Metamathematics of First-Order Arthimetic</a>
+by Hájek and Pudlák explains this in detail (see Chapter 1, Section 2, part b).</p>
+<p>The most intuitive explanation that I have found of this connection comes
+from the Hájek and Pudlák book.
+A failure of induction translates very easily into a failure of the pigeonhole
+principle.</p>
+<p>A failure of induction, for a formula \(\phi (x)\), would look like this:</p>
+<ul>
+<li>\(\phi (0)\) is true</li>
+<li>for every \(x\), if \(\phi (x)\) is true,
+then so is \(\phi (x+1)\)</li>
+<li>\(\phi (a)\) is false for some \(a\)</li>
+</ul>
+<p>We can translate this into a failure of the pigeonhole principle as follows:</p>
+<p>Our pigeons are the numbers \(\leq a\).
+The holes are the numbers \(&lt; a\).
+We place pigeons in holes as follows:</p>
+<ul>
+<li>if \(\phi (x)\) holds, put pigeon \(x\)
+into hole \(x\)</li>
+<li>if \(\phi (x)\) does not hold, put pigeon \(x\)
+into hole \(x - 1\)</li>
+</ul>
+<p>This is not
+<a href="https://en.wikipedia.org/wiki/Intuitionism">constructive</a>
+intuition, and I would love a more constructive view of the connection
+between induction and the pigeonhole principle.</p>
+<p>It also turns out that induction is comparable to some bounding principles.
+If we view a formula \(\phi (x, y)\) as a partial, multi-valued function,
+thinking of \(f (x) = y\) exactly when \(\phi (x, y)\),
+then a bounding principle is a way of stating that if the domain of a function
+is bounded, then so it its range.</p>
+<h2 id="the-infinite-pigeonhole-principle">The infinite pigeonhole principle</h2>
+<p>There is also an infinite version of the pigeon hole principle, which
+states that you cannot assign an infinite number labels to a finite
+collection of objects without labeling at least one object with an infinite
+number of labels.
+The contrapositive states that a finite union of finite sets is finite.</p>
+<p>According to Akihiro Kanamori, the pigeon hole principle may have had a role
+in making the definition of “infinite” rigorous:</p>
+<p>“In 1872 Dedekind was putting together Was sind und was sollen
+die Zahlen?, and he would be the first to define infinite set, with
+the definition being a set for which there is a one-to-one
+correspondence with a proper subset. This is just the negation of
+the Pigeonhole Principle. Dedekind in effect had inverted a
+negative aspect of finite cardinality into a positive existence
+definition of the infinite”
+– <a href="http://math.bu.edu/people/aki/22.pdf">The Mathematical Infinite as a Matter of Method</a></p>
+<p>The connection between the pigeonhole principle, induction, and bounding
+principles holds in the infinite case as well. See
+<a href="https://www.appstate.edu/~hirstjl/bib/pdf/jhthesis.pdf">Jeff Hirst’s thesis</a>,
+theorem 6.4 on page 104.</p>
+<h2 id="the-gateway-to-ramsey-theory">The gateway to Ramsey theory</h2>
+<p>Ramsey’s theorem is a generalization of the pigeonhole principle.
+It has both a finite and an infinite version,
+which itself has a host of generalizations and leads to a whole field of study.</p>
+<p>One special case of Ramsey’s theorem state that any group of six people must
+contain three people such than one of the following holds:</p>
+<ul>
+<li>all three people know each other</li>
+<li>none of them know each other</li>
+</ul>
+<p>We can re-phrase this in terms of graph theory:
+if you color the edges of the complete graph on six vertices with two colors,
+say red and blue,
+there is a sub-graph of size three such that either all the edges are
+red or all the edges are blue.
+The size three sub-graph is called homogeneous or monochromatic.</p>
+<p>The finite version of Ramsey’s theorem generalizes the above statement to any
+number of colors, any size homogeneous set, and multi-dimensional graphs.
+The size graph that you need to guarantee a homogeneous set of the given
+size grows extremely fast.</p>
+<p>I’ll end this post with a fun quote from Paul Erdős:</p>
+<p>“Suppose aliens invade the earth and threaten to obliterate it in a
+year’s time unless human beings can find the Ramsey number for
+red five and blue five. We could marshal the world’s best minds
+and fastest computers, and within a year we could probably
+calculate the value. If the aliens demanded the Ramsey number for
+red six and blue six, however, we would have no choice but to
+launch a preemptive attack.”</p>
+    </section>
+</article>
+<script src="https://utteranc.es/client.js" repo="JaredCorduan/JaredCorduan.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+</script>
+
+        </main>
+
+        <footer>
+            Site proudly generated by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+            <br>
+            source code
+            <a href="https://github.com/JaredCorduan/JaredCorduan.github.io/tree/develop"><i class="fab fa-github"></i></a>
+        </footer>
+    </body>
+</html>
