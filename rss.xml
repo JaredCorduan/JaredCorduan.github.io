@@ -51,7 +51,7 @@ by a case analysis on all the sums of squares modulo 4.</p>
 <p>The “if” direction is where the fun begins. We make one simplification,
 using Euler’s criterion, before bringing out the pigeons.
 Assuming that \(p \equiv 1 \pmod 4 \), Euler’s criterion tells us that
-there is an \(x\) such that \(x^{2}+1 \equiv 0 \pmod 4 \).
+there is an \(x\) such that \(x^{2}+1 \equiv 0 \pmod p \).
 The curious reader can look up the
 <a href="https://en.wikipedia.org/wiki/Euler%27s_criterion#Proof">proof</a>
 of Euler’s criterion, it is fairly short,
