@@ -35,6 +35,11 @@ To make a slush post, create a markdown page named
 `slush/20YY-MM-DD-my-title.md`.
 Commit the new file to `trunk` and push to Github.
 
+Alternatively, use `stub` to create a new stub. See
+```bash
+./stub --help
+```
+
 ## Deploying
 
 Deployment to Github is done using a
