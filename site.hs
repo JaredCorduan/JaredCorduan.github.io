@@ -22,6 +22,7 @@ main = hakyll $ do
 
     match "index.html"  $ route idRoute >> compile indexCompiler
     match "pubkey.html" $ route idRoute >> compile indexCompiler
+    match "cardano.html" $ route idRoute >> compile indexCompiler
     match "templates/*" $ compile templateBodyCompiler
 
 isPost :: Identifier -> Bool
