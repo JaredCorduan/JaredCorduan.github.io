@@ -1,6 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import Data.Binary (Binary)
 import Data.List (intercalate, partition)
+import Data.Typeable (Typeable)
 import Hakyll
 
 main :: IO ()
@@ -8,11 +10,12 @@ main = hakyll $ do
 
     tags <- makeTags
 
-    match "images/**"  $ route idRoute >> compile copyFileCompiler
-    match "css/*"      $ route idRoute >> compile compressCssCompiler
-    match "webfonts/*" $ route idRoute >> compile copyFileCompiler
-    matchPages slushPattern tags
-    matchPages postsPattern tags
+    matchSimple "images/**" copyFileCompiler
+    matchSimple "css/*" compressCssCompiler
+    matchSimple "webfonts/*" copyFileCompiler
+    matchPages slushPattern (Just tags)
+    matchPages postsPattern (Just tags)
+    matchPages "notes/*" Nothing
 
     createPage "slush.html" slushPattern
     createPage "posts.html" postsPattern
@@ -20,16 +23,13 @@ main = hakyll $ do
     createPostsRSS
     createTags tags
 
-    match "index.html"  $ route idRoute >> compile indexCompiler
-    match "pubkey.html" $ route idRoute >> compile indexCompiler
-    match "cardano.html" $ route idRoute >> compile indexCompiler
+    matchSimple "index.html"  indexCompiler
+    matchSimple "pubkey.html" indexCompiler
+    matchSimple "cardano.html" indexCompiler
     match "templates/*" $ compile templateBodyCompiler
 
-isPost :: Identifier -> Bool
-isPost iden =
-  case toFilePath iden of
-    p:o:s:t:_ -> [p, o, s, t] == "post"
-    _ -> False
+matchSimple :: (Binary a, Typeable a, Writable a) => Pattern -> Compiler (Item a) -> Rules ()
+matchSimple p c = match p  $ route idRoute >> compile c
 
 tagCompiler :: String -> Pattern -> Compiler (Item String)
 tagCompiler tag pat = do
@@ -45,6 +45,9 @@ tagCompiler tag pat = do
         >>= loadAndApplyTemplate "templates/tag.html" ctx
         >>= loadAndApplyTemplate "templates/default.html" ctx
         >>= relativizeUrls
+    where
+       isPost :: Identifier -> Bool
+       isPost iden = take 4 (toFilePath iden) == "post"
 
 postsPattern :: Pattern
 postsPattern = "posts/*"
@@ -62,14 +65,17 @@ makeTags = do
   tagsRules tags makeTagRule
   pure tags
 
-matchPages :: Pattern -> Tags -> Rules ()
+matchPages :: Pattern -> Maybe Tags -> Rules ()
 matchPages pat tags =
     match pat $ do
+      let ctx = case tags of
+                  Just ts -> postCtxWithTags ts
+                  Nothing -> postCtx
       route $ setExtension "html"
       compile $ pandocCompiler
-        >>= loadAndApplyTemplate "templates/post.html"    (postCtxWithTags tags)
+        >>= loadAndApplyTemplate "templates/post.html"    ctx
         >>= saveSnapshot "content"
-        >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
+        >>= loadAndApplyTemplate "templates/default.html" ctx
         >>= relativizeUrls
 
 createPage :: Identifier -> Pattern -> Rules ()
