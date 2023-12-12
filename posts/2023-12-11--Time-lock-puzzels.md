@@ -13,7 +13,7 @@ after a set time in the future.
 
 The RSW puzzle achieves these goals by forcing the decryption process to require a receptive task,
 a task assumed to always take the same amount of time.
-Crucially, the receptive tasks cannot be performed in parallel.
+Crucially, the repetitive tasks cannot be performed in parallel.
 
 The original RSW paper is very readable, but I am going to explain the construction
 here with the key details explained more explicitly.
