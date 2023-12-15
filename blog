@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+
+import argparse
+from datetime import datetime
+import os
+import pathlib
+
+
+STUB = '''---
+title: {title}
+tags: stuff, things
+---
+
+# {title}
+'''
+
+
+def get_root_dir():
+    return pathlib.Path(__file__).parent.resolve()
+
+
+def get_timestamp():
+    return datetime.now().strftime('%Y-%m-%d')
+
+
+def make_filename(args):
+    root_dir = get_root_dir()
+
+    # notes have a simple name with no date. eg foo-bar.md
+    if args.type == 'note':
+        filename = '{}.md'.format('-'.join(args.title))
+        return os.path.join(root_dir, 'notes', filename)
+
+    # stush and posts have the format YYYY-MM-DD--my-title.md
+    directory_name = 'slush' if args.type == 'slush' else 'posts'
+    timestamp = get_timestamp()
+    title = '-'.join(args.title)
+    return os.path.join(root_dir, directory_name, f'{timestamp}--{title}.md')
+
+
+def move_filename(old_filename, directory_name):
+    root_dir = get_root_dir()
+    timestamp = get_timestamp()
+    title = old_filename[:-3]  # remove ".md"
+    new_filename = f'{timestamp}--{title}.md'
+
+    new_path = os.path.join(root_dir, directory_name, new_filename)
+    old_path = os.path.join(root_dir, 'notes', old_filename)
+    os.replace(old_path, new_path)
+
+    print('moved:')
+    print(f'  {old_path}')
+    print(f'    ↓')
+    print(f'  {new_path}')
+
+
+def write_stub(filename, title):
+    with open(filename, 'w') as f:
+        f.write(STUB.format(title=' '.join(title)))
+
+
+def create_stub(args):
+    filename = make_filename(args)
+    write_stub(filename, args.title)
+    print('Created', filename)
+
+
+def get_notes():
+    root_dir = get_root_dir()
+    note_dir = os.path.join(root_dir, 'notes')
+    return os.listdir(note_dir)
+
+
+def list_notes(args):
+    for idx, note in enumerate(get_notes()):
+        note = note[:-3].replace('-', ' ')
+        print(f'[{idx}] - {note}')
+
+
+def move_note(args):
+    notes = get_notes()
+    if args.index < len(notes) and args.index >= 0:
+        directory_name = 'slush' if args.slush else 'posts'
+        move_filename(notes[args.index], directory_name)
+    else:
+        print(f'pick an index in [0, {len(notes)}).')
+
+
+parser = argparse.ArgumentParser(
+    description='blog post CLI')
+subparsers = parser.add_subparsers(help='sub-command help')
+
+POST_TYPES = ['post', 'slush', 'note']
+
+parser_stub = subparsers.add_parser(
+    'stub', help='create a stub')
+parser_stub.add_argument(
+    'title', nargs='+', help='a short title used for the filename')
+parser_stub.add_argument(
+    '-t', '--type', choices=POST_TYPES,
+    help='type of article (defaults to post)')
+parser_stub.set_defaults(func=create_stub)
+
+parser_notes = subparsers.add_parser('notes', help='list notes')
+parser_notes.set_defaults(func=list_notes)
+
+parser_publish = subparsers.add_parser(
+    'publish', help='publish a note')
+parser_publish.add_argument(
+    'index', type=int, help='index of note (use note command to get index)')
+parser_publish.add_argument(
+    '-s', '--slush', action='store_true',
+    help='publish a slush post')
+parser_publish.set_defaults(func=move_note)
+
+args = parser.parse_args()
+
+xs = parser.parse_args()
+if hasattr(xs, "func"):
+    xs.func(xs)
+else:
+    parser.print_help()
