@@ -98,7 +98,8 @@ parser_stub.add_argument(
     'title', nargs='+', help='a short title used for the filename')
 parser_stub.add_argument(
     '-t', '--type', choices=POST_TYPES,
-    help='type of article (defaults to post)')
+    default='note',
+    help='type of article (defaults to note)')
 parser_stub.set_defaults(func=create_stub)
 
 parser_notes = subparsers.add_parser('notes', help='list notes')

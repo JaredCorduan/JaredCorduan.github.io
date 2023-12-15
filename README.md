@@ -35,9 +35,29 @@ To make a slush post, create a markdown page named
 `slush/20YY-MM-DD-my-title.md`.
 Commit the new file to `trunk` and push to Github.
 
-Alternatively, use `stub` to create a new stub. See
+### Helper script
+
+Alternatively, use `blog` to create a new stub.
+
+To make a note (a work-in-progress post):
 ```bash
-./stub --help
+./blog stub foo bar baz
+```
+
+To list the notes (and get their indices):
+```bash
+./blog notes
+```
+
+To move a note to slush or posts:
+```bash
+./blog publish 42
+./blog publish -s 42
+```
+
+For more help:
+```bash
+./blog --help
 ```
 
 ## Deploying
