@@ -15,6 +15,16 @@ They where first defined in 1919 and they played a pivotal role the formalizatio
 notion of algorithm.
 They are also interesting from the point of view of formal logic.
 
+## Outline
+
+* background
+* definitions
+* limitations
+* more background
+* logical systems
+* provably total
+* generalization 
+
 ## Background and inception
 
 The ancient Greeks drew a distinction between *actual infinity* and *potential infinity*.
@@ -66,8 +76,6 @@ Crucially, they rely only on potential infinity.
 The paper is very accessible and fun to read
 (I read the English translation in *From Frege to Gödel* by Jean van Heijenoort).
 
-### Grassman
-
 ## Definition
 
 Similar to the natural numbers, the primitive recursive functions have an inductive definition.
@@ -77,23 +85,38 @@ The range is always \\(\\mathbb{N}\\).
 
 The **basic primitive** recursive functions are:
 
-* the **constant** functions:
-  \\[(x_1, \ldots, x_k)\\mapsto y\\]
-
-  Notation: denote the constant functions by \\(C^k_y\\)
-
-* the **successor** function:
-  \\[x\\mapsto x+1\\]
-
-  Notation: denote the successor function by \\(S\\)
-
-* the **projection** functions:
-  \\[(x_1, \\ldots, x_k)\\mapsto x_i\\text{, where } 1\\leq i\\leq k\\]
-
-  Notation: denote the projection functions by \\(P^k_i\\)
+\\[
+\\begin{array}{|l|l|l|}
+\\hline
+name & notation & function \\\\
+\\hline
+constant & C^k_y & (x_1, \ldots, x_k)\\mapsto y \\\\
+\\hline
+successor & S & x\\mapsto x+1 \\\\
+projection & P^k_i & (x_1, \\ldots, x_k)\\mapsto x_i\\text{, where } 1\\leq i\\leq k \\\\
+\\hline
+\\end{array}
+\\]
 
 Any primitive recursive function can be combined with composition and primitive recursion
 to create a new primitive recursive function:
+
+\\[
+\\begin{array}{|l|l|l|l|}
+\\hline
+name & given & notation & function \\\\
+\\hline
+composition & g:\\mathbb{N}^m\\to\\mathbb{N} & g \\circ (h_1, \\ldots, h_m) & x_1\\ldots,x_k \\mapsto g(h_1(x_1, \\ldots, x_k), \\ldots, h_m(x_1, \\ldots, x_k)) \\\\
+ & h_1,\\ldots,h_m:\\mathbb{N}^k\\to\\mathbb{N} & & \\\\
+\\hline
+primitive~recursion & g:\\mathbb{N}^k\\to\\mathbb{N} & R(g, h) & 
+  f(0, x_1, \\ldots, x_k) \\mapsto g(x_1, \\ldots, x_k) \\\\
+  & h:\\mathbb{N}^{k+2}\\to\\mathbb{N}
+  & & f(y+1, x_1, \\ldots, x_k) \\mapsto h(y, f(x_1, \\ldots, x_k), x_1, \\ldots, x_k) \\\\
+\\hline
+\\end{array}
+\\]
+
 
 * **composition**:
   given primitive recursive functions
@@ -128,6 +151,8 @@ This is equivalent to what might be more normally written as:
 
 \\[x+y = \\begin{cases}y & \\text{if }x=0 \\\\ (z+y)+1 & \\text{if }x=z+1\\end{cases}
 \\]
+
+In fact, this is Skolem's definition.
 
 If we would have preferred to define addition inductively on \\(y\\) instead of \\(x\\),
 as is often more convenient,
@@ -317,7 +342,7 @@ We only need to add the minimization operator \\(\\mu\\):
   given a function 
   * \\( g:\\mathbb{N}^{k+1}\\to\\mathbb{N} \\)
 
-  we construct a new function \\(\\mu(f)\\mathbb{N}^{k}\\to\\mathbb{N} \\)
+  we construct a new function \\(\\mu(f):\\mathbb{N}^{k}\\to\\mathbb{N} \\)
   defined by:
   \\[ \\mu(f)(x_1, \\ldots, x_k) = y \\text{ if and only if }
       y \\text{ is the least number } x_0 \\text{ such that } f(x_0, x_1, \\ldots, x_k) = 0
@@ -388,12 +413,6 @@ and one to to mark when the ENIAC was created.
 
 ![](/images/primrec/timeline.png)
 
-### Partial realization of Hilbert's program
-
-\\(\\mathsf{WKL}_0\\) is \\(\\Pi^1\\) conservative over \\(\\mathsf{PRA}\\).
-
-See Simpson. "Subsystems of Second Order Arithmetic", Remark IX.3.18 (page 381).
-
 ### Provably Total
 
 The final connection I want to make with logic is the idea of provably total functions.
@@ -417,40 +436,106 @@ you can consider the latter to be loop programs where the variable used to loop 
 
 ### Primitive recursive functionals
 
-* System T
+* System T.  See [^dialectica]
+* Gödel used to prove consistency of PA
 * all provably total funcs of PA (but not "for all t, blah")
+
+#### Banana detour
+
+Functional programming... fold...
+See [^bananas]
 
 ```haskell
 foldr :: (a -> b -> b) -> b -> [a] -> b
 ```
 
 ```haskell
-nat :: (b -> b) -> b -> Nat -> b
+-- Peano Numerals
+data ℕ = Z | S ℕ
 ```
 
 ```haskell
-data Nats = Zero | Succ Nats
+one :: ℕ
+one = S Z
+
 ```
 
 ```haskell
-f :: Nats -> Sigma
-f Zero = sigma
-f (Succ n) -> g(n, f(n))
+-- iterator on N
+iter :: (a -> a) -> a -> ℕ -> a
+iter f m Z = m
+iter f m (S n) = f (iter f m n)
 ```
 
 ```haskell
-f :: Nats -> Foo
-f Zero = some_foo
-f (Succ n) -> g(n, f())
+add :: ℕ -> ℕ -> ℕ
+add m n = iter m S n
 ```
 
+```haskell
+mult :: ℕ -> ℕ -> ℕ
+mult m n = iter Z (add m) n
+```
+
+```haskell
+expo :: ℕ -> ℕ -> ℕ
+expo m n = iter (S Z) (mult m) n
+```
+
+```haskell
+ack' :: ℕ -> ℕ -> ℕ
+ack' Z = S
+ack' (S m) = iter (ack' m) (ack' m one)
+```
+
+```haskell
+ack :: ℕ -> ℕ -> ℕ
+ack = iter f S
+  where
+    f ackm = iter ackm (ackm one)
+```
+
+
+The **primitive recursive functionals** are essentially the functions that you can define
+using `cata`, where `a` is any type built up from `ℕ` and the function arrow `->`
+(for example, `ℕ-> (ℕ-> ℕ) -> ℕ`).
+
+The function `cata` is also sometimes called the iterator for \\(\\mathbb{N}\\).
+Similarly, if we give the step function access to the counter, we get the recursor:
+
+```haskell
+-- Recursor of N
+recursor :: a -> (ℕ-> a -> a) -> ℕ-> a
+recursor base _ Z = base
+recursor base step (S b) = step b (cata base step b)
+```
+
+#### Primitive recursive functionals via the lambda calculus
+
+For those who are familiar with the lambda-calculus, the following brief
+explanation might be helpful.
+
+The primitive recursive functionals are typically defined as an addition to the
+simply typed lambda-calculus.
+
+We consider only the types defined by the grammar
 \\[
-\\mathsf{I}_\\sigma: (\\sigma\\to\\sigma) \\to \\sigma \\to \\mathbb{N} \\to \\sigma
+\\tau ::= \\mathbb{N} ~| ~\\tau\\to\\tau
 \\]
 
+New constants are added for:
+
+* zero
+\\[0 : \\mathbb{N}\\]
+* successor
+\\[S : \\mathbb{N}\\to\\mathbb{N}\\]
+* recursors
 \\[
 \\mathsf{R}_\\sigma: (\\mathbb{N}\\to\\sigma\\to\\sigma) \\to \\sigma \\to \\mathbb{N} \\to \\sigma
 \\]
+
+
+A new reductions rules are added:
 
 \\[
 \\begin{array}{lcl}
@@ -459,24 +544,24 @@ R_{\\sigma} ~{f} ~{m} ~{(n+1)} & \\Rightarrow & f(n, R_{\\sigma} ~{f} ~{m} ~{n)}
 \\end{array}
 \\]
 
+### Partial realization of Hilbert's program
 
-\\[
-\\mathsf{R}_\\mathbb{N}: (\\mathbb{N}\\to\\sigma\\to\\sigma) \\to \\sigma \\to \\mathbb{N} \\to \\sigma
-\\]
+While the incompleteness did show that Hilbert's program was impossible in its entirety,
+a partial realization of it was found in 1976 by Harvey Friedman[^partialhilbert].
 
-See [^dialectica]
+There is an fairly expressive sub-system of second-order arithmetic called
+\\(\\mathsf{WKL}_0\\) which is capable of proving many important theorems which make use
+of actual infinity.[^wkl0-list]
 
-## Further fun
+Every \\(\\Pi_2^0\\) formula which is provable in \\(\\mathsf{WKL}_0\\)
+is also provable in \\(\\mathsf{PRA}\\).[^wkl0-conserve]
 
-### Reading
+
+## Further reading
 
 * Schwichtenberg, Wainer. "Proofs and Computations"
 * Oddefreddi. "Classical Recursion Theory, Volume II"
 * Kleene. "Introduction to Metamathematics"
-
-
-### Links
-
 * Representing the primitive recursive functions in Haskell[^haskell].
 * Beeson's course notes[^beeson].
 * Tait - https://home.uchicago.edu/~wwtx/PRA2.pdf
@@ -491,7 +576,11 @@ See [^dialectica]
 [^not_delta_0]: [Thanks to Patrick Lutz for this great example](https://math.stackexchange.com/q/3700504)
 [^dialectica]: A great exposition is given in [Avigad, Feferman. ["Gödel’s Functional ("Dialectica") Interpretation"](https://www.andrew.cmu.edu/user/avigad/Papers/dialect.pdf).
 [^haskell]: [Thanks to Cirdec for this great example](https://stackoverflow.com/a/27217795)
-[^ackPhD] https://cs.nyu.edu/pipermail/fom/2006-September/010823.html
+[^ackPhD]: https://cs.nyu.edu/pipermail/fom/2006-September/010823.html
 [^beeson]: [Beeson's course notes](http://www.michaelbeeson.com/teaching/StanfordLogic/)
 [^curryPRA]: https://doi.org/10.2307%2F2371522
 [^post]: https://www.jstor.org/stable/3219226
+[^bananas]: https://doi.org/10.1007/3540543961_7
+[^partialhilbert]: [Simpson. "Partial realizations of Hilbert's program"](https://doi.org/10.2307/2274508)
+[^wkl0-list]: For a list of important theorems in \\(WKL_0\\), See Simpson. "Subsystems of Second Order Arithmetic", Theorem I.10.3 (page 36).
+[^wkl0-conserve]: The proof can be found in Simpson's "Subsystems of Second Order Arithmetic", Theorem IX.3.16 (page 381).
