@@ -25,7 +25,6 @@ main = hakyll $ do
 
     matchSimple "index.html"  indexCompiler
     matchSimple "pubkey.html" indexCompiler
-    matchSimple "cardano.html" indexCompiler
     match "templates/*" $ compile templateBodyCompiler
 
 matchSimple :: (Binary a, Typeable a, Writable a) => Pattern -> Compiler (Item a) -> Rules ()
