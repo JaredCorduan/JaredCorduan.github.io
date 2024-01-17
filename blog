@@ -114,8 +114,6 @@ parser_publish.add_argument(
     help='publish a slush post')
 parser_publish.set_defaults(func=move_note)
 
-args = parser.parse_args()
-
 xs = parser.parse_args()
 if hasattr(xs, "func"):
     xs.func(xs)
