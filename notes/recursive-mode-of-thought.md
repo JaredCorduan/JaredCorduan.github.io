@@ -1,6 +1,6 @@
----
+--
 title: The Recursive Mode of Thought
-tags: computability, arithimetic
+tags: computability, arithmetic
 ---
 
 # The Recursive Mode of Thought
@@ -38,9 +38,9 @@ They have been studied extensively, and what follows is my own exposition.
 The ancient Greeks drew a distinction between *actual infinity* and *potential infinity*.
 The distinction may sound like hair-splitting at first, but it turns out to be fruitful.
 Actual infinity involves the existence of infinite objects,
-while potential infinity involves only an unending processes.
+while potential infinity involves only an unending process.
 
-The ancient Greeks were comfortable with potential infinity, but not with actual infinity.
+The ancient Greeks were comfortable with potential infinity, but not actual infinity.
 Aristotle is often attributed with inventing the slogan "infinitum actu non datur",
 or "infinity is not actually given".
 For example, Aristotle would not have approved of a construction on the set of even numbers,
@@ -48,7 +48,7 @@ but would have been fine with a construction manipulating an arbitrary even numb
 Mathematicians got along just fine with potential infinity for a long time.
 
 The reluctance to embrace actual infinity changed drastically in the 1800's
-when in became clear that individual real numbers required actual infinity.
+when it became clear that individual real numbers required actual infinity.
 At the same time, it became clear how unintuitive infinite sets can be.
 Georg Cantor and his explorations of trigonometric series led the math world into a renewed
 [debate](https://www.smbc-comics.com/comic/how-math-works) about actual infinity.
@@ -83,11 +83,11 @@ Skolem's paper is very accessible and fun to read.
 ## Definitions
 
 Similar to the natural numbers, the primitive recursive functions have an inductive definition.
-The domain of every primitive recursive function is the set of \\(k\\)-tupels for some number 
-\\(k\\), which is denoted \\(\\mathbb{N}^k\\).
+The domain of every primitive recursive function is the set of \\(k\\)-tuples of natural numbers
+(for a fixed number \\(k\\)), which is denoted \\(\\mathbb{N}^k\\).
 The range is always \\(\\mathbb{N}\\).
 
-The **basic primitive** recursive functions are:
+The **basic** primitive recursive functions are:
 
 \\[
 \\begin{array}{|l|l|l|}
@@ -117,7 +117,7 @@ composition & g:\\mathbb{N}^m\\to\\mathbb{N} & g \\circ (h_1, \\ldots, h_m) & x_
 primitive~recursion & g:\\mathbb{N}^k\\to\\mathbb{N} & R(g, h) & 
   f(0, x_1, \\ldots, x_k) \\mapsto g(x_1, \\ldots, x_k) \\\\
   & h:\\mathbb{N}^{k+2}\\to\\mathbb{N}
-  & & f(y+1, x_1, \\ldots, x_k) \\mapsto h(y, f(x_1, \\ldots, x_k), x_1, \\ldots, x_k) \\\\
+  & & f(x_0+1, x_1, \\ldots, x_k) \\mapsto h(x_0, f(x_0, x_1, \\ldots, x_k), x_1, \\ldots, x_k) \\\\
 \\hline
 \\end{array}
 \\]
@@ -125,30 +125,20 @@ primitive~recursion & g:\\mathbb{N}^k\\to\\mathbb{N} & R(g, h) &
 
 ### Examples
 
-We can define addition as a primitive recursion function with:
+Addition is a primitive recursion function, as evidenced by:
 
 \\[\\mathsf{add} \\equiv R(P^1_1, S\\circ P^3_2)
 \\]
 
-This is equivalent to what might be more normally written as:
+This is equivalent to the definition that we gave at the beginning
+(except that the recursion is performed on the left summand).
 
-\\[x+y = \\begin{cases}y & \\text{if }x=0 \\\\ (z+y)+1 & \\text{if }x=z+1\\end{cases}
+Multiplication is a primitive recursion function:
+
+\\[\\mathsf{mult} \\equiv R(C^1_0, \\mathsf{add} \\circ (P^3_2, P^3_3))
 \\]
 
-In fact, this is Skolem's definition.
-
-If we would have preferred to define addition inductively on \\(y\\) instead of \\(x\\),
-as is often more convenient,
-we could use a flipping function which maps
-\\( (x, y)\\mapsto f(y, x)\\):
-
-\\[\\mathsf{flip}(f) \\equiv f \\circ (P^2_1, P^2_0)
-\\]
-
-We can now define multiplication as a primitive recursion function with:
-
-\\[\\mathsf{mult} \\equiv R(C^1_0, \\mathsf{add} \\circ (P^3_0, P^3_1))
-\\]
+As we will explore, many functions are primitive recursive.
 
 ### Alternate description using for-loops
 
@@ -184,16 +174,16 @@ there was no precise and commonly accepted definition of algorithm
 For a brief window of time, the primitive recursive functions looked like a
 reasonable candidate for the definition of algorithm.
 
-Two students of Hilbert, Ackermann and Sudan, each produced a function which failed to be
-primitive recursive but which had an intuitively-algorithmic definition.
+Two students of Hilbert, Ackermann and Sudan, each produced the description of a function
+which everyone would recognize as an algorithm, but which failed to be primitive recursive.
 
 We now know that the addition of one more operator, namely the minimization operator \\(\\mu\\),
-is enough to construct every function that is intuitively-algorithmic.
+is enough to construct every function that meets our intuitive understanding of an algorithm.
 
 ### Fast-growing functions
 
 The Ackermann and Sudan examples both employ a use of "double recursion",
-creating function which grows faster than any primitive recursive function.
+creating functions which grow faster than any primitive recursive function.
 
 The Ackermann function is defined as:
 
@@ -206,7 +196,7 @@ The Ackermann function is defined as:
 \\]
 
 The "diagonal" of the Ackermann function, \\(d(m)=A(m, m)\\), grows incredibly fast.
-One way to see this is by comparison to the explosive Knuth's up-arrow notation.
+One way to see this is by comparison to the explosive up-arrow notation from Knuth.
 A single arrow represents exponentiation:
 \\(
 x\\uparrow y = x^y
@@ -235,7 +225,7 @@ In other words, if \\(f\\) is primitive recursive, then there exists numbers \\(
 for all \\(n\\geq n_0\\), \\(f(n) \\leq A(m_0, n)\\).
 
 Closely related to these "Ackermann rows" is the Grzegorczyk hierarchy, which categorize some
-fast growing functions (see VIII.7 of Odifreddi's Classical Recursion Theory, volume II).
+fast growing functions.[^odifreddi_ii].
 
 #### Graph of the Ackermann function
 
@@ -285,7 +275,7 @@ A function that is defined on all inputs is called **total**.
 This notion does not come up a lot in "normal" mathematics,
 since "on all inputs" is usually trivially true
 (by defining the inputs to be those where the function is defined).
-In the commutable world, however, it is difficult to determine which potential inputs are in the
+In the computable world, however, it is difficult to determine which potential inputs are in the
 domain.
 Take, for example, the function $\mathsf{TP}$ which maps $n$ to the $n$-th pair of twin primes.
 No one alive today knows if this function's domain is $\mathbb{N}$ (all natural numbers)
@@ -299,7 +289,7 @@ The same diagonal argument that is used to show that there are more real numbers
 numbers, the same diagonal argument used to prove that the halting set is not computable,
 can also demonstrate that there is an algorithm which is not primitive recursive.
 
-It is easy to see that we can list out all the primitive recursive functions:
+It is easy to see that we can enumerate the primitive recursive functions:
 
 \\[ P_0, P_1, P_2, \\ldots
 \\]
@@ -317,7 +307,6 @@ By construction, \\(d\\) is different from every primitive recursive function.
 If we add one new construction technique to the primitive recursive functions,
 we can describe every algorithm.
 This new collection of functions is called the general recursive functions.
-We need only add the minimization operator \\(\\mu\\):
 
 \\[
 \\begin{array}{|l|l|l|l|}
@@ -332,12 +321,11 @@ minimization & g:\\mathbb{N}^{k+1}\\to\\mathbb{N} & \\mu g & x_1,\\ldots,x_k\\ma
 \\]
 
 Notice that for any given \\(x_1, \\ldots, x_k\\), 
-the function \\(\\mu g\\) is not defined if there is no
+the function \\(\\mu g\\) is only defined if there is at least one
 \\(y\\) such that \\(g(y, x_1, \\ldots, x_k)=0\\).
 For this reason, the diagonal argument cannot be applied to the general recursive functions.
 
-The general recursive functions were first defined by Gödel in 1934.
-A letter from Herbrand in 1931 sparked the idea.
+A letter from Herbrand in 1931 sparked Gödel to define them in 1934.
 
 ## Logical formalisms
 
@@ -355,6 +343,7 @@ Peano arithmetic is the name of the first order logical theory that assumes the 
 
 Ackermann's 1924 dissertation[^ackPhD] was the first to create a logical theory directly
 capturing the semantics of the primitive recursive functions.
+We now call this system **primitive recursive arithmetic**.
 
 The early 1920's also saw the rise of Hilbert's program,
 which sought to find a solid foundation for mathematics resting on "finitistic" and formal grounds.
@@ -362,22 +351,21 @@ Ackermann was one of Hilbert's students, and his primitive recursive arithmetic
 was the kind of system that Hilbert hoped could provide a foundation for math.
 Peano arithmetic was another contender.
 Hilbert's position was that mathematical results involving actual infinity could be trusted as
-long as the proofs themselves were carried out in systems that relied only on potential infinity.
+long as the proofs themselves relied only on potential infinity.
 
 Gödel showed in 1931 that the full scope of Hilbert's program was *impossible*[^incompleteness].
 He was exquisitely careful to perform most of the argument using primitive recursive functions
 (including a delightful use of the Chinese remainder theorem).
 
-Emil Post very nearly discovered the same incompleteness himself ten years earlier,
+Emil Post very nearly discovered the same incompleteness theorem himself ten years earlier,
 but failed to publish the results.[^post]
 
 Note that the Church-Turing thesis would not even be proposed for another five years,
 and that the definition of computation was still unsettled.
-It was crucial that the proofs steps Gödel used would be incontrovertible,
-and needed to appeal to our intuitive notion of computation.
+It was crucial that the proof techniques that Gödel used were incontrovertible,
+and had to appeal to our intuitive notion of computation.
 Gödel himself remained somewhat skeptical of his 1931 result until he saw
-Turing's working on Turing machines and the ubiquitous equivalence of models of
-computation.[^godelTM1] [^godelTM2]
+Turing's famous results.[^godelTM1] [^godelTM2]
 
 In 1941, Haskell Curry devised a formalization of primitive recursive arithmetic
 using only equality of terms (and no logical connectives)[^curryPRA].
@@ -414,11 +402,9 @@ In other words, there are proofs of:
 * For every \\(y_1, y_2, x\\in\\mathbb{N}\\), if \\(F(x, y_1)\\) and \\(F(x, y_1)\\)
   hold, then \\(y_1 = y_2\\) also holds.
 
-
-
-Parson's theorem states that the provably total functions of
-a subsystem of Peano arithmetic, named \\(\\mathsf{I}\\Sigma_1\\),
-are exactly the primitive recursive functions.
+Parson's theorem states that the primitive recursive functions are exactly those
+functions which are provably total in a certain a subsystem of Peano arithmetic
+named \\(\\mathsf{I}\\Sigma_1\\).
 Peano arithmetic allows for induction over any formula,
 and \\(\\mathsf{I}\\Sigma_1\\) is the restriction of Peano Arithmetic to formulas
 of the form \\(\\exists x\\phi(x)\\), where \\(\\phi(x)\\) contains only
@@ -428,14 +414,15 @@ Parson's theorem is often stated in the form of a conservation theorem:
 if \\(\\phi\\) is a formula of the form \\(\\forall x\\exists y\\theta(x, y)\\)
 (where \\(\\theta\\) is bounded)
 and is provable in \\(\\mathsf{I}\\Sigma_1\\),
-then \\(\\phi\\) also provable in primitive recursive arithmetic.
+then \\(\\phi\\) is also provable in primitive recursive arithmetic.
 
 These two statements are equivalent since the formula expressing the totality of a
 primitive recursive function has the right form:
-for all \\(x\\) there exists a \\(y\\) such that \\(f(x)=y\\).
-Note that \\(f(x)=y\\) is not necessarily captured by a bounded formula.
+\\(\\forall x\\exists y~f(x)=y\\).
+Note that "\\(f(x)=y\\)" is not necessarily captured by a bounded formula.
 It is, however, captured by a \\(\\exists x\\phi(x)\\) formula by
-[Kleene's normal form theorem](https://en.wikipedia.org/wiki/Kleene%27s_T_predicate#Normal_form_theorem).
+[Kleene's normal form theorem](https://en.wikipedia.org/wiki/Kleene%27s_T_predicate#Normal_form_theorem)
+(and you can always collapse two consecutive existential quantifiers into one).
 Indeed, tetration is primitive recursive but not definable by a bounded formula of PA.
 (For a neat example of the difference between primitive recursion and bounded formulas,
 you can consider the latter to be loop programs where the variable used to loop cannot change[^not_delta_0].)
@@ -443,10 +430,10 @@ you can consider the latter to be loop programs where the variable used to loop 
 ### Partial realization of Hilbert's program
 
 While the incompleteness did show that Hilbert's program was impossible in its entirety,
-a partial realization was found in 1976 by Harvey Friedman[^partialhilbert]
-and used primitive recursive arithmetic.
+a partial realization was found in 1976 by Harvey Friedman
+and used primitive recursive arithmetic.[^partialhilbert]
 
-There is an fairly expressive logical system called
+There is an fairly expressive logical system named
 \\(\\mathsf{WKL}_0\\) which asserts the existence of actual infinity in some circumstances.
 
 An illustrative example of Weak Kőnig's lemma (for which this system is named) is the following.
@@ -460,7 +447,7 @@ through the tree.
 Moreover, we can construct such a tree so that no infinite path through the tree is
 described by an algorithm, even though the sequences that comprise the tree are
 described by an algorithm.
-In this sense, the path represents actual infinity.
+In this sense, Weak Kőnig's lemma calls forth actual infinity out of potential infinity.
 
 The partial realization of Hilbert's program is:
 
@@ -471,7 +458,7 @@ is also provable in primitive recursive arithmetic.[^wkl0-conserve]
 In other words, the use of actual infinity inside \\(\\mathsf{WKL}_0\\)
 can often be replace with "finitistic methods".
 To see many examples of important mathematical theorems that can be proved
-in \\(\\mathsf{WKL}_0\\), see Simpon's book.[^wkl0-list]
+with \\(\\mathsf{WKL}_0\\), see Simpson's book.[^wkl0-list]
 
 
 
@@ -479,7 +466,7 @@ in \\(\\mathsf{WKL}_0\\), see Simpon's book.[^wkl0-list]
 
 After seeing Parson's theorem, it is natural to wonder if there is a good description
 of *all* the provably total functions of Peano Arithmetic.
-Indeed there is, and it involves a generalization of the primitive recursive functions,
+Indeed there is, and one such description involves a generalization of the primitive recursive functions
 called the **primitive recursive functionals**.
 
 In 1958, Gödel used the primitive recursive functionals to prove
@@ -512,7 +499,7 @@ Lists are described by "start with the empty list, then keep appending elements"
 In other words, the natural numbers are like lists whose values are ignored.
 
 One of the mostly useful functions on lists is `fold`.
-It is not a coincidence that the fold is useful, is it just undoes the construction of the list. 
+It is not a coincidence that `fold` is useful, as it just reverses the construction of a list. 
 Much like a proof by induction, fold takes the following:
 
 * a base case (for the empty list)
@@ -531,7 +518,7 @@ foldr step base (x:xs) = step x (foldr step base xs)
 
 What would `fold` on the natural numbers look like?
 
-It would be nearly the same as `foldr`, except that does not have to handle the list elements.
+It is nearly the same as `foldr`, except that it does not have to handle the list elements.
 We write it out in Haskell, and give it the name `iter` for "iterator".
 
 ```haskell
@@ -566,7 +553,7 @@ ex m n = iter (S Z) (mult m) n
 ```
 
 So far this looks a lot like primitive recursion.
-This is because we've only used `iter` where the type `b` is \\(\\mathbb{N}\\).
+This is because we've only used `iter` in the case where the type `b` is \\(\\mathbb{N}\\).
 Things get interesting when we let `b` have higher order.
 In fact, we can use `iter` to define the Ackermann function,
 and we will need to let `b` be \\(\\mathbb{N} \\to \\mathbb{N}\\).
@@ -596,7 +583,7 @@ ack' Z = S
 ack' (S m) = iter (ack' m) (ack' m one)
 ```
 
-Written this way, we can new see an opportunity to use the iterator a second time!
+Written this way, we can see an opportunity to use the iterator a second time!
 But instead of using `iter` to produce natural numbers,
 we will use it to produce *functions* from natural numbers to natural numbers:
 
@@ -675,16 +662,16 @@ recursor step base (S n) = step b (recursor step base n)
 
 I will end this post with a peek into another beautiful world, namely second-order arithmetic.
 
-Second-order arithemtic adds the notion of sets of natural numbers to Peano arithemtic.
-In fact, the system \\(WKL_0\\) mentioned early is a subsystem of second-order arithemtic.
-This system is capable of expressing an incredible amount of interesting mathematics.
+Second-order arithmetic adds the notion of sets of natural numbers to Peano arithmetic.
+In fact, the system \\(WKL_0\\) mentioned earlier is a subsystem of second-order arithmetic.
+An incredible amount of interesting mathematics can be expressed in second-order arithmetic.
 
-Moreover, in the same way that System T captures the provably total functions of Peano arithemtic,
-there is an analogous system for second-order arithemtic called System F.
+Moreover, in the same way that System T captures the provably total functions of Peano arithmetic,
+there is an analogous system for second-order arithmetic called System F.
 
 System F was discovered independently by the computer scientist John Reynolds
-and by the logician Jean-Yves Girard.
-Moreover, it provides the theoretical underpinnings of Haskell[^ghc_core] and ML.
+and by the logician Jean-Yves Girard,
+and it provides the theoretical underpinnings of Haskell[^ghc_core] and ML.
 
 
 ---
@@ -705,8 +692,8 @@ An English translation is included in [From Frege to Gödel](https://openlibrar
 [^post]: [John Stillwell. "Emil Post and His Anticipation of Gödel and Turing"](https://doi.org/10.2307/3219226)
 [^bananas]: [Meijer, Fokkinga, Paterson. "Functional programming with bananas, lenses, envelopes and barbed wire"](https://doi.org/10.1007/3540543961_7)
 [^partialhilbert]: [Stephen Simpson. "Partial realizations of Hilbert's program"](https://doi.org/10.2307/2274508)
-[^wkl0-list]: For a list of important theorems in \\(WKL_0\\), See ["Subsystems of Second Order Arithmetic", Theorem I.10.3 (page 36)](https://doi.org/10.1017/CBO9780511581007).
-[^wkl0-conserve]: The proof can be found in ["Subsystems of Second Order Arithmetic", Theorem IX.3.16 (page 381)](https://doi.org/10.1017/CBO9780511581007).
+[^wkl0-list]: ["Subsystems of Second Order Arithmetic", Theorem I.10.3 (page 36)](https://doi.org/10.1017/CBO9780511581007).
+[^wkl0-conserve]: A proof can be found in ["Subsystems of Second Order Arithmetic", Theorem IX.3.16 (page 381)](https://doi.org/10.1017/CBO9780511581007).
 [^kreisel52]: [Georg Kreisel. "On the interpretation of non-finitist proofs – Part II"](https://doi.org/10.2307/2267457)
 [^schonfinkel]: Moses Schönfinkel. "On the building-blocks of mathematical logic".
 An English translation is included in [From Frege to Gödel](https://openlibrary.org/books/OL7692565M/From_Frege_to_G%C3%B6del).
@@ -714,3 +701,4 @@ An English translation is included in [From Frege to Gödel](https://openlibrar
 [^boundedqs]: A bounded quainter is eitther \\((\\forall x\\leq n)\\varphi\\) or \\((\\exists x\\leq n)\\varphi\\).
 The former is shorthand for \\(\\forall x. (x\\leq n \\to \\varphi )\\)
 and the latter is shorthand for \\(\\exists x. (x\\leq n \\land \\varphi )\\).
+[^odifreddi_ii]: A good exposition is: [Piergiorgio Odifreddi. "Classical Recursion Theory, volume II", VIII.7](https://openlibrary.org/works/OL8130417W/Classical_Recursion_Theory_Volume_II_(Studies_in_Logic_and_the_Foundations_of_Mathematics))
