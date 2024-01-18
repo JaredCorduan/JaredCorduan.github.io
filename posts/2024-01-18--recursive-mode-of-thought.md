@@ -1,4 +1,4 @@
---
+---
 title: The Recursive Mode of Thought
 tags: computability, arithmetic
 ---
