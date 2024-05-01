@@ -5,3 +5,4 @@
 * games where variance matters
 * CEK machines, Lisp
 * patches
+* Kleene's s-m-n theorem is currying
