@@ -39,7 +39,7 @@ __I highly recommend grabbing a cube to use while you read!__
 
 If you take the Rubik's Cube apart (without peeling off any stickers)
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Disassembled-rubix-1.jpg/320px-Disassembled-rubix-1.jpg)
+![](/images/rubik-group/320px-Disassembled-rubic-cube-1.jpg)
 
 and put it back together anyway that the pieces will fit, you get a permutation of the
 fifty-four stickers which may or may not be a solvable Rubik's Cube anymore.
