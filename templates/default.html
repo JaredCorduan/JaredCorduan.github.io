@@ -13,7 +13,7 @@
         <link href="css/brands.css" rel="stylesheet">
         <link href="css/solid.css" rel="stylesheet">
     </head>
-    <body>
+    <body class="theme-notebook">
         <header>
             <div class="logo">
                 <a href="/">Jared Corduan</a>
@@ -23,11 +23,30 @@
                 <a href="/slush.html">slush</a>
                 <a href="/posts.html">posts</a>
                 <a href="/tags.html">tags</a>
+                <div class="theme-selector">
+                    <select id="theme-picker" aria-label="Select theme">
+                        <option value="clearsky">Clearsky</option>
+                        <option value="forest">Forest</option>
+                        <option value="gruvbox">Gruvbox</option>
+                        <option value="midnight">Midnight</option>
+                        <option value="nord">Nord</option>
+                        <option value="notebook" selected>Notebook</option>
+                        <option value="ocean">Ocean</option>
+                        <option value="pastel">Pastel</option>
+                        <option value="synthwave">Synthwave</option>
+                        <option value="terminal">Terminal</option>
+                        <option value="violet">Violet</option>
+                    </select>
+                </div>
             </nav>
         </header>
 
         <main role="main">
+            $if(title)$
+            $if(ne(title, " "))$
             <h1>$title$</h1>
+            $endif$
+            $endif$
             $body$
         </main>
 
@@ -38,5 +57,47 @@
             source code
             <a href="https://github.com/JaredCorduan/JaredCorduan.github.io/tree/trunk"><i class="fab fa-github"></i></a>
         </footer>
+
+        <script>
+            // Theme switcher with localStorage persistence
+            (function() {
+                const body = document.body;
+
+                // Load saved theme or use default
+                const savedTheme = localStorage.getItem('blog-theme') || 'notebook';
+
+                // Apply the theme
+                function setTheme(theme) {
+                    // Remove all theme classes
+                    body.classList.remove('theme-violet', 'theme-notebook', 'theme-forest', 'theme-clearsky', 'theme-pastel', 'theme-synthwave', 'theme-terminal', 'theme-nord', 'theme-gruvbox', 'theme-ocean', 'theme-midnight');
+                    // Add the selected theme
+                    body.classList.add('theme-' + theme);
+                    // Save to localStorage
+                    localStorage.setItem('blog-theme', theme);
+                }
+
+                // Set initial theme immediately
+                setTheme(savedTheme);
+
+                // Wait for DOM to be ready before setting up the picker
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initThemePicker);
+                } else {
+                    initThemePicker();
+                }
+
+                function initThemePicker() {
+                    const themePicker = document.getElementById('theme-picker');
+                    if (themePicker) {
+                        // Update dropdown to match current theme
+                        themePicker.value = savedTheme;
+                        // Listen for theme changes
+                        themePicker.addEventListener('change', function() {
+                            setTheme(this.value);
+                        });
+                    }
+                }
+            })();
+        </script>
     </body>
 </html>
