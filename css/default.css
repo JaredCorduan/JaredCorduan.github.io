@@ -430,6 +430,162 @@ body.theme-midnight {
 }
 
 /* ================================
+   THEME: SUNSET (Warm Desert Glow)
+   ================================ */
+body.theme-sunset {
+  --bg-primary: #fef8f0;
+  --bg-secondary: #fff5e6;
+  --bg-tertiary: #ffe8cc;
+  --bg-gradient-start: #fff5e6;
+  --bg-gradient-end: #fef0e0;
+  --bg-main: rgba(254, 248, 240, 0.95);
+  --bg-code: #fff5e6;
+
+  --text-primary: #3d2914;
+  --text-secondary: #8b5a2b;
+
+  --color-accent-1: #e85d04;
+  --color-accent-2: #dc2f02;
+  --color-accent-3: #d00000;
+  --color-accent-4: #ff6b35;
+  --color-accent-5: #f7b801;
+  --color-accent-6: #ffaa00;
+  --color-accent-7: #9d4edd;
+  --color-accent-8: #ff4d6d;
+
+  --header-bg: #1a1423;
+  --header-border: #e85d04;
+  --header-logo: #f7b801;
+  --header-nav: #ffaa00;
+  --header-nav-hover: #ff6b35;
+
+  --link-color: #e85d04;
+  --link-hover: #f7b801;
+
+  --font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --glow-primary: rgba(247, 184, 1, 0.4);
+  --glow-secondary: rgba(232, 93, 4, 0.3);
+}
+
+/* ================================
+   THEME: SOLARIZED (Classic Light)
+   ================================ */
+body.theme-solarized {
+  --bg-primary: #fdf6e3;
+  --bg-secondary: #eee8d5;
+  --bg-tertiary: #ddd6c3;
+  --bg-gradient-start: #fdf6e3;
+  --bg-gradient-end: #fdf6e3;
+  --bg-main: #fdf6e3;
+  --bg-code: #eee8d5;
+
+  --text-primary: #657b83;
+  --text-secondary: #93a1a1;
+
+  --color-accent-1: #268bd2;
+  --color-accent-2: #2aa198;
+  --color-accent-3: #859900;
+  --color-accent-4: #b58900;
+  --color-accent-5: #cb4b16;
+  --color-accent-6: #dc322f;
+  --color-accent-7: #6c71c4;
+  --color-accent-8: #d33682;
+
+  --header-bg: #073642;
+  --header-border: #268bd2;
+  --header-logo: #2aa198;
+  --header-nav: #93a1a1;
+  --header-nav-hover: #268bd2;
+
+  --link-color: #268bd2;
+  --link-hover: #2aa198;
+
+  --font-family: 'IBM Plex Mono', 'JetBrains Mono', 'Fira Code', monospace;
+
+  --glow-primary: transparent;
+  --glow-secondary: transparent;
+}
+
+/* ================================
+   THEME: COPPER (Luxury Metallic)
+   ================================ */
+body.theme-copper {
+  --bg-primary: #1a1216;
+  --bg-secondary: #231a1e;
+  --bg-tertiary: #2d2226;
+  --bg-gradient-start: #12090c;
+  --bg-gradient-end: #1a1216;
+  --bg-main: rgba(26, 18, 22, 0.92);
+  --bg-code: #12090c;
+
+  --text-primary: #f0e6e8;
+  --text-secondary: #c9a0a9;
+
+  --color-accent-1: #b87333;
+  --color-accent-2: #cd7f32;
+  --color-accent-3: #da9100;
+  --color-accent-4: #b76e79;
+  --color-accent-5: #e8c4b0;
+  --color-accent-6: #f5deb3;
+  --color-accent-7: #d4a574;
+  --color-accent-8: #8b4513;
+
+  --header-bg: #12090c;
+  --header-border: #b87333;
+  --header-logo: #e8c4b0;
+  --header-nav: #d4a574;
+  --header-nav-hover: #f5deb3;
+
+  --link-color: #b76e79;
+  --link-hover: #e8c4b0;
+
+  --font-family: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --glow-primary: rgba(184, 115, 51, 0.4);
+  --glow-secondary: rgba(183, 110, 121, 0.3);
+}
+
+/* ================================
+   THEME: PAPER (Minimalist Editorial)
+   ================================ */
+body.theme-paper {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #eeeeee;
+  --bg-gradient-start: #fafafa;
+  --bg-gradient-end: #fafafa;
+  --bg-main: #ffffff;
+  --bg-code: #f5f5f5;
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+
+  --color-accent-1: #c41e3a;
+  --color-accent-2: #a31831;
+  --color-accent-3: #8b1528;
+  --color-accent-4: #d42a46;
+  --color-accent-5: #e63950;
+  --color-accent-6: #1a1a1a;
+  --color-accent-7: #333333;
+  --color-accent-8: #c41e3a;
+
+  --header-bg: #1a1a1a;
+  --header-border: #c41e3a;
+  --header-logo: #ffffff;
+  --header-nav: #cccccc;
+  --header-nav-hover: #ffffff;
+
+  --link-color: #c41e3a;
+  --link-hover: #d42a46;
+
+  --font-family: 'IBM Plex Mono', Georgia, 'Times New Roman', serif;
+
+  --glow-primary: transparent;
+  --glow-secondary: transparent;
+}
+
+/* ================================
    BASE STYLES
    ================================ */
 
@@ -683,6 +839,78 @@ body.theme-midnight main {
   text-shadow: 0 0 2px var(--glow-primary);
 }
 
+/* Sunset theme effects */
+body.theme-sunset::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse at 70% 0%, rgba(247, 184, 1, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 100%, rgba(232, 93, 4, 0.06) 0%, transparent 50%);
+  z-index: 1000;
+  opacity: 0.7;
+}
+
+body.theme-sunset main {
+  text-shadow: none;
+}
+
+body.theme-sunset header {
+  box-shadow: 0 2px 15px rgba(232, 93, 4, 0.3);
+}
+
+/* Solarized theme effects */
+body.theme-solarized main {
+  text-shadow: none;
+}
+
+body.theme-solarized header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Copper theme effects */
+body.theme-copper::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(184, 115, 51, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 80%, rgba(183, 110, 121, 0.06) 0%, transparent 40%);
+  z-index: 1000;
+  opacity: 0.6;
+  animation: copper-shimmer 6s ease-in-out infinite;
+}
+
+@keyframes copper-shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.7; }
+}
+
+body.theme-copper main {
+  text-shadow: 0 0 2px var(--glow-primary);
+}
+
+body.theme-copper header {
+  box-shadow: 0 0 20px rgba(184, 115, 51, 0.3);
+}
+
+/* Paper theme effects */
+body.theme-paper main {
+  text-shadow: none;
+}
+
+body.theme-paper header {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
 /* ================================
    HEADER
    ================================ */
@@ -821,6 +1049,34 @@ body.theme-midnight div.logo a::before {
 
 body.theme-midnight div.logo a {
   text-shadow: 0 0 8px var(--glow-primary);
+}
+
+body.theme-sunset div.logo a::before {
+  content: "☀ ";
+  color: var(--color-accent-5);
+}
+
+body.theme-sunset div.logo a {
+  text-shadow: 0 0 8px var(--glow-primary);
+}
+
+body.theme-solarized div.logo a::before {
+  content: "◉ ";
+  color: var(--color-accent-4);
+}
+
+body.theme-copper div.logo a::before {
+  content: "◆ ";
+  color: var(--color-accent-5);
+}
+
+body.theme-copper div.logo a {
+  text-shadow: 0 0 10px var(--glow-primary);
+}
+
+body.theme-paper div.logo a::before {
+  content: "¶ ";
+  color: var(--color-accent-1);
 }
 
 header nav {
@@ -1190,6 +1446,123 @@ body.theme-clearsky header nav a:hover::after {
   width: 100%;
 }
 
+/* Sunset nav - warm glow underline */
+body.theme-sunset header nav a {
+  position: relative;
+}
+
+body.theme-sunset header nav a::before {
+  content: "» ";
+  color: var(--color-accent-5);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+body.theme-sunset header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-5), var(--color-accent-4));
+  transition: width 0.3s ease;
+}
+
+body.theme-sunset header nav a:hover::before {
+  opacity: 1;
+}
+
+body.theme-sunset header nav a:hover::after {
+  width: 100%;
+}
+
+body.theme-sunset header nav a:hover {
+  text-shadow: 0 0 10px var(--glow-primary);
+}
+
+/* Solarized nav - clean simple underline */
+body.theme-solarized header nav a {
+  position: relative;
+}
+
+body.theme-solarized header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent-1);
+  transition: width 0.3s ease;
+}
+
+body.theme-solarized header nav a:hover::after {
+  width: 100%;
+}
+
+/* Copper nav - elegant shimmer */
+@keyframes copper-nav-shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+body.theme-copper header nav a {
+  position: relative;
+}
+
+body.theme-copper header nav a::before {
+  content: "◈ ";
+  color: var(--color-accent-1);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+body.theme-copper header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-5), var(--color-accent-1));
+  background-size: 200% 100%;
+  transition: width 0.3s ease;
+}
+
+body.theme-copper header nav a:hover::before {
+  opacity: 1;
+}
+
+body.theme-copper header nav a:hover::after {
+  width: 100%;
+  animation: copper-nav-shimmer 2s linear infinite;
+}
+
+body.theme-copper header nav a:hover {
+  text-shadow: 0 0 8px var(--glow-primary);
+}
+
+/* Paper nav - stark red underline */
+body.theme-paper header nav a {
+  position: relative;
+}
+
+body.theme-paper header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent-1);
+  transition: width 0.2s ease;
+}
+
+body.theme-paper header nav a:hover::after {
+  width: 100%;
+}
+
 /* ================================
    THEME SELECTOR
    ================================ */
@@ -1399,6 +1772,46 @@ body.theme-midnight #theme-toggle:hover {
 
 body.theme-midnight .theme-dropdown {
   box-shadow: 0 8px 24px rgba(68, 147, 248, 0.2);
+}
+
+body.theme-sunset #theme-toggle {
+  box-shadow: 0 2px 10px rgba(232, 93, 4, 0.2);
+}
+
+body.theme-sunset #theme-toggle:hover {
+  box-shadow: 0 4px 15px rgba(232, 93, 4, 0.35);
+}
+
+body.theme-sunset .theme-dropdown {
+  box-shadow: 0 8px 24px rgba(232, 93, 4, 0.25);
+}
+
+body.theme-solarized #theme-toggle {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+body.theme-solarized .theme-dropdown {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+body.theme-copper #theme-toggle {
+  box-shadow: 0 0 12px rgba(184, 115, 51, 0.3);
+}
+
+body.theme-copper #theme-toggle:hover {
+  box-shadow: 0 0 18px rgba(184, 115, 51, 0.5);
+}
+
+body.theme-copper .theme-dropdown {
+  box-shadow: 0 8px 24px rgba(184, 115, 51, 0.3);
+}
+
+body.theme-paper #theme-toggle {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.theme-paper .theme-dropdown {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* ================================
@@ -1741,6 +2154,70 @@ body.theme-nord main a:not(.sourceLine):hover {
   background-size: 100% 1px, 100% 1px;
 }
 
+/* Sunset theme - warm expanding glow */
+body.theme-sunset main a:not(.sourceLine) {
+  background-image: linear-gradient(90deg, var(--color-accent-5), var(--color-accent-4));
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.3s ease, text-shadow 0.3s ease;
+}
+
+body.theme-sunset main a:not(.sourceLine):hover {
+  background-size: 100% 2px;
+  text-shadow: 0 0 8px var(--glow-primary);
+}
+
+/* Solarized theme - clean blue underline */
+body.theme-solarized main a:not(.sourceLine) {
+  background-image: linear-gradient(var(--color-accent-1), var(--color-accent-1));
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.3s ease;
+}
+
+body.theme-solarized main a:not(.sourceLine):hover {
+  background-size: 100% 2px;
+}
+
+/* Copper theme - metallic shimmer */
+@keyframes copper-link-shimmer {
+  0% { background-position: -100% 100%; }
+  100% { background-position: 200% 100%; }
+}
+
+body.theme-copper main a:not(.sourceLine) {
+  background-image: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-5), var(--color-accent-1));
+  background-size: 200% 2px;
+  background-position: -100% 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: text-shadow 0.3s ease;
+}
+
+body.theme-copper main a:not(.sourceLine):hover {
+  animation: copper-link-shimmer 1.5s linear infinite;
+  text-shadow: 0 0 6px var(--glow-primary);
+}
+
+/* Paper theme - stark red underline, editorial feel */
+body.theme-paper main a:not(.sourceLine) {
+  border-bottom: none;
+  background-image: linear-gradient(var(--color-accent-1), var(--color-accent-1));
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 1px;
+  transition: background-size 0.2s ease;
+}
+
+body.theme-paper main a:not(.sourceLine):hover {
+  background-size: 100% 2px;
+}
+
 /* ================================
    PROFILE SECTION
    ================================ */
@@ -2006,6 +2483,66 @@ body.theme-forest .sourceCode span.al { color: var(--color-accent-5); font-weigh
 body.theme-forest .sourceCode span.fu { color: var(--color-accent-7); }
 body.theme-forest .sourceCode span.re { color: var(--text-primary); }
 body.theme-forest .sourceCode span.er { color: #4a3f2e; font-weight: bold; }
+
+/* Sunset syntax highlighting */
+body.theme-sunset .sourceCode span.kw { color: var(--color-accent-3); font-weight: bold; }
+body.theme-sunset .sourceCode span.dt { color: var(--color-accent-7); }
+body.theme-sunset .sourceCode span.dv { color: var(--color-accent-1); }
+body.theme-sunset .sourceCode span.bn { color: var(--color-accent-1); }
+body.theme-sunset .sourceCode span.fl { color: var(--color-accent-1); }
+body.theme-sunset .sourceCode span.ch { color: var(--color-accent-5); }
+body.theme-sunset .sourceCode span.st { color: var(--color-accent-5); }
+body.theme-sunset .sourceCode span.co { color: var(--text-secondary); font-style: italic; }
+body.theme-sunset .sourceCode span.ot { color: var(--color-accent-4); }
+body.theme-sunset .sourceCode span.al { color: var(--color-accent-8); font-weight: bold; }
+body.theme-sunset .sourceCode span.fu { color: var(--color-accent-2); }
+body.theme-sunset .sourceCode span.re { color: var(--text-primary); }
+body.theme-sunset .sourceCode span.er { color: var(--color-accent-3); font-weight: bold; }
+
+/* Solarized syntax highlighting (classic) */
+body.theme-solarized .sourceCode span.kw { color: var(--color-accent-3); font-weight: bold; }
+body.theme-solarized .sourceCode span.dt { color: var(--color-accent-4); }
+body.theme-solarized .sourceCode span.dv { color: var(--color-accent-2); }
+body.theme-solarized .sourceCode span.bn { color: var(--color-accent-2); }
+body.theme-solarized .sourceCode span.fl { color: var(--color-accent-2); }
+body.theme-solarized .sourceCode span.ch { color: var(--color-accent-2); }
+body.theme-solarized .sourceCode span.st { color: var(--color-accent-2); }
+body.theme-solarized .sourceCode span.co { color: var(--text-secondary); font-style: italic; }
+body.theme-solarized .sourceCode span.ot { color: var(--color-accent-5); }
+body.theme-solarized .sourceCode span.al { color: var(--color-accent-6); font-weight: bold; }
+body.theme-solarized .sourceCode span.fu { color: var(--color-accent-1); }
+body.theme-solarized .sourceCode span.re { color: var(--text-primary); }
+body.theme-solarized .sourceCode span.er { color: var(--color-accent-6); font-weight: bold; }
+
+/* Copper syntax highlighting */
+body.theme-copper .sourceCode span.kw { color: var(--color-accent-5); font-weight: bold; }
+body.theme-copper .sourceCode span.dt { color: var(--color-accent-4); }
+body.theme-copper .sourceCode span.dv { color: var(--color-accent-2); }
+body.theme-copper .sourceCode span.bn { color: var(--color-accent-2); }
+body.theme-copper .sourceCode span.fl { color: var(--color-accent-2); }
+body.theme-copper .sourceCode span.ch { color: var(--color-accent-6); }
+body.theme-copper .sourceCode span.st { color: var(--color-accent-6); }
+body.theme-copper .sourceCode span.co { color: var(--text-secondary); font-style: italic; }
+body.theme-copper .sourceCode span.ot { color: var(--color-accent-7); }
+body.theme-copper .sourceCode span.al { color: var(--color-accent-4); font-weight: bold; }
+body.theme-copper .sourceCode span.fu { color: var(--color-accent-1); }
+body.theme-copper .sourceCode span.re { color: var(--text-primary); }
+body.theme-copper .sourceCode span.er { color: var(--color-accent-8); font-weight: bold; }
+
+/* Paper syntax highlighting (minimal, mostly black with red accents) */
+body.theme-paper .sourceCode span.kw { color: var(--text-primary); font-weight: bold; }
+body.theme-paper .sourceCode span.dt { color: var(--text-secondary); }
+body.theme-paper .sourceCode span.dv { color: var(--color-accent-1); }
+body.theme-paper .sourceCode span.bn { color: var(--color-accent-1); }
+body.theme-paper .sourceCode span.fl { color: var(--color-accent-1); }
+body.theme-paper .sourceCode span.ch { color: var(--text-secondary); }
+body.theme-paper .sourceCode span.st { color: var(--text-secondary); }
+body.theme-paper .sourceCode span.co { color: #999999; font-style: italic; }
+body.theme-paper .sourceCode span.ot { color: var(--text-primary); }
+body.theme-paper .sourceCode span.al { color: var(--color-accent-1); font-weight: bold; }
+body.theme-paper .sourceCode span.fu { color: var(--text-primary); }
+body.theme-paper .sourceCode span.re { color: var(--text-primary); }
+body.theme-paper .sourceCode span.er { color: var(--color-accent-1); font-weight: bold; }
 
 i {
   margin-right: 10px;

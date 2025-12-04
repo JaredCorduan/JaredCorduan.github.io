@@ -38,6 +38,14 @@
                             </span>
                             <span class="theme-option-name">Clearsky</span>
                         </div>
+                        <div class="theme-option" data-theme="copper" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #1a1216"></span>
+                                <span class="swatch" style="background: #b87333"></span>
+                                <span class="swatch" style="background: #e8c4b0"></span>
+                            </span>
+                            <span class="theme-option-name">Copper</span>
+                        </div>
                         <div class="theme-option" data-theme="forest" role="option">
                             <span class="theme-swatches">
                                 <span class="swatch" style="background: #3d4a34"></span>
@@ -94,6 +102,30 @@
                             </span>
                             <span class="theme-option-name">Pastel</span>
                         </div>
+                        <div class="theme-option" data-theme="paper" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #fafafa"></span>
+                                <span class="swatch" style="background: #1a1a1a"></span>
+                                <span class="swatch" style="background: #c41e3a"></span>
+                            </span>
+                            <span class="theme-option-name">Paper</span>
+                        </div>
+                        <div class="theme-option" data-theme="solarized" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #fdf6e3"></span>
+                                <span class="swatch" style="background: #268bd2"></span>
+                                <span class="swatch" style="background: #2aa198"></span>
+                            </span>
+                            <span class="theme-option-name">Solarized</span>
+                        </div>
+                        <div class="theme-option" data-theme="sunset" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #1a1423"></span>
+                                <span class="swatch" style="background: #e85d04"></span>
+                                <span class="swatch" style="background: #f7b801"></span>
+                            </span>
+                            <span class="theme-option-name">Sunset</span>
+                        </div>
                         <div class="theme-option" data-theme="synthwave" role="option">
                             <span class="theme-swatches">
                                 <span class="swatch" style="background: #2b213a"></span>
@@ -147,13 +179,17 @@
 
                 const themeNames = {
                     clearsky: 'Clearsky',
+                    copper: 'Copper',
                     forest: 'Forest',
                     gruvbox: 'Gruvbox',
                     midnight: 'Midnight',
                     nord: 'Nord',
                     notebook: 'Notebook',
                     ocean: 'Ocean',
+                    paper: 'Paper',
                     pastel: 'Pastel',
+                    solarized: 'Solarized',
+                    sunset: 'Sunset',
                     synthwave: 'Synthwave',
                     terminal: 'Terminal',
                     violet: 'Violet'
@@ -165,7 +201,7 @@
                 // Apply the theme
                 function setTheme(theme) {
                     // Remove all theme classes
-                    body.classList.remove('theme-violet', 'theme-notebook', 'theme-forest', 'theme-clearsky', 'theme-pastel', 'theme-synthwave', 'theme-terminal', 'theme-nord', 'theme-gruvbox', 'theme-ocean', 'theme-midnight');
+                    body.classList.remove('theme-violet', 'theme-notebook', 'theme-forest', 'theme-clearsky', 'theme-pastel', 'theme-synthwave', 'theme-terminal', 'theme-nord', 'theme-gruvbox', 'theme-ocean', 'theme-midnight', 'theme-sunset', 'theme-solarized', 'theme-copper', 'theme-paper');
                     // Add the selected theme
                     body.classList.add('theme-' + theme);
                     // Save to localStorage
