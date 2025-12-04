@@ -111,13 +111,13 @@ the basic functions, composition, and primitive recursion:
 \\hline
 name & given & notation & function \\\\
 \\hline
-composition & g:\\mathbb{N}^m\\to\\mathbb{N} & g \\circ (h_1, \\ldots, h_m) & x_1\\ldots,x_k \\mapsto g(h_1(x_1, \\ldots, x_k), \\ldots, h_m(x_1, \\ldots, x_k)) \\\\
+composition & g:\\mathbb{N}^m\\to\\mathbb{N} & g \\circ (h_1, \\ldots, h_m) & \\vec{x} \\mapsto g(h_1(\\vec{x}), \\ldots, h_m(\\vec{x})) \\\\
  & h_1,\\ldots,h_m:\\mathbb{N}^k\\to\\mathbb{N} & & \\\\
 \\hline
-primitive~recursion & g:\\mathbb{N}^k\\to\\mathbb{N} & R(g, h) & 
-  f(0, x_1, \\ldots, x_k) \\mapsto g(x_1, \\ldots, x_k) \\\\
+primitive~recursion & g:\\mathbb{N}^k\\to\\mathbb{N} & R(g, h) &
+  f(0, \\vec{x}) \\mapsto g(\\vec{x}) \\\\
   & h:\\mathbb{N}^{k+2}\\to\\mathbb{N}
-  & & f(x_0+1, x_1, \\ldots, x_k) \\mapsto h(x_0, f(x_0, x_1, \\ldots, x_k), x_1, \\ldots, x_k) \\\\
+  & & f(x_0+1, \\vec{x}) \\mapsto h(x_0, f(x_0, \\vec{x}), \\vec{x}) \\\\
 \\hline
 \\end{array}
 \\]
