@@ -2,7 +2,7 @@
 
 import Data.Binary (Binary)
 import qualified Data.ByteString.Lazy as LBS
-import Data.List (intercalate, partition)
+import Data.List (intercalate)
 import Data.Typeable (Typeable)
 import Hakyll
 import System.Process (callProcess)
@@ -15,11 +15,9 @@ main = hakyll $ do
     matchSimple "images/**" copyFileCompiler
     matchSimple "css/*" compressCssCompiler
     matchSimple "webfonts/*" copyFileCompiler
-    matchPages slushPattern (Just tags)
     matchPages postsPattern (Just tags)
     matchPages "notes/*" Nothing
 
-    createPage "slush.html" slushPattern "Slush"
     createPage "posts.html" postsPattern "Posts"
 
     createFeeds
@@ -39,35 +37,24 @@ matchSimple p c = match p  $ route idRoute >> compile c
 
 tagCompiler :: String -> Pattern -> Compiler (Item String)
 tagCompiler tag pat = do
-    pages <- recentFirst =<< loadAll pat
-    let (posts, slush) = partition (isPost . itemIdentifier) pages
-        title = "tagged \"" ++ tag ++ "\""
+    posts <- recentFirst =<< loadAll pat
+    let title = "tagged \"" ++ tag ++ "\""
         ctx = constField "title" title
                <> listField "posts" postCtx (pure posts)
-               <> listField "slush" postCtx (pure slush)
                <> defaultContext
 
     makeItem ""
         >>= loadAndApplyTemplate "templates/tag.html" ctx
         >>= loadAndApplyTemplate "templates/default.html" ctx
         >>= relativizeUrls
-    where
-       isPost :: Identifier -> Bool
-       isPost = matches postsPattern
 
 postsPattern :: Pattern
 postsPattern = "posts/*"
 
-slushPattern :: Pattern
-slushPattern = "slush/*"
-
-tagPattern :: Pattern
-tagPattern = postsPattern .||. slushPattern
-
 makeTags :: Rules Tags
 makeTags = do
   let makeTagRule tag pat = route idRoute >> compile (tagCompiler tag pat)
-  tags <- buildTags tagPattern (fromCapture "tags/*.html")
+  tags <- buildTags postsPattern (fromCapture "tags/*.html")
   tagsRules tags makeTagRule
   pure tags
 

@@ -110,7 +110,7 @@ For example:
 </table> 
 </font>
 
-\\[\\mathsf{WIL} = 2+3+4 =0\\]
+\\[\\mathsf{WIL} = 2+3+4 =9\\]
 
 The number 4 was chosen since the average value of a six-sided die is 3½.
 
