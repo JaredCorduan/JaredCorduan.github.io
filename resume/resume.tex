@@ -1,0 +1,142 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tgtermes}  % TeX Gyre Termes - Times-like serif
+\usepackage{tgheros}   % TeX Gyre Heros - Helvetica-like sans for name
+
+% Colors
+\definecolor{headercolor}{RGB}{47, 84, 150}
+\definecolor{linkcolor}{RGB}{47, 84, 150}
+
+% Remove page numbers
+\pagestyle{empty}
+
+% Section formatting - black, bold, no rule
+\titleformat{\section}
+  {\large\bfseries}
+  {}
+  {0em}
+  {}
+
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+
+% Hyperlink setup
+\hypersetup{
+  colorlinks=true,
+  urlcolor=linkcolor,
+  linkcolor=linkcolor
+}
+
+% Tight lists
+\setlist[itemize]{nosep, leftmargin=3.5em, topsep=3pt, itemsep=1pt}
+
+% Indented block environment
+\newenvironment{indentblock}{\begin{list}{}{\leftmargin=1.5em\rightmargin=0em}\item[]}{\end{list}}
+
+\begin{document}
+
+%---------- HEADER ----------%
+\begin{center}
+  {\fontfamily{qhv}\selectfont\LARGE\bfseries Jared Corduan} \\[4pt]
+  \href{https://jaredcorduan.github.io}{jaredcorduan.github.io} $\cdot$
+  \href{mailto:jaredcorduan@gmail.com}{jaredcorduan@gmail.com} $\cdot$
+  Charleston, SC \\[2pt]
+  {\scriptsize\color{gray}\textit{Updated: \today}}
+\end{center}
+
+\vspace{-4pt}
+\noindent\rule{\textwidth}{0.4pt}
+
+%---------- SUMMARY ----------%
+\section{SUMMARY}
+\begin{indentblock}
+Mathematician and software engineer. PhD in mathematical logic, with industry experience in formal methods and distributed systems.
+\end{indentblock}
+
+%---------- EXPERIENCE ----------%
+\section{INDUSTRY EXPERIENCE}
+
+\begin{indentblock}
+{\color{headercolor}\textbf{Stealth Startup}} --- Staff AI Scientist \\
+October 2025 -- Present
+\begin{itemize}[leftmargin=2em]
+  \item TODO
+\end{itemize}
+
+\vspace{2pt}
+
+{\color{headercolor}\textbf{BigBear.ai}} --- Senior Software Engineer \\
+July 2023 -- October 2025
+\begin{itemize}[leftmargin=2em]
+  \item Architected configuration-driven ML orchestration system for edge deployment across distributed nodes (drones, vehicles, command centers)
+\end{itemize}
+
+\vspace{2pt}
+
+{\color{headercolor}\textbf{Input Output Global}} --- Formal Methods Engineer \\
+May 2018 -- July 2023
+\begin{itemize}[leftmargin=2em]
+  \item Led formal specification design for Cardano blockchain ledger alongside Haskell implementation
+  \item Collaborated with academic researchers to align protocol with peer-reviewed requirements
+  \item Managed team of 6 developers; served as open source maintainer and community point of contact
+  \item Work publicly available at \href{https://github.com/IntersectMBO/cardano-ledger}{github.com/IntersectMBO/cardano-ledger}
+\end{itemize}
+
+\vspace{2pt}
+
+{\color{headercolor}\textbf{PokitDok}} --- Software Engineer \\
+November 2015 -- May 2018
+\begin{itemize}[leftmargin=2em]
+  \item Designed identity management system connecting patients, hospitals, insurers, and manufacturers
+  \item Built key recovery mechanism and data provenance system for consumer-owned health data
+  \item Developed REST APIs for real-time pharmacy coverage, plan information, and medical eligibility
+\end{itemize}
+
+\vspace{2pt}
+
+{\color{headercolor}\textbf{Born Capital}} --- Software Engineer \\
+June 2011 -- November 2015
+\begin{itemize}[leftmargin=2em]
+  \item Built internal order matching system for commodities trading platform
+\end{itemize}
+\end{indentblock}
+
+%---------- EDUCATION ----------%
+\section{EDUCATION}
+
+\begin{indentblock}
+{\color{headercolor}\textbf{Dartmouth College}} --- Ph.D., Mathematics (Logic) \hfill 2011 \\[2pt]
+{\color{headercolor}\textbf{Grinnell College}} --- B.A., Mathematics \hfill 2002
+\end{indentblock}
+
+%---------- SKILLS ----------%
+\section{SKILLS}
+
+\begin{indentblock}
+\textbf{Languages:} Haskell, Python, C++, Lean \\
+\textbf{Technologies:} MLFlow, Kafka, NATS, FastAPI, Docker, Prometheus, Redis, Elasticsearch, QuickCheck \\
+\textbf{Domains:} Formal methods, property-based testing, distributed systems, blockchain, ML infrastructure
+\end{indentblock}
+
+%---------- PUBLICATIONS ----------%
+\section{ACADEMIC PUBLICATIONS}
+
+\begin{indentblock}
+Ph.D.\ dissertation in computability theory, combinatorics, and mathematical logic.
+Three peer-reviewed papers in \textit{Notre Dame Journal of Formal Logic} (2012, 2015)
+and \textit{Journal of Symbolic Logic} (2010).
+\end{indentblock}
+
+%---------- TEACHING ----------%
+\section{TEACHING EXPERIENCE}
+
+\begin{indentblock}
+{\color{headercolor}\textbf{Dartmouth College \& U.\ of S.\ Carolina}} --- Instructor/TA \hfill 2003 -- 2011 \\
+Primary instructor for Calculus, Discrete Math, and Group Theory. TA for 8 courses.
+\end{indentblock}
+
+\end{document}

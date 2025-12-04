@@ -847,6 +847,9 @@ body.theme-forest header nav a::before {
 
 body.theme-notebook header nav a {
   border-bottom: 2px solid transparent;
+  padding: 2px 4px;
+  margin: -2px -4px;
+  border-radius: 2px;
 }
 
 body.theme-notebook header nav a::before {
@@ -924,9 +927,6 @@ body.theme-violet header nav a:hover {
 /* Notebook nav - subtle background highlight */
 body.theme-notebook header nav a:hover {
   background-color: rgba(181, 101, 29, 0.08);
-  border-radius: 2px;
-  padding: 2px 4px;
-  margin: -2px -4px;
 }
 
 /* Forest nav - expanding underline */

@@ -2,3 +2,9 @@ _cache/
 _site/
 .stack-work/
 dist-newstyle/
+
+# LaTeX build artifacts
+resume/*.aux
+resume/*.log
+resume/*.out
+resume/*.pdf

@@ -1,9 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Data.Binary (Binary)
+import qualified Data.ByteString.Lazy as LBS
 import Data.List (intercalate, partition)
 import Data.Typeable (Typeable)
 import Hakyll
+import System.Process (callProcess)
 
 main :: IO ()
 main = hakyll $ do
@@ -26,6 +28,11 @@ main = hakyll $ do
     matchSimple "index.html"  indexCompiler
     matchSimple "pubkey.html" indexCompiler
     match "templates/*" $ compile templateBodyCompiler
+
+    -- Resume PDF from LaTeX
+    match "resume/resume.tex" $ do
+        route $ constRoute "resume.pdf"
+        compile pdfLatexCompiler
 
 matchSimple :: (Binary a, Typeable a, Writable a) => Pattern -> Compiler (Item a) -> Rules ()
 matchSimple p c = match p  $ route idRoute >> compile c
@@ -141,3 +148,15 @@ feedConfiguration = FeedConfiguration
     , feedAuthorEmail = "jared.corduan@gmail.com"
     , feedRoot        = "https://jaredcorduan.github.io"
     }
+
+pdfLatexCompiler :: Compiler (Item LBS.ByteString)
+pdfLatexCompiler = do
+    texPath <- getResourceFilePath
+    unsafeCompiler $ do
+        callProcess "pdflatex"
+            [ "-interaction=nonstopmode"
+            , "-output-directory=resume"
+            , texPath
+            ]
+        LBS.readFile "resume/resume.pdf"
+    >>= makeItem

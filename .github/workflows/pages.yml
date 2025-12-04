@@ -76,7 +76,10 @@ jobs:
       - name: Build projects [build]
         run: cabal build all
 
-      - name: Builld site
+      - name: Install LaTeX
+        run: sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
+
+      - name: Build site
         run: cabal run jblog:site -- build
 
       - name: Setup Pages
