@@ -1198,14 +1198,17 @@ body.theme-clearsky header nav a:hover::after {
   display: inline-block;
   position: relative;
   margin-left: 30px;
+  vertical-align: middle;
 }
 
-.theme-selector select {
-  appearance: none;
+#theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background: var(--bg-main);
   color: var(--text-primary);
   border: 1px solid var(--header-border);
-  padding: 6px 30px 6px 12px;
+  padding: 6px 12px;
   font-family: var(--font-family);
   font-size: 14px;
   font-weight: 500;
@@ -1214,83 +1217,188 @@ body.theme-clearsky header nav a:hover::after {
   transition: all 0.3s ease;
 }
 
-.theme-selector::after {
-  content: "▼";
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: var(--text-secondary);
-  font-size: 10px;
-}
-
-.theme-selector select:hover {
+#theme-toggle:hover {
   border-color: var(--link-hover);
 }
 
-body.theme-violet .theme-selector select {
+#theme-toggle .theme-swatches {
+  display: flex;
+  gap: 3px;
+}
+
+#theme-toggle .swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+#theme-toggle .theme-name {
+  min-width: 70px;
+  text-align: left;
+}
+
+#theme-toggle .theme-arrow {
+  font-size: 10px;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+}
+
+#theme-toggle[aria-expanded="true"] .theme-arrow {
+  transform: rotate(180deg);
+}
+
+.theme-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--bg-main);
+  border: 1px solid var(--header-border);
+  border-radius: 6px;
+  padding: 6px;
+  min-width: 180px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.theme-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.theme-option:hover {
+  background: var(--bg-tertiary);
+}
+
+.theme-option.active {
+  background: var(--bg-tertiary);
+}
+
+.theme-option .theme-swatches {
+  display: flex;
+  gap: 4px;
+}
+
+.theme-option .swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  transition: transform 0.15s ease;
+}
+
+.theme-option:hover .swatch {
+  transform: scale(1.1);
+}
+
+.theme-option-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Theme-specific styling for the picker */
+body.theme-violet #theme-toggle {
   box-shadow: 0 0 10px rgba(139, 124, 255, 0.2);
 }
 
-body.theme-violet .theme-selector select:hover {
+body.theme-violet #theme-toggle:hover {
   box-shadow: 0 0 15px rgba(139, 124, 255, 0.4);
 }
 
-body.theme-notebook .theme-selector select {
+body.theme-violet .theme-dropdown {
+  box-shadow: 0 8px 24px rgba(139, 124, 255, 0.3);
+}
+
+body.theme-notebook #theme-toggle {
   box-shadow: 2px 2px 6px rgba(45, 36, 22, 0.1);
 }
 
-body.theme-forest .theme-selector select {
+body.theme-notebook .theme-dropdown {
+  box-shadow: 3px 3px 12px rgba(45, 36, 22, 0.15);
+}
+
+body.theme-forest #theme-toggle {
   box-shadow: 0 2px 8px rgba(26, 46, 26, 0.15);
 }
 
-body.theme-forest .theme-selector select:hover {
+body.theme-forest #theme-toggle:hover {
   box-shadow: 0 4px 12px rgba(26, 46, 26, 0.25);
 }
 
-body.theme-pastel .theme-selector select {
+body.theme-pastel #theme-toggle {
   box-shadow: 2px 2px 8px rgba(201, 160, 220, 0.15);
 }
 
-body.theme-synthwave .theme-selector select {
+body.theme-synthwave #theme-toggle {
   box-shadow: 0 0 12px rgba(242, 34, 255, 0.3);
 }
 
-body.theme-synthwave .theme-selector select:hover {
+body.theme-synthwave #theme-toggle:hover {
   box-shadow: 0 0 18px rgba(242, 34, 255, 0.5);
 }
 
-body.theme-terminal .theme-selector select {
+body.theme-synthwave .theme-dropdown {
+  box-shadow: 0 8px 24px rgba(242, 34, 255, 0.4);
+}
+
+body.theme-terminal #theme-toggle {
   box-shadow: 0 0 10px rgba(136, 204, 136, 0.2);
 }
 
-body.theme-terminal .theme-selector select:hover {
+body.theme-terminal #theme-toggle:hover {
   box-shadow: 0 0 15px rgba(136, 204, 136, 0.3);
 }
 
-body.theme-nord .theme-selector select {
+body.theme-terminal .theme-dropdown {
+  box-shadow: 0 8px 24px rgba(136, 204, 136, 0.2);
+}
+
+body.theme-nord #theme-toggle {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-body.theme-gruvbox .theme-selector select {
+body.theme-gruvbox #theme-toggle {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-body.theme-ocean .theme-selector select {
+body.theme-ocean #theme-toggle {
   box-shadow: 0 0 12px rgba(57, 197, 187, 0.3);
 }
 
-body.theme-ocean .theme-selector select:hover {
+body.theme-ocean #theme-toggle:hover {
   box-shadow: 0 0 18px rgba(57, 197, 187, 0.5);
 }
 
-body.theme-midnight .theme-selector select {
+body.theme-ocean .theme-dropdown {
+  box-shadow: 0 8px 24px rgba(57, 197, 187, 0.3);
+}
+
+body.theme-midnight #theme-toggle {
   box-shadow: 0 0 10px rgba(68, 147, 248, 0.2);
 }
 
-body.theme-midnight .theme-selector select:hover {
+body.theme-midnight #theme-toggle:hover {
   box-shadow: 0 0 15px rgba(68, 147, 248, 0.3);
+}
+
+body.theme-midnight .theme-dropdown {
+  box-shadow: 0 8px 24px rgba(68, 147, 248, 0.2);
 }
 
 /* ================================
@@ -1510,26 +1618,17 @@ body.theme-notebook main a:not(.sourceLine):hover {
 }
 
 body.theme-forest main a:not(.sourceLine) {
-  position: relative;
+  background-image: linear-gradient(90deg, var(--color-accent-4), var(--color-accent-6));
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.3s ease;
 }
 
 body.theme-forest main a:not(.sourceLine):hover {
   text-shadow: 0 0 6px var(--glow-primary);
-}
-
-body.theme-forest main a:not(.sourceLine)::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--green-fern), var(--green-leaf));
-  transition: width 0.3s ease;
-}
-
-body.theme-forest main a:not(.sourceLine):hover::after {
-  width: 100%;
+  background-size: 100% 2px;
 }
 
 /* Pastel theme - soft highlight */
@@ -1570,106 +1669,76 @@ body.theme-terminal main a:not(.sourceLine):hover::after {
 
 /* Ocean theme - wavy underline */
 body.theme-ocean main a:not(.sourceLine) {
-  position: relative;
-}
-
-body.theme-ocean main a:not(.sourceLine)::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: repeating-linear-gradient(
+  background-image: repeating-linear-gradient(
     90deg,
     transparent,
     transparent 3px,
     var(--link-hover) 3px,
     var(--link-hover) 6px
   );
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background-size: 12px 2px;
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  padding-bottom: 2px;
+  text-decoration: none;
+  background-size: 0 2px;
+  transition: background-size 0.3s ease;
 }
 
-body.theme-ocean main a:not(.sourceLine):hover::after {
-  opacity: 1;
+body.theme-ocean main a:not(.sourceLine):hover {
+  background-size: 12px 2px;
   animation: wave 2s linear infinite;
 }
 
 @keyframes wave {
-  0% { background-position: 0 0; }
-  100% { background-position: 12px 0; }
+  0% { background-position: 0 100%; }
+  100% { background-position: 12px 100%; }
 }
 
 /* Midnight theme - double underline */
 body.theme-midnight main a:not(.sourceLine) {
-  position: relative;
+  background-image:
+    linear-gradient(var(--link-hover), var(--link-hover)),
+    linear-gradient(var(--color-accent-5), var(--color-accent-5));
+  background-size: 0 1px, 0 1px;
+  background-position: 0 100%, 0 calc(100% + 2px);
+  background-repeat: no-repeat;
+  padding-bottom: 3px;
+  transition: background-size 0.3s ease;
 }
 
 body.theme-midnight main a:not(.sourceLine):hover {
-  border-bottom: 1px solid var(--link-hover);
+  background-size: 100% 1px, 100% 1px;
 }
 
-body.theme-midnight main a:not(.sourceLine)::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--color-accent-5);
-  opacity: 0.5;
-  transition: width 0.3s ease;
-}
-
-body.theme-midnight main a:not(.sourceLine):hover::after {
-  width: 100%;
-}
-
-/* Gruvbox theme - underline expand from center */
+/* Gruvbox theme - underline */
 body.theme-gruvbox main a:not(.sourceLine) {
-  position: relative;
+  background-image: linear-gradient(var(--color-accent-2), var(--color-accent-2));
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.3s ease;
 }
 
-body.theme-gruvbox main a:not(.sourceLine)::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--color-accent-2);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-body.theme-gruvbox main a:not(.sourceLine):hover::after {
-  width: 100%;
+body.theme-gruvbox main a:not(.sourceLine):hover {
+  background-size: 100% 2px;
 }
 
 /* Nord theme - frost double underline */
 body.theme-nord main a:not(.sourceLine) {
-  position: relative;
+  background-image:
+    linear-gradient(var(--color-accent-1), var(--color-accent-1)),
+    linear-gradient(var(--color-accent-5), var(--color-accent-5));
+  background-size: 0 1px, 0 1px;
+  background-position: 0 100%, 0 calc(100% + 1px);
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.3s ease;
 }
 
 body.theme-nord main a:not(.sourceLine):hover {
-  border-bottom: 1px solid var(--color-accent-1);
-}
-
-body.theme-nord main a:not(.sourceLine)::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0;
-  height: 1px;
-  background: var(--color-accent-5);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-body.theme-nord main a:not(.sourceLine):hover::after {
-  width: 100%;
+  background-size: 100% 1px, 100% 1px;
 }
 
 /* ================================

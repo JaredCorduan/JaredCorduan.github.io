@@ -25,19 +25,100 @@
                 <a href="/tags.html">tags</a>
                 <a href="/resume.pdf">resume</a>
                 <div class="theme-selector">
-                    <select id="theme-picker" aria-label="Select theme">
-                        <option value="clearsky">Clearsky</option>
-                        <option value="forest">Forest</option>
-                        <option value="gruvbox">Gruvbox</option>
-                        <option value="midnight">Midnight</option>
-                        <option value="nord">Nord</option>
-                        <option value="notebook" selected>Notebook</option>
-                        <option value="ocean">Ocean</option>
-                        <option value="pastel">Pastel</option>
-                        <option value="synthwave">Synthwave</option>
-                        <option value="terminal">Terminal</option>
-                        <option value="violet">Violet</option>
-                    </select>
+                    <button id="theme-toggle" aria-label="Select theme" aria-expanded="false">
+                        <span class="theme-name" id="current-theme-name">Notebook</span>
+                        <span class="theme-arrow">▼</span>
+                    </button>
+                    <div class="theme-dropdown" id="theme-dropdown" role="listbox" aria-label="Theme options">
+                        <div class="theme-option" data-theme="clearsky" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #172540"></span>
+                                <span class="swatch" style="background: #4177a1"></span>
+                                <span class="swatch" style="background: #97b7d8"></span>
+                            </span>
+                            <span class="theme-option-name">Clearsky</span>
+                        </div>
+                        <div class="theme-option" data-theme="forest" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #3d4a34"></span>
+                                <span class="swatch" style="background: #4d8a3c"></span>
+                                <span class="swatch" style="background: #7bc96e"></span>
+                            </span>
+                            <span class="theme-option-name">Forest</span>
+                        </div>
+                        <div class="theme-option" data-theme="gruvbox" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #282828"></span>
+                                <span class="swatch" style="background: #fe8019"></span>
+                                <span class="swatch" style="background: #b8bb26"></span>
+                            </span>
+                            <span class="theme-option-name">Gruvbox</span>
+                        </div>
+                        <div class="theme-option" data-theme="midnight" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #0a0e1a"></span>
+                                <span class="swatch" style="background: #4493f8"></span>
+                                <span class="swatch" style="background: #a5d6ff"></span>
+                            </span>
+                            <span class="theme-option-name">Midnight</span>
+                        </div>
+                        <div class="theme-option" data-theme="nord" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #2e3440"></span>
+                                <span class="swatch" style="background: #88c0d0"></span>
+                                <span class="swatch" style="background: #a3be8c"></span>
+                            </span>
+                            <span class="theme-option-name">Nord</span>
+                        </div>
+                        <div class="theme-option" data-theme="notebook" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #f5f1e8"></span>
+                                <span class="swatch" style="background: #2d5016"></span>
+                                <span class="swatch" style="background: #b5651d"></span>
+                            </span>
+                            <span class="theme-option-name">Notebook</span>
+                        </div>
+                        <div class="theme-option" data-theme="ocean" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #001f3f"></span>
+                                <span class="swatch" style="background: #39c5bb"></span>
+                                <span class="swatch" style="background: #87ceeb"></span>
+                            </span>
+                            <span class="theme-option-name">Ocean</span>
+                        </div>
+                        <div class="theme-option" data-theme="pastel" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #fef6fb"></span>
+                                <span class="swatch" style="background: #c9a0dc"></span>
+                                <span class="swatch" style="background: #a8d8ea"></span>
+                            </span>
+                            <span class="theme-option-name">Pastel</span>
+                        </div>
+                        <div class="theme-option" data-theme="synthwave" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #2b213a"></span>
+                                <span class="swatch" style="background: #ff2975"></span>
+                                <span class="swatch" style="background: #2de2e6"></span>
+                            </span>
+                            <span class="theme-option-name">Synthwave</span>
+                        </div>
+                        <div class="theme-option" data-theme="terminal" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #1a1a1a"></span>
+                                <span class="swatch" style="background: #88cc88"></span>
+                                <span class="swatch" style="background: #aae8aa"></span>
+                            </span>
+                            <span class="theme-option-name">Terminal</span>
+                        </div>
+                        <div class="theme-option" data-theme="violet" role="option">
+                            <span class="theme-swatches">
+                                <span class="swatch" style="background: #0a0e27"></span>
+                                <span class="swatch" style="background: #8b7cff"></span>
+                                <span class="swatch" style="background: #4dd4e8"></span>
+                            </span>
+                            <span class="theme-option-name">Violet</span>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -64,6 +145,20 @@
             (function() {
                 const body = document.body;
 
+                const themeNames = {
+                    clearsky: 'Clearsky',
+                    forest: 'Forest',
+                    gruvbox: 'Gruvbox',
+                    midnight: 'Midnight',
+                    nord: 'Nord',
+                    notebook: 'Notebook',
+                    ocean: 'Ocean',
+                    pastel: 'Pastel',
+                    synthwave: 'Synthwave',
+                    terminal: 'Terminal',
+                    violet: 'Violet'
+                };
+
                 // Load saved theme or use default
                 const savedTheme = localStorage.getItem('blog-theme') || 'notebook';
 
@@ -75,6 +170,28 @@
                     body.classList.add('theme-' + theme);
                     // Save to localStorage
                     localStorage.setItem('blog-theme', theme);
+                    // Update the toggle button display
+                    updateToggleDisplay(theme);
+                    // Update active state in dropdown
+                    updateActiveOption(theme);
+                }
+
+                function updateToggleDisplay(theme) {
+                    const themeName = document.getElementById('current-theme-name');
+                    if (themeName) {
+                        themeName.textContent = themeNames[theme] || 'Notebook';
+                    }
+                }
+
+                function updateActiveOption(theme) {
+                    const options = document.querySelectorAll('.theme-option');
+                    options.forEach(opt => {
+                        if (opt.dataset.theme === theme) {
+                            opt.classList.add('active');
+                        } else {
+                            opt.classList.remove('active');
+                        }
+                    });
                 }
 
                 // Set initial theme immediately
@@ -88,15 +205,50 @@
                 }
 
                 function initThemePicker() {
-                    const themePicker = document.getElementById('theme-picker');
-                    if (themePicker) {
-                        // Update dropdown to match current theme
-                        themePicker.value = savedTheme;
-                        // Listen for theme changes
-                        themePicker.addEventListener('change', function() {
-                            setTheme(this.value);
+                    const toggle = document.getElementById('theme-toggle');
+                    const dropdown = document.getElementById('theme-dropdown');
+                    const options = document.querySelectorAll('.theme-option');
+
+                    if (!toggle || !dropdown) return;
+
+                    // Update initial display
+                    updateToggleDisplay(savedTheme);
+                    updateActiveOption(savedTheme);
+
+                    // Toggle dropdown
+                    toggle.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const isOpen = dropdown.classList.contains('open');
+                        dropdown.classList.toggle('open');
+                        toggle.setAttribute('aria-expanded', !isOpen);
+                    });
+
+                    // Handle option selection
+                    options.forEach(option => {
+                        option.addEventListener('click', function() {
+                            const theme = this.dataset.theme;
+                            setTheme(theme);
+                            dropdown.classList.remove('open');
+                            toggle.setAttribute('aria-expanded', 'false');
                         });
-                    }
+                    });
+
+                    // Close dropdown when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (!toggle.contains(e.target) && !dropdown.contains(e.target)) {
+                            dropdown.classList.remove('open');
+                            toggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+
+                    // Close dropdown on Escape key
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape' && dropdown.classList.contains('open')) {
+                            dropdown.classList.remove('open');
+                            toggle.setAttribute('aria-expanded', 'false');
+                            toggle.focus();
+                        }
+                    });
                 }
             })();
         </script>
