@@ -17,10 +17,10 @@ main = hakyll $ do
     matchPages postsPattern (Just tags)
     matchPages "notes/*" Nothing
 
-    createPage "slush.html" slushPattern
-    createPage "posts.html" postsPattern
+    createPage "slush.html" slushPattern "Slush"
+    createPage "posts.html" postsPattern "Posts"
 
-    createPostsRSS
+    createFeeds
     createTags tags
 
     matchSimple "index.html"  indexCompiler
@@ -46,7 +46,7 @@ tagCompiler tag pat = do
         >>= relativizeUrls
     where
        isPost :: Identifier -> Bool
-       isPost iden = take 4 (toFilePath iden) == "post"
+       isPost = matches postsPattern
 
 postsPattern :: Pattern
 postsPattern = "posts/*"
@@ -67,9 +67,7 @@ makeTags = do
 matchPages :: Pattern -> Maybe Tags -> Rules ()
 matchPages pat tags =
     match pat $ do
-      let ctx = case tags of
-                  Just ts -> postCtxWithTags ts
-                  Nothing -> postCtx
+      let ctx = maybe postCtx postCtxWithTags tags
       route $ setExtension "html"
       compile $ pandocCompiler
         >>= loadAndApplyTemplate "templates/post.html"    ctx
@@ -77,15 +75,15 @@ matchPages pat tags =
         >>= loadAndApplyTemplate "templates/default.html" ctx
         >>= relativizeUrls
 
-createPage :: Identifier -> Pattern -> Rules ()
-createPage name pat =
+createPage :: Identifier -> Pattern -> String -> Rules ()
+createPage name pat title =
   create [name] $ do
     route idRoute
     compile $ do
       pages <- recentFirst =<< loadAll pat
       let ctx =
             listField "pages" postCtx (return pages)
-              <> constField "title" " "
+              <> constField "title" title
               <> defaultContext
 
       makeItem ""
@@ -93,20 +91,26 @@ createPage name pat =
         >>= loadAndApplyTemplate "templates/default.html" ctx
         >>= relativizeUrls
 
-createPostsRSS :: Rules ()
-createPostsRSS =
+createFeeds :: Rules ()
+createFeeds = do
   create ["rss.xml"] $ do
     route idRoute
     compile $ do
       let feedCtx = postCtx <> bodyField "description"
       posts <- fmap (take 10) . recentFirst =<< loadAllSnapshots postsPattern "content"
       renderRss feedConfiguration feedCtx posts
+  create ["atom.xml"] $ do
+    route idRoute
+    compile $ do
+      let feedCtx = postCtx <> bodyField "description"
+      posts <- fmap (take 10) . recentFirst =<< loadAllSnapshots postsPattern "content"
+      renderAtom feedConfiguration feedCtx posts
 
 createTags :: Tags -> Rules ()
 createTags tags = create ["tags.html"] $ do
   route idRoute
   compile $ do
-    let makeTagLink tag url _ _ _ = "<li><a href=\"" ++ url ++ "\">" ++ tag ++ "</a></li>"
+    let makeTagLink tag url count _ _ = "<li><a href=\"" ++ url ++ "\">" ++ tag ++ " (" ++ show count ++ ")</a></li>"
         tagRenderer _ = renderTags makeTagLink (intercalate  "\n") tags
         tagsCtx =
           constField "title" "Tags"

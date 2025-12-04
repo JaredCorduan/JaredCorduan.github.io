@@ -1,12 +1,13 @@
+cabal-version:      2.4
 name:               jblog
 version:            0.1.0.0
 build-type:         Simple
-cabal-version:      >= 1.10
+tested-with:        GHC == 9.10.1
 
 executable site
   main-is:          site.hs
-  build-depends:    base == 4.*
+  build-depends:    base >= 4.14 && < 5
                   , binary
-                  , hakyll == 4.16.*
+                  , hakyll >= 4.16 && < 5
   ghc-options:      -threaded -rtsopts -with-rtsopts=-N
   default-language: Haskell2010

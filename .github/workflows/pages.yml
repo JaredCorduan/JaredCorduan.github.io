@@ -30,19 +30,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ghc: ["9.8.1"]
+        ghc: ["9.10.1"]
 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: "Setup haskell"
-        uses: haskell/actions/setup@v1
+        uses: haskell-actions/setup@v1
         id: setup-haskell
         with:
           ghc-version: ${{ matrix.ghc }}
-          cabal-version: 3.10.2.1
+          cabal-version: 3.12.1.0
 
       - name: Set cache version
         run: echo "CACHE_VERSION=20220719" >> $GITHUB_ENV
@@ -55,7 +55,7 @@ jobs:
         run: |
           cabal build all --dry-run
           cat dist-newstyle/cache/plan.json | jq -r '."install-plan"[].id' | sort | uniq > dependencies.txt
-          echo "::set-output name=weeknum::$(/bin/date -u "+%W")"
+          echo "weeknum=$(/bin/date -u "+%W")" >> "$GITHUB_OUTPUT"
 
       - uses: actions/cache@v4
         name: "Cache `cabal store`"
