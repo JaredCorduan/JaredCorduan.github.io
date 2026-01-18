@@ -3,19 +3,15 @@ title: Two six-room dungeons
 tags: dnd, graphs
 ---
 
-# Two six-room dungeons
-
 This year there is an RPG game jam for making
 [zungeons](https://playfulvoid.game.blog/2025/01/01/the-zungeon-manifesto-demystifying-dungeon-creation/),
-which are a zine-inspired D&D dungeons.
+which are zine-inspired D&D dungeons.
 [Marcia B's Bite-Sized Dungeons](https://traversefantasy.blogspot.com/2022/11/bite-sized-dungeons.html)
-are recommended.
+is a good starting point.
 
 Marcia created a list of ten abstract dungeon layouts.
-I found two other layouts that essentially "finish the collection".
-
-This got me thinking about generalizations.
-
+I found two other layouts that essentially "finish the collection",
+and the graph theory behind it is fun to explore.
 
 ## Criterion
 
@@ -35,14 +31,14 @@ The two which do not appear on Marcia's blog are:
 ![](/images/six-room-dungeons/graph.png)
 </p>
 
-As [maps](https://app.dungeonscrawl.com), these could look like:
+Rendered in [Dungeonscrawl](https://app.dungeonscrawl.com), these could look like:
 
 <p align="center">
 <img src="/images/six-room-dungeons/map.png" width="600" height="300"/>
 </p>
 
 So if we throw out hexagons,
-we can randomly choose a layout with a [d12](https://g.co/kgs/hPc3tVb).
+we can randomly choose a layout with a d12.
 
 By "exactly 13 layouts", I mean up to graph-isomorphism.
 This may not, however, be a good assumption in practice.
@@ -84,11 +80,11 @@ $ showg planar_conn.6.g6 -e | grep "^6 6$" | wc -l
 
 Connected, planar graphs make good sense as an abstract layout for a dungeon.
 Six rooms/vertices was chosen as a sweet spot in game design.
-With six vertices, five edges is enough connect the graph.
+With six vertices, five edges is enough to connect the graph.
 The sixth edge gives the dungeon a loop.
 
 Every connected, planar graph that has the same number of vertices as edges
-will always have exactly one loop.
+has exactly one loop.
 More generally, Euler's formula says that:
 
 \\[
@@ -99,7 +95,7 @@ where
 
 * $v$ is the number of vertices
 * $e$ is the number of edges
-* $f$ is the number of faces (regions bounded by edges)
+* $f$ is the number of faces
 
 Note that one of the faces is always the outer,
 infinitely large region.

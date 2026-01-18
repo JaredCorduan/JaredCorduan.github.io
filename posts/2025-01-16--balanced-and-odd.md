@@ -4,7 +4,7 @@ tags: ttrpg, dice
 ---
 
 In a previous [post](/posts/2024-09-18--random-and-balanced-ability-scores.html)
-I described to roll RPG ability scores that always add up to the same number.
+I described a method for rolling RPG ability scores that always add up to the same number.
 It assumes that there are six ability scores.
 
 Games such as *Into the Odd*, and those derived from it, such as *Mausritter* and *Cairn*,
@@ -58,7 +58,7 @@ For example:
 
 \\[\\mathsf{STR} = 5+4+2 =11\\]
 
-## Step 3: sum the BACKS of the last three dice
+## Step 3: sum the **backs** of the last three dice
 
 <font size="20">
 <table align="center">
@@ -85,7 +85,10 @@ For example:
 
 \\[\\mathsf{DEX} = 3+5+4 =12\\]
 
-## Step 4: add four to the remaining faces
+## Step 4: sum the remaining faces, plus 4
+
+Two faces haven't been used yet: the back of die 1 and the front of die 4.
+Sum these two faces, then add 4 (chosen because the average d6 roll is 3½).
 
 <font size="20">
 <table align="center">
@@ -107,16 +110,14 @@ For example:
    <td></td>
    <td>⚂</td>
  </tr>
-</table> 
+</table>
 </font>
 
 \\[\\mathsf{WIL} = 2+3+4 =9\\]
 
-The number 4 was chosen since the average value of a six-sided die is 3½.
+## Result
 
-## That's it!
-
-In our running example, our ability scores are:
+In this example, the ability scores are:
 
 <table border=1>
  <tr>
@@ -132,19 +133,17 @@ In our running example, our ability scores are:
 </table> 
 
 Notice that the sum of the three scores is 32.
-It will always be 32!
+It will always be 32.
 
 # A Modification (for more randomness)
 
-We can add even more variety by not always going in the order of: STR, DEX, WIL.
-Notice that in the method described above, STR and DEX are more negatively correlated
-than WIL is with either STR or DEX (STR and DEX share two dice).
+We can add even more variety by not always going in the order STR, DEX, WIL.
+Notice that STR and DEX are more tightly linked than either is to WIL (they share two dice).
 
-There are exactly three ways to meaningfully reorder the score,
-determined by which score is the one having 4 added to it
-(like WIL above).
+There are exactly three ways to meaningfully reorder the scores,
+determined by which score gets the +4 (like WIL above).
 
-Therefore you can roll a d6 on the following table to randomly
+Therefore you can roll a **d6** on the following table to randomly
 pick an ordering of the scores:
 
 <table border=1>

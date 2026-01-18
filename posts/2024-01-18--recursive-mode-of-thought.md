@@ -3,8 +3,6 @@ title: The Recursive Mode of Thought
 tags: computability, arithmetic
 ---
 
-# The Recursive Mode of Thought
-
 Addition is usually defined formally by:
 
 \\[
@@ -399,7 +397,7 @@ In other words, there are proofs of:
 
 * For every \\(y\\in\\mathbb{N}\\), there exists \\(x\\in\\mathbb{N}\\), such that
 \\(F(x, y)\\).
-* For every \\(y_1, y_2, x\\in\\mathbb{N}\\), if \\(F(x, y_1)\\) and \\(F(x, y_1)\\)
+* For every \\(y_1, y_2, x\\in\\mathbb{N}\\), if \\(F(x, y_1)\\) and \\(F(x, y_2)\\)
   hold, then \\(y_1 = y_2\\) also holds.
 
 Parson's theorem states that the primitive recursive functions are exactly those
@@ -452,7 +450,7 @@ In this sense, Weak Kőnig's lemma calls forth actual infinity out of potential 
 The partial realization of Hilbert's program is:
 
 Every formula of the form \\(\\forall x\\exists y\\phi(x, y)\\)
-(where \\(\\theta\\) is bounded) which is provable in \\(\\mathsf{WKL}_0\\)
+(where \\(\\phi\\) is bounded) which is provable in \\(\\mathsf{WKL}_0\\)
 is also provable in primitive recursive arithmetic.[^wkl0-conserve]
 
 In other words, the use of actual infinity inside \\(\\mathsf{WKL}_0\\)

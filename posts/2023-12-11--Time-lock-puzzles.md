@@ -3,15 +3,13 @@ title: Time-lock puzzles
 tags: time-lock-puzzles, number-theory
 ---
 
-# Time-lock puzzles
-
 Time-lock puzzles were conceived by Timothy May in 1993[^1]
 and brought into reality by Rivest, Shamir, and Wagner in 1996[^2]
 (hence called the RSW puzzle).
 The idea is to encrypt something that cannot be decrypted until
 after a set time in the future.
 
-The RSW puzzle achieves these goals by forcing the decryption process to require a receptive task,
+The RSW puzzle achieves these goals by forcing the decryption process to require a repetitive task,
 a task assumed to always take the same amount of time.
 Crucially, the repetitive tasks cannot be performed in parallel.
 
@@ -46,7 +44,7 @@ a^{(2\^t)}~(\\mathsf{mod} {~n})
 There are two ways to compute this number,
 the slow way and the fast way.
 The slow way is what forces the secret to be revealed only in the future.
-The fast way is the means by which the secret is place into the timelock.
+The fast way is the means by which the secret is placed into the timelock.
 
 If one does not know the factorization of $n$, then computing $a^{2^t}$
 amounts to the brute force calculation of squaring $a$ $t$-many times.
@@ -88,7 +86,7 @@ Let
 
 Computing $C_K$ will make use of the fact that $n=pq$.
 
-We make public $C_M$, $C_M$, $n$, $a$, and $t$, and make sure that $p$ and $q$ remain secret.
+We make public $C_M$, $C_K$, $n$, $a$, and $t$, and make sure that $p$ and $q$ remain secret.
 The person who wishes to unlock the time puzzle must compute $a^{2^t}$
 in order to compute $K$ from $C_K$.
 Using $K$, they then decrypt M from $C_M$.

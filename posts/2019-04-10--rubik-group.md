@@ -3,8 +3,6 @@ title: The Rubik's Cube Group
 tags: rubik's cube,group theory,haskell
 ---
 
-# Rubik's Cube Algebra
-
 Permutations and symmetry are central themes of group theory,
 so it is perhaps not surprising that the Rubik's Cube has a nice algebraic description.
 The first such description was given by David Singmaster in his 1979 book
@@ -690,12 +688,6 @@ How many states does the Rubik's cube have? It is now easy to answer:
 \\((3^7\\cdot 2^\{11\}\\cdot 8!\\cdot 12!)\~/\~2\\)
 
 # Happy cubing!
-
-I do not yet have comments enabled on this blog, so feel free to chat by way of an issue on my
-[blog](https://github.com/JaredCorduan/JaredCorduan.github.io/issues)
-or on the
-[implementation](https://github.com/JaredCorduan/rubik-group/issues).
-Happy cubing!
 
 # Acknowledgments
 
