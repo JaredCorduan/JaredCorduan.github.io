@@ -653,6 +653,13 @@ body.theme-notebook {
       transparent 31px,
       rgba(45, 36, 22, 0.05) 31px,
       rgba(45, 36, 22, 0.05) 32px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 31px,
+      rgba(45, 36, 22, 0.05) 31px,
+      rgba(45, 36, 22, 0.05) 32px
     );
 }
 
